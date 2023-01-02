@@ -1,6 +1,4 @@
 hello
-66140b0b05334cd7a04abdfee6ec03b4
-d203d7042b09424ead5be6150d79df98
 successful authentication
 37i9dQZEVXbMDoHDwVN2tF
 37i9dQZEVXbLRQDuF5jeBp
