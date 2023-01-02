@@ -69,7 +69,7 @@ Internal Structure:
 
     The MySQL database will use the MEMORY engine for faster response times when performing sort operations. There is no need to permenantly store the playlist data in the database.
     
-    When playlists are added to the website, each playlist will be added as a table to the database. The table name will be the ID of the playlist.
+    When playlists are added to the website, each playlist will be added into a playlists table, and the tracks will be added into a tracks table where track info will be stored. There will be a third table called playlist_tracks where there will be a record of every track and it's playlist id. There will almost certainly be duplicates in this table.
 
     Each playlist's table will have the following strucuture of columns:
         - track id (primary key)
