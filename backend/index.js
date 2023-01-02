@@ -1,6 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
-const app = require('express')();
+const express = require('express');
+const app = express();
 const PORT = 8080;
 
 async function authenticate() {
@@ -26,7 +27,7 @@ async function authenticate() {
         // use access token to authenticate further API requests
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
-        console.log('successful authentication. bearer token is ' + accessToken);
+        console.log('successful authentication.');
     } catch (error) {
         // console.error(error);
         next(error);
@@ -43,15 +44,19 @@ async function fetchPlaylistTracks(playlistId, next) {
             `https://api.spotify.com/v1/playlists/${playlistId}`
         );
 
+        const tracks = response.data.tracks.items;
+
         console.log(`tracks in playlist ${playlistId}:`)
         // console.log(response.data.tracks.items)
 
         response.data.tracks.items.forEach((item) => {
-            console.log(item.track.name);
+            // console.log(item.track.name);
             // console.log("-------------------------")
         })
 
-        return response.data.tracks.items;
+        // return response.data.tracks.items;
+        console.log(tracks);
+        return tracks;
     } catch (error) {
         next(error);
     }
@@ -68,8 +73,8 @@ async function comparePlaylists(playlist1Url, playlist2Url, next) {
         const playlist2Tracks = await fetchPlaylistTracks(playlist2Id, next);
 
         // create sets for each playlist
-        const set1 = new Set(playlist1Tracks.map((track) => track.id));
-        const set2 = new Set(playlist2Tracks.map((track) => track.id));
+        const set1 = new Set(playlist1Tracks.map((item) => item.track.id));
+        const set2 = new Set(playlist2Tracks.map((item) => item.track.id));
 
         // find intersection of the two sets
         const intersection = new Set([...set1].filter((x) => set2.has(x)));
