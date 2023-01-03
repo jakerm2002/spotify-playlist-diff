@@ -56,7 +56,7 @@ async function authenticate() {
 
 async function createTables() {
     try {
-        
+
 
         console.log('created tables.');
     } catch (error) {
@@ -147,43 +147,64 @@ async function comparePlaylistsWithDB(playlist1Url, playlist2Url, next) {
     // find intersection of the tracks in the two playlists using the objection models
     // use an inner join to find the intersection
     const intersection = await PlaylistTrack.query()
-        .innerJoin('tracks', 'playlist_tracks.track_id', 'tracks.id')
+        .innerJoin('playlist_tracks', 'playlist_tracks.track_id', 'tracks.track_id')
         .where('playlist_tracks.playlist_id', playlist1ID)
         .andWhere('playlist_tracks.playlist_id', playlist2ID)
-        .select('tracks.name', 'tracks.artists', 'tracks.album', 'tracks.duration_ms');
+        .select('tracks.name', 'tracks.artist', 'tracks.album', 'tracks.duration_ms');
 
     // return the intersection in JSON format and include it in the response
+    console.log("INTERSECTION")
+    console.log(intersection)
     return intersection;
 }
 
 // v2 function
 async function addPlaylistToDB(playlistObject) {
-    // add playlist to Playlists table
+
     console.log("addPlaylistToDB called")
-    const playlist = await Playlist.query().insert({
-        playlist_id: getPlaylistID(playlistObject),
-        name: getPlaylistName(playlistObject),
+
+    // add playlist to Playlists table
+    const playlistTrx = await Playlist.transaction(async trx => {
+        // if the playlist doesn't already exist in the database, add it
+        if (Playlist.query().where('playlist_id', getPlaylistID(playlistObject)).resultSize() === 0) {
+            const playlist = await Playlist.query(trx).insert({
+                playlist_id: getPlaylistID(playlistObject),
+                name: getPlaylistName(playlistObject),
+            });
+        }
     });
 
     // add tracks to Tracks table
     for (const item of getPlaylistTracks(playlistObject)) {
-        const track = await Track.query().insert({
-            track_id: item.track.id,
-            name: item.track.name,
-            artist: item.track.artists[0].name,
-            album: item.track.album.name,
-            duration_ms: item.track.duration_ms,
+        const trackTrx = await Track.transaction(async trx => {
+            // if the track doesn't already exist in the database, add it
+            if (Track.query().where('track_id', item.track.id).resultSize() === 0) {
+                const track = await Track.query(trx).insert({
+                    track_id: item.track.id,
+                    name: item.track.name,
+                    artist: item.track.artists[0].name,
+                    album: item.track.album.name,
+                    duration_ms: item.track.duration_ms,
+                });
+            }
         });
     };
 
     // add links between playlists and tracks to PlaylistTracks table
     for (const item of getPlaylistTracks(playlistObject)) {
-        const link = await PlaylistTrack.query().insert({
-            playlist_id: getPlaylistID(playlistObject),
-            track_id: item.track.id,
+        const linkTrx = await PlaylistTrack.transaction(async trx => {
+            // if the link doesn't already exist in the database, add it
+            // we are trying to avoid duplicate links between playlists and tracks
+
+            if (PlaylistTrack.query().where('playlist_id', getPlaylistID(playlistObject)).andWhere('track_id', item.track.id).resultSize() === 0) {
+                const link = await PlaylistTrack.query(trx).insert({
+                    playlist_id: getPlaylistID(playlistObject),
+                    track_id: item.track.id,
+                });
+            }
         });
     };
-    
+
 }
 
 async function comparePlaylists(playlist1Url, playlist2Url, next) {
