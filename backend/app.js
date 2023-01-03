@@ -146,11 +146,16 @@ async function comparePlaylistsWithDB(playlist1Url, playlist2Url, next) {
 
     // find intersection of the tracks in the two playlists using the objection models
     // use an inner join to find the intersection
-    const intersection = await PlaylistTrack.query()
-        .innerJoin('playlist_tracks', 'playlist_tracks.track_id', 'tracks.track_id')
-        .where('playlist_tracks.playlist_id', playlist1ID)
-        .andWhere('playlist_tracks.playlist_id', playlist2ID)
-        .select('tracks.name', 'tracks.artist', 'tracks.album', 'tracks.duration_ms');
+    const intersection = await Track
+        .query()
+        .select('tracks.track_id')
+        .join('playlist_tracks as pt1', 'tracks.track_id', 'pt1.track_id')
+        .join('playlist_tracks as pt2', 'tracks.track_id', 'pt2.track_id')
+        .where('pt1.playlist_id', playlist1ID)
+        .andWhere('pt2.playlist_id', playlist2ID)
+        .andWhere(function () {
+            this.where('pt1.playlist_id', '<>', 'pt2.playlist_id').orWhere('pt2.playlist_id', '<>', 'pt1.playlist_id');
+        });
 
     // return the intersection in JSON format and include it in the response
     console.log("INTERSECTION")
@@ -164,21 +169,27 @@ async function addPlaylistToDB(playlistObject) {
     console.log("addPlaylistToDB called")
 
     // add playlist to Playlists table
-    const playlistTrx = await Playlist.transaction(async trx => {
-        // if the playlist doesn't already exist in the database, add it
-        if (Playlist.query().where('playlist_id', getPlaylistID(playlistObject)).resultSize() === 0) {
+    const curID = getPlaylistID(playlistObject);
+    Playlist.query().where('playlist_id', '=', curID).resultSize().then((result) => {
+        console.log("RESULT");
+        console.log(result);
+    });
+    if (Playlist.query().where('playlist_id', '=', curID).resultSize() === 0) {
+        const playlistTrx = await Playlist.transaction(async trx => {
+            // if the playlist doesn't already exist in the database, add it
             const playlist = await Playlist.query(trx).insert({
                 playlist_id: getPlaylistID(playlistObject),
                 name: getPlaylistName(playlistObject),
             });
-        }
-    });
+        });
+    }
 
     // add tracks to Tracks table
     for (const item of getPlaylistTracks(playlistObject)) {
         const trackTrx = await Track.transaction(async trx => {
             // if the track doesn't already exist in the database, add it
             if (Track.query().where('track_id', item.track.id).resultSize() === 0) {
+                console.log("INSERTING TRACK");
                 const track = await Track.query(trx).insert({
                     track_id: item.track.id,
                     name: item.track.name,
