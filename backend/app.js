@@ -169,12 +169,9 @@ async function addPlaylistToDB(playlistObject) {
     console.log("addPlaylistToDB called")
 
     // add playlist to Playlists table
-    const curID = getPlaylistID(playlistObject);
-    Playlist.query().where('playlist_id', '=', curID).resultSize().then((result) => {
-        console.log("RESULT");
-        console.log(result);
-    });
-    if (Playlist.query().where('playlist_id', '=', curID).resultSize() === 0) {
+    const currentPlaylistID = getPlaylistID(playlistObject);
+    const playlistOccurrences = await Playlist.query().where('playlist_id', knex.raw("'" + currentPlaylistID + "'")).resultSize();
+    if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
             // if the playlist doesn't already exist in the database, add it
             const playlist = await Playlist.query(trx).insert({
@@ -186,9 +183,10 @@ async function addPlaylistToDB(playlistObject) {
 
     // add tracks to Tracks table
     for (const item of getPlaylistTracks(playlistObject)) {
-        const trackTrx = await Track.transaction(async trx => {
-            // if the track doesn't already exist in the database, add it
-            if (Track.query().where('track_id', item.track.id).resultSize() === 0) {
+        const currentTrackID = item.track.id;
+        const trackOccurrences = await Track.query().where('track_id', knex.raw("'" + currentTrackID + "'")).resultSize();
+        if (trackOccurrences === 0) {
+            const trackTrx = await Track.transaction(async trx => {
                 console.log("INSERTING TRACK");
                 const track = await Track.query(trx).insert({
                     track_id: item.track.id,
@@ -197,23 +195,25 @@ async function addPlaylistToDB(playlistObject) {
                     album: item.track.album.name,
                     duration_ms: item.track.duration_ms,
                 });
-            }
-        });
+            });
+        }
     };
 
     // add links between playlists and tracks to PlaylistTracks table
     for (const item of getPlaylistTracks(playlistObject)) {
-        const linkTrx = await PlaylistTrack.transaction(async trx => {
-            // if the link doesn't already exist in the database, add it
-            // we are trying to avoid duplicate links between playlists and tracks
-
-            if (PlaylistTrack.query().where('playlist_id', getPlaylistID(playlistObject)).andWhere('track_id', item.track.id).resultSize() === 0) {
+        const currentPlaylistID = getPlaylistID(playlistObject);
+        const currentTrackID = item.track.id;
+        const linkOccurrences = await PlaylistTrack.query().where('playlist_id', knex.raw("'" + currentPlaylistID + "'")).andWhere('track_id', knex.raw("'" + currentTrackID + "'")).resultSize();
+        if (linkOccurrences === 0) {
+            const linkTrx = await PlaylistTrack.transaction(async trx => {
+                // if the link doesn't already exist in the database, add it
+                // we are trying to avoid duplicate links between playlists and tracks
                 const link = await PlaylistTrack.query(trx).insert({
-                    playlist_id: getPlaylistID(playlistObject),
-                    track_id: item.track.id,
+                    playlist_id: knex.raw(currentPlaylistID),
+                    track_id: knex.raw(currentTrackID)
                 });
-            }
-        });
+            });
+        }
     };
 
 }
