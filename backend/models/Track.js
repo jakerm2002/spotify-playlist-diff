@@ -12,7 +12,7 @@ class Track extends Model {
                 relation: Model.HasManyRelation,
                 modelClass: PlaylistTrack,
                 join: {
-                    from: 'tracks.id',
+                    from: 'tracks.track_id',
                     to: 'playlist_tracks.track_id'
                 }
             }

@@ -14,7 +14,7 @@ class PlaylistTrack extends Model {
                 modelClass: Playlist,
                 join: {
                     from: 'playlist_tracks.playlist_id',
-                    to: 'playlists.id'
+                    to: 'playlists.playlist_id'
                 }
             },
             track: {
@@ -22,7 +22,7 @@ class PlaylistTrack extends Model {
                 modelClass: Track,
                 join: {
                     from: 'playlist_tracks.track_id',
-                    to: 'tracks.id'
+                    to: 'tracks.track_id'
                 }
             }
         };

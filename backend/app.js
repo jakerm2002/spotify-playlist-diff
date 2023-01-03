@@ -146,7 +146,7 @@ async function comparePlaylistsWithDB(playlist1Url, playlist2Url, next) {
 
     // find intersection of the tracks in the two playlists using the objection models
     // use an inner join to find the intersection
-    const intersection = await PlaylistTracks.query()
+    const intersection = await PlaylistTrack.query()
         .innerJoin('tracks', 'playlist_tracks.track_id', 'tracks.id')
         .where('playlist_tracks.playlist_id', playlist1ID)
         .andWhere('playlist_tracks.playlist_id', playlist2ID)
@@ -160,28 +160,25 @@ async function comparePlaylistsWithDB(playlist1Url, playlist2Url, next) {
 async function addPlaylistToDB(playlistObject) {
     // add playlist to Playlists table
     console.log("addPlaylistToDB called")
-    console.log(getPlaylistID(playlistObject))
-    console.log(getPlaylistName(playlistObject))
     const playlist = await Playlist.query().insert({
-        id: getPlaylistID(playlistObject),
+        playlist_id: getPlaylistID(playlistObject),
         name: getPlaylistName(playlistObject),
-        tracks: getPlaylistTracks(playlistObject)
     });
 
     // add tracks to Tracks table
-    for (const item of playlistTracks) {
+    for (const item of getPlaylistTracks(playlistObject)) {
         const track = await Track.query().insert({
-            id: item.track.id,
+            track_id: item.track.id,
             name: item.track.name,
-            artists: item.track.artists,
-            album: item.track.album,
+            artist: item.track.artists[0].name,
+            album: item.track.album.name,
             duration_ms: item.track.duration_ms,
         });
     };
 
     // add links between playlists and tracks to PlaylistTracks table
-    for (const item of playlistTracks) {
-        const link = await PlaylistTracks.query().insert({
+    for (const item of getPlaylistTracks(playlistObject)) {
+        const link = await PlaylistTrack.query().insert({
             playlist_id: getPlaylistID(playlistObject),
             track_id: item.track.id,
         });
