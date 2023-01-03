@@ -19,7 +19,7 @@ const knex = require('knex')({
         password: process.env.DB_PASS,
         database: process.env.DB_DATABASE
     },
-    debug: true
+    debug: false
 });
 
 Model.knex(knex);
@@ -109,21 +109,21 @@ async function getPlaylistObject(playlistID, next) {
 
 // v2 function
 function getPlaylistID(playlistObject) {
-    console.log("getPlaylistID called")
-    console.log(playlistObject.id)
+    // console.log("getPlaylistID called")
+    // console.log(playlistObject.id)
     return playlistObject.id;
 }
 
 // v2 function
 function getPlaylistName(playlistObject) {
-    console.log("getPlaylistName called")
-    console.log(playlistObject.name)
+    // console.log("getPlaylistName called")
+    // console.log(playlistObject.name)
     return playlistObject.name;
 }
 
 // v2 function
 function getPlaylistTracks(playlistObject) {
-    console.log("getPlaylistTracks called")
+    // console.log("getPlaylistTracks called")
     // console.log(playlistObject.tracks.items)
     return playlistObject.tracks.items;
 }
@@ -148,7 +148,7 @@ async function comparePlaylistsWithDB(playlist1Url, playlist2Url, next) {
     // use an inner join to find the intersection
     const intersection = await Track
         .query()
-        .select('tracks.track_id')
+        .select('tracks.track_id', 'tracks.name')
         .join('playlist_tracks as pt1', 'tracks.track_id', 'pt1.track_id')
         .join('playlist_tracks as pt2', 'tracks.track_id', 'pt2.track_id')
         .where('pt1.playlist_id', playlist1ID)
@@ -160,6 +160,7 @@ async function comparePlaylistsWithDB(playlist1Url, playlist2Url, next) {
     // return the intersection in JSON format and include it in the response
     console.log("INTERSECTION")
     console.log(intersection)
+    console.log(intersection.length)
     return intersection;
 }
 
@@ -209,8 +210,8 @@ async function addPlaylistToDB(playlistObject) {
                 // if the link doesn't already exist in the database, add it
                 // we are trying to avoid duplicate links between playlists and tracks
                 const link = await PlaylistTrack.query(trx).insert({
-                    playlist_id: knex.raw(currentPlaylistID),
-                    track_id: knex.raw(currentTrackID)
+                    playlist_id: getPlaylistID(playlistObject),
+                    track_id: item.track.id
                 });
             });
         }
