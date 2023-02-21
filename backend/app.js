@@ -238,7 +238,7 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
 
     // add playlist to Playlists table
     const currentPlaylistID = getPlaylistID(playlistObject);
-    const playlistOccurrences = await Session.query().where('db_playlist_id', knex.raw("'" + session_id + '-' + currentPlaylistID + "'")).resultSize();
+    const playlistOccurrences = await Playlist.query().where('db_playlist_id', knex.raw("'" + session_id + '-' + currentPlaylistID + "'")).resultSize();
     if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
             // if the playlist doesn't already exist in the database, add it
@@ -257,27 +257,23 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
     // add tracks to Tracks table
     localSongCounter = 0; //count number of songs from local files for naming db_track_id
     for (const item of getPlaylistTracks(playlistObject)) {
-        const currentTrackID = item.track.id;
-        const trackOccurrences = await Track.query().where('track_id', knex.raw("'" + currentTrackID + "'")).resultSize();
-        if (trackOccurrences === 0) {
-            const trackTrx = await Track.transaction(async trx => {
-                console.log("INSERTING TRACK");
-                const track = await Track.query(trx).insert({
-                    db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
-                    db_session_id: session_id,
-                    db_playlist_id: session_id + '-' + playlistObject.id,
-                    spotify_track_id: item.track.id,
-                    spotify_album_id: item.track.album.id,
-                    spotify_artist_id: item.track.artists[0].id,
-                    album_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
-                    date_added: item.added_at,
-                    track_name: item.track.name,
-                    album_name: item.track.album.name,
-                    artist_name: item.track.artists[0].name,
-                    runtime: item.track.duration_ms
-                });
+        const trackTrx = await Track.transaction(async trx => {
+            console.log("INSERTING TRACK");
+            const track = await Track.query(trx).insert({
+                db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
+                db_session_id: session_id,
+                db_playlist_id: session_id + '-' + playlistObject.id,
+                spotify_track_id: item.track.id,
+                spotify_album_id: item.track.album.id,
+                spotify_artist_id: item.track.artists[0].id,
+                cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+                date_added: item.added_at,
+                track_name: item.track.name,
+                album_name: item.track.album.name,
+                artist_name: item.track.artists[0].name,
+                runtime: item.track.duration_ms
             });
-        }
+        });
     };
 
 }
@@ -412,6 +408,7 @@ app.post('/add', (req, res, next) => {
     const session_id = req.query.session;
     
     uploadPlaylist(playlistURL, session_id, next);
+    res.status(200).send();
 })
 
 

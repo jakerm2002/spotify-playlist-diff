@@ -12,7 +12,7 @@ const trackSchema = (table) => {
     table.string('track_name')
     table.string('album_name')
     table.string('artist_name')
-    table.integer('duration_ms')
+    table.integer('runtime')
 }
 
 module.exports = trackSchema;
