@@ -257,7 +257,7 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
     // add tracks to Tracks table
     localSongCounter = 0; //count number of songs from local files for naming db_track_id
     console.log(getPlaylistTracks(playlistObject));
-    for (const item of getPlaylistTracks(playlistObject)) {
+    getPlaylistTracks(playlistObject).forEach(async(item) => {
         console.log("INSERTING TRACK");
         console.log("^^^^^^^^^");
         const track = await Track.query().insert({
@@ -274,7 +274,7 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
             artist_name: item.track.artists[0].name,
             runtime: item.track.duration_ms
         });
-    };
+    });
 
     console.log("finished");
 
