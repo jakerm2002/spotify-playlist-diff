@@ -6,7 +6,7 @@ const { Model } = require('objection');
 // const { Playlist, Track, PlaylistTrack } = require('./models');
 const Playlist = require('./models/Playlist');
 const Track = require('./models/Track');
-const PlaylistTrack = require('./models/PlaylistTrack');
+const Session = require('./models/Session');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -231,6 +231,57 @@ async function addPlaylistToDB(playlistObject) {
 
 
 
+// v3 function
+async function addPlaylistToDBv3(playlistObject, session_id) {
+
+    console.log("addPlaylistToDBv3 called")
+
+    // add playlist to Playlists table
+    const currentPlaylistID = getPlaylistID(playlistObject);
+    const playlistOccurrences = await Session.query().where('db_playlist_id', knex.raw("'" + session_id + '-' + currentPlaylistID + "'")).resultSize();
+    if (playlistOccurrences === 0) {
+        const playlistTrx = await Playlist.transaction(async trx => {
+            // if the playlist doesn't already exist in the database, add it
+            const playlist = await Playlist.query(trx).insert({
+                db_playlist_id: session_id + '-' + playlistObject.id, //string concat
+                db_session_id: session_id, 
+                spotify_playlist_id: playlistObject.id,
+                playlist_name: playlistObject.name,
+                author_display_name: playlistObject.owner.display_name,
+                image_url: playlistObject.images[0].url,
+                num_tracks: playlistObject.tracks.total
+            });
+        });
+    }
+
+    // add tracks to Tracks table
+    localSongCounter = 0; //count number of songs from local files for naming db_track_id
+    for (const item of getPlaylistTracks(playlistObject)) {
+        const currentTrackID = item.track.id;
+        const trackOccurrences = await Track.query().where('track_id', knex.raw("'" + currentTrackID + "'")).resultSize();
+        if (trackOccurrences === 0) {
+            const trackTrx = await Track.transaction(async trx => {
+                console.log("INSERTING TRACK");
+                const track = await Track.query(trx).insert({
+                    db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
+                    db_session_id: session_id,
+                    db_playlist_id: session_id + '-' + playlistObject.id,
+                    spotify_track_id: item.track.id,
+                    spotify_album_id: item.track.album.id,
+                    spotify_artist_id: item.track.artists[0].id,
+                    album_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+                    date_added: item.added_at,
+                    track_name: item.track.name,
+                    album_name: item.track.album.name,
+                    artist_name: item.track.artists[0].name,
+                    runtime: item.track.duration_ms
+                });
+            });
+        }
+    };
+
+}
+
 app.listen(
     PORT,
     () => {
@@ -255,6 +306,8 @@ app.get('/comparev2', (req, res, next) => {
     });
 })
 
+
+//v3 function
 async function printTracks(playlistURL, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
     const playlistObject = await getPlaylistObject(playlistID);
@@ -263,6 +316,56 @@ async function printTracks(playlistURL, next) {
     return res;
 }
 
+async function printPlaylist(playlistURL, session_id, next) {
+    const playlistID = getPlaylistIDfromURL(playlistURL);
+    const playlistObject = await getPlaylistObject(playlistID);
+
+    const playlist = {
+        db_playlist_id: session_id + '-' + playlistObject.id, //string concat
+        db_session_id: session_id, 
+        spotify_playlist_id: playlistObject.id,
+        playlist_name: playlistObject.name,
+        author_display_name: playlistObject.owner.display_name,
+        image_url: playlistObject.images[0].url ?? "",
+        num_tracks: playlistObject.tracks.total
+    };
+
+    console.log(playlist);
+    return playlist;
+}
+
+async function printTracks2(playlistURL, session_id, next) {
+    const playlistID = getPlaylistIDfromURL(playlistURL);
+    const playlistObject = await getPlaylistObject(playlistID);
+
+    var tracks = [];
+    localSongCounter = 0;
+    for (const item of getPlaylistTracks(playlistObject)) {
+        console.log(item.track.name);
+        const track = {
+            db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
+            db_session_id: session_id,
+            db_playlist_id: session_id + '-' + playlistObject.id,
+            spotify_track_id: item.track.id,
+            spotify_album_id: item.track.album.id,
+            spotify_artist_id: item.track.artists[0].id,
+            album_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+            date_added: item.added_at,
+            track_name: item.track.name,
+            album_name: item.track.album.name,
+            artist_name: item.track.artists[0].name,
+            runtime: item.track.duration_ms
+        }
+        tracks.push(track);
+    }
+
+    // console.log(tracks);
+    return tracks;
+}
+
+
+
+//v3 function
 async function getTrackNames(playlistURL, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
     const playlistObject = await getPlaylistObject(playlistID);
@@ -273,28 +376,42 @@ async function getTrackNames(playlistURL, next) {
 
 app.get('/playlist', (req, res, next) => {
     const playlistURL = req.query.playlist;
+    const session_id = req.query.session;
     console.log(playlistURL);
     
-    printTracks(playlistURL, next).then((result) => {
+    printPlaylist(playlistURL, session_id, next).then((result) => {
         res.send(result);
-    });
+    })
 })
 
 app.get('/tracks', (req, res, next) => {
     const playlistURL = req.query.playlist;
+    const session_id = req.query.session;
     console.log(playlistURL);
     
-    getTrackNames(playlistURL, next).then((result) => {
+    printTracks2(playlistURL, session_id, next).then((result) => {
         res.send(result);
     });
+
+    // printTracks(playlistURL, next).then((result) => {
+    //     res.send(result);
+    // })
 })
+
+
+//v3 function
+async function uploadPlaylist(playlistURL, session_id, next) {
+    const playlistID = getPlaylistIDfromURL(playlistURL);
+    const playlistObject = await getPlaylistObject(playlistID);
+    addPlaylistToDBv3(playlistObject, session_id, next);
+}
 
 //upload a playlist into the database, 
 app.post('/add', (req, res, next) => {
-    const sessionID = req.query.sessionID;
     const playlistURL = req.query.playlist;
+    const session_id = req.query.session;
     
-
+    uploadPlaylist(playlistURL, session_id, next);
 })
 
 

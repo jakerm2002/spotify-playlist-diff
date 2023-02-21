@@ -1,18 +1,19 @@
 const { Model } = require('objection');
 const Playlist = require('./Playlist');
+const Track = require('./Track');
 
-class Track extends Model {
+class Session extends Model {
     static get tableName() {
-        return 'tracks';
+        return 'sessions';
     }
 
     static get relationMappings() {
         return {
             playlist: {
-                relation: Model.HasOneRelation,
+                relation: Model.HasManyRelation,
                 modelClass: Playlist,
                 join: {
-                    from: 'tracks.db_playlist_id',
+                    from: 'sessions.db_playlist_id',
                     to: 'playlists.db_playlist_id'
                 }
             }
@@ -20,4 +21,4 @@ class Track extends Model {
     }
 }
 
-module.exports = Track;
+module.exports = Session;

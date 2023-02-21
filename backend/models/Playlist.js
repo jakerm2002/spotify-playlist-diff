@@ -1,5 +1,5 @@
 const { Model } = require('objection');
-const PlaylistTrack = require('./PlaylistTrack');
+const Track = require('./Track')
 
 class Playlist extends Model {
     static get tableName() {
@@ -10,10 +10,10 @@ class Playlist extends Model {
         return {
             tracks: {
                 relation: Model.HasManyRelation,
-                modelClass: PlaylistTrack,
+                modelClass: Track,
                 join: {
-                    from: 'playlists.playlist_id',
-                    to: 'playlist_tracks.playlist_id'
+                    from: 'playlists.db_playlist_id',
+                    to: 'tracks.db_playlist_id'
                 }
             }
         };
