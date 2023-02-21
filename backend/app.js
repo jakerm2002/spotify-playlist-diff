@@ -256,25 +256,27 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
 
     // add tracks to Tracks table
     localSongCounter = 0; //count number of songs from local files for naming db_track_id
+    console.log(getPlaylistTracks(playlistObject));
     for (const item of getPlaylistTracks(playlistObject)) {
-        const trackTrx = await Track.transaction(async trx => {
-            console.log("INSERTING TRACK");
-            const track = await Track.query(trx).insert({
-                db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
-                db_session_id: session_id,
-                db_playlist_id: session_id + '-' + playlistObject.id,
-                spotify_track_id: item.track.id,
-                spotify_album_id: item.track.album.id,
-                spotify_artist_id: item.track.artists[0].id,
-                cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
-                date_added: item.added_at,
-                track_name: item.track.name,
-                album_name: item.track.album.name,
-                artist_name: item.track.artists[0].name,
-                runtime: item.track.duration_ms
-            });
+        console.log("INSERTING TRACK");
+        console.log("^^^^^^^^^");
+        const track = await Track.query().insert({
+            db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
+            db_session_id: session_id,
+            db_playlist_id: session_id + '-' + playlistObject.id,
+            spotify_track_id: item.track.id,
+            spotify_album_id: item.track.album.id,
+            spotify_artist_id: item.track.artists[0].id,
+            cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+            date_added: item.added_at,
+            track_name: item.track.name,
+            album_name: item.track.album.name,
+            artist_name: item.track.artists[0].name,
+            runtime: item.track.duration_ms
         });
     };
+
+    console.log("finished");
 
 }
 
