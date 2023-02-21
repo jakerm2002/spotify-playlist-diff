@@ -129,6 +129,16 @@ function getPlaylistTracks(playlistObject) {
 }
 
 // v2 function
+function getPlaylistTrackNames(playlistObject) {
+    // console.log("getPlaylistTrackNames called")
+    var array = [];
+    playlistObject.tracks.items.forEach((item) => {
+        array.push({id: item.track.id, name: item.track.name});
+    })
+    return array;
+}
+
+// v2 function
 function getPlaylistIDfromURL(playlistURL) {
     return playlistURL.split('/').pop();
 }
@@ -219,32 +229,7 @@ async function addPlaylistToDB(playlistObject) {
 
 }
 
-async function comparePlaylists(playlist1Url, playlist2Url, next) {
-    try {
-        // extract playlist IDs from URLs
-        const playlist1Id = playlist1Url.split('/').pop();
-        const playlist2Id = playlist2Url.split('/').pop();
 
-        // fetch track lists for both playlists
-        const playlist1Tracks = await fetchPlaylistTracks(playlist1Id, next);
-        const playlist2Tracks = await fetchPlaylistTracks(playlist2Id, next);
-
-        // create sets for each playlist
-        const set1 = new Set(playlist1Tracks.map((item) => item.track.id));
-        const set2 = new Set(playlist2Tracks.map((item) => item.track.id));
-
-        // find intersection of the two sets
-        const intersection = new Set([...set1].filter((x) => set2.has(x)));
-
-        return {
-            playlist1: playlist1Url,
-            playlist2: playlist2Url,
-            commonTracks: [...intersection],
-        };
-    } catch (error) {
-        next(error);
-    }
-}
 
 app.listen(
     PORT,
@@ -255,19 +240,6 @@ app.listen(
     }
 )
 
-app.get('/compare', (req, res, next) => {
-    // retrieve playlist URLs from query parameters
-    const playlist1Url = req.query.playlist1;
-    const playlist2Url = req.query.playlist2;
-
-    console.log(playlist1Url);
-    console.log(playlist2Url);
-
-    // compare the tracks of the two playlists
-    comparePlaylists(playlist1Url, playlist2Url, next).then((result) => {
-        res.send(result);
-    });
-})
 
 app.get('/comparev2', (req, res, next) => {
     // retrieve playlist URLs from query parameters
@@ -282,6 +254,49 @@ app.get('/comparev2', (req, res, next) => {
         res.send(result);
     });
 })
+
+async function printTracks(playlistURL, next) {
+    const playlistID = getPlaylistIDfromURL(playlistURL);
+    const playlistObject = await getPlaylistObject(playlistID);
+    const res = getPlaylistTracks(playlistObject);
+    console.log(res);
+    return res;
+}
+
+async function getTrackNames(playlistURL, next) {
+    const playlistID = getPlaylistIDfromURL(playlistURL);
+    const playlistObject = await getPlaylistObject(playlistID);
+    const res = getPlaylistTrackNames(playlistObject);
+    console.log(res);
+    return res;
+}
+
+app.get('/playlist', (req, res, next) => {
+    const playlistURL = req.query.playlist;
+    console.log(playlistURL);
+    
+    printTracks(playlistURL, next).then((result) => {
+        res.send(result);
+    });
+})
+
+app.get('/tracks', (req, res, next) => {
+    const playlistURL = req.query.playlist;
+    console.log(playlistURL);
+    
+    getTrackNames(playlistURL, next).then((result) => {
+        res.send(result);
+    });
+})
+
+//upload a playlist into the database, 
+app.post('/add', (req, res, next) => {
+    const sessionID = req.query.sessionID;
+    const playlistURL = req.query.playlist;
+    
+
+})
+
 
 // app.use((err, req, res, next) => {
 //     console.error(err.stack)
