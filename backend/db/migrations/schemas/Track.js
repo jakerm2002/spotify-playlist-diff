@@ -12,11 +12,12 @@ const trackSchema = (table) => {
     table.string('spotify_album_id')
     table.string('spotify_artist_id')
     table.string('cover_art_URL')
-    table.date('date_added')
+    table.datetime('date_added')
     table.string('track_name')
     table.string('album_name')
     table.string('artist_name')
     table.integer('runtime')
+    table.integer('playlist_order') // song is the ith track in the playlist
 
     // table.foreign('db_session_id').references('playlists.db_session_id');
     // table.foreign('spotify_playlist_id').references('playlists.spotify_playlist_id');

@@ -254,15 +254,13 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
     }
 
     // add tracks to Tracks table
-    localSongCounter = 0; //count number of songs from local files for naming db_track_id
-    // console.log(getPlaylistTracks(playlistObject));
+    let localSongCounter = 0; //count number of songs from local files for naming db_track_id
+    let playlist_order = 1;
     getPlaylistTracks(playlistObject).forEach(async(item) => {
-        // console.log("INSERTING TRACK");
-        // console.log("^^^^^^^^^");
         const track = await Track.query().insert({
             db_session_id: session_id,
             spotify_playlist_id: playlistObject.id,
-            spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter),
+            spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter++),
             spotify_album_id: item.track.album.id,
             spotify_artist_id: item.track.artists[0].id,
             cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
@@ -270,7 +268,8 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
             track_name: item.track.name,
             album_name: item.track.album.name,
             artist_name: item.track.artists[0].name,
-            runtime: item.track.duration_ms
+            runtime: item.track.duration_ms,
+            playlist_order: playlist_order++
         });
     });
 
@@ -415,9 +414,10 @@ async function comparePlaylistsWithDBv3(playlist1Url, playlist2Url, session_id, 
     //then we add it into the result
     const intersection = await Track
         .query()
-        .select('tracks.db_track_id', 'tracks.track_name')
-        .where('tracks.db_playlist_id', db_playlist_id1)
-        .orWhere('tracks.db_playlist_id', db_playlist_id2);
+        .select()
+        .where('tracks.db_session_id', session_id)
+        .groupBy('tracks.spotify_track_id')
+        .having(knex.raw('count(*) > 1'));
 
     // return the intersection in JSON format and include it in the response
     console.log("INTERSECTION")
