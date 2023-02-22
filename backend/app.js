@@ -256,12 +256,12 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
 
     // add tracks to Tracks table
     localSongCounter = 0; //count number of songs from local files for naming db_track_id
-    console.log(getPlaylistTracks(playlistObject));
+    // console.log(getPlaylistTracks(playlistObject));
     getPlaylistTracks(playlistObject).forEach(async(item) => {
-        console.log("INSERTING TRACK");
-        console.log("^^^^^^^^^");
+        // console.log("INSERTING TRACK");
+        // console.log("^^^^^^^^^");
         const track = await Track.query().insert({
-            db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
+            db_track_id: session_id + '-' + playlistObject.id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
             db_session_id: session_id,
             db_playlist_id: session_id + '-' + playlistObject.id,
             spotify_track_id: item.track.id,
@@ -394,6 +394,54 @@ app.get('/tracks', (req, res, next) => {
     // printTracks(playlistURL, next).then((result) => {
     //     res.send(result);
     // })
+})
+
+
+// v3 function
+function getSpotifyIDfromURL(playlistURL) {
+    return (playlistURL.split('/').pop()).split('?')[0];
+}
+
+
+// v3 function
+async function comparePlaylistsWithDBv3(playlist1Url, playlist2Url, session_id, next) {
+
+
+    const db_playlist_id1 = session_id + '-' + getSpotifyIDfromURL(playlist1Url);
+    console.log(db_playlist_id1);
+    const db_playlist_id2 = session_id + '-' + getSpotifyIDfromURL(playlist2Url);
+
+    // find intersection of the tracks in the two playlists using the objection models
+
+    //need to fix this to where we check if the track_id appears more than once
+    //then we add it into the result
+    const intersection = await Track
+        .query()
+        .select('tracks.db_track_id', 'tracks.track_name')
+        .where('tracks.db_playlist_id', db_playlist_id1)
+        .orWhere('tracks.db_playlist_id', db_playlist_id2);
+
+    // return the intersection in JSON format and include it in the response
+    console.log("INTERSECTION")
+    console.log(intersection)
+    console.log(intersection.length)
+    return intersection;
+}
+
+//V3#!!!!!!!! FAINALLYLYY 12K21MK1!!!!!
+app.get('/comparev3', (req, res, next) => {
+    // retrieve playlist URLs from query parameters
+    const playlist1Url = req.query.playlist1;
+    const playlist2Url = req.query.playlist2;
+    const session_id = req.query.session;
+
+    console.log(playlist1Url);
+    console.log(playlist2Url);
+
+    // compare the tracks of the two playlists
+    comparePlaylistsWithDBv3(playlist1Url, playlist2Url, session_id, next).then((result) => {
+        res.send(result);
+    });
 })
 
 
