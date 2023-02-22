@@ -238,12 +238,11 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
 
     // add playlist to Playlists table
     const currentPlaylistID = getPlaylistID(playlistObject);
-    const playlistOccurrences = await Playlist.query().where('db_playlist_id', knex.raw("'" + session_id + '-' + currentPlaylistID + "'")).resultSize();
+    const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
+    // if the playlist doesn't already exist in the database, add it
     if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
-            // if the playlist doesn't already exist in the database, add it
             const playlist = await Playlist.query(trx).insert({
-                db_playlist_id: session_id + '-' + playlistObject.id, //string concat
                 db_session_id: session_id, 
                 spotify_playlist_id: playlistObject.id,
                 playlist_name: playlistObject.name,
@@ -261,10 +260,9 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
         // console.log("INSERTING TRACK");
         // console.log("^^^^^^^^^");
         const track = await Track.query().insert({
-            db_track_id: session_id + '-' + playlistObject.id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
             db_session_id: session_id,
-            db_playlist_id: session_id + '-' + playlistObject.id,
-            spotify_track_id: item.track.id,
+            spotify_playlist_id: playlistObject.id,
+            spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter),
             spotify_album_id: item.track.album.id,
             spotify_artist_id: item.track.artists[0].id,
             cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,

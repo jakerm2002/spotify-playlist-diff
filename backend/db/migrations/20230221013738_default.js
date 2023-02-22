@@ -15,7 +15,8 @@ exports.up = function (knex) {
  */
 exports.down = function (knex) {
     return knex.schema
-        .dropTableIfExists('sessions')
+        .dropTableIfExists('tracks')
         .dropTableIfExists('playlists')
-        .dropTableIfExists('tracks');
+        .dropTableIfExists('sessions');
+        
 };
