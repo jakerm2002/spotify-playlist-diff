@@ -148,26 +148,28 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
     let playlist_order = 1;
     const items = await getAllPlaylistTracks(playlistObject, next);
     let count = 0;
-    items.forEach(async(item) => {
-        if (item.track != null) {
-            const track = await Track.query().insert({
-                db_session_id: session_id,
-                spotify_playlist_id: playlistObject.id,
-                spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter++),
-                spotify_album_id: item.track.album.id,
-                spotify_artist_id: item.track.artists[0].id,
-                cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
-                date_added: item.added_at,
-                track_name: item.track.name,
-                album_name: item.track.album.name,
-                artist_name: item.track.artists[0].name,
-                runtime: item.track.duration_ms,
-                playlist_order: playlist_order++
-            });
-            count++;
-        }
+    await knex.transaction(async trx => {
+        items.forEach(async(item) => {
+            if (item.track != null) {
+                const track = await Track.query().insert({
+                    db_session_id: session_id,
+                    spotify_playlist_id: playlistObject.id,
+                    spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter++),
+                    spotify_album_id: item.track.album.id,
+                    spotify_artist_id: item.track.artists[0].id,
+                    cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+                    date_added: item.added_at,
+                    track_name: item.track.name,
+                    album_name: item.track.album.name,
+                    artist_name: item.track.artists[0].name,
+                    runtime: item.track.duration_ms,
+                    playlist_order: playlist_order++
+                });
+                count++;
+            }
+        });
     });
-
+    
     console.log("finished");
 
 }
