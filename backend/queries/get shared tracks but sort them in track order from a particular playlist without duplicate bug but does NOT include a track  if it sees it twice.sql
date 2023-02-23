@@ -1,0 +1,1 @@
+SELECT MIN(playlist_order) AS plist_order, track_name FROM playlists.tracks WHERE (spotify_track_id IN (SELECT spotify_track_id FROM playlists.tracks WHERE db_session_id = 42069 GROUP BY spotify_track_id HAVING COUNT(DISTINCT spotify_playlist_id) = 2) AND spotify_playlist_id = '2mtL2pZ9zzxyWV58Pl0GRd') GROUP BY spotify_track_id ORDER BY playlist_order;
