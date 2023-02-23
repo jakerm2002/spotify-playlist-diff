@@ -227,7 +227,8 @@ async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
 
     const query = await Track
         .query()
-        .select()
+        .min('playlist_order as playlist_order')
+        .select('track_name', 'album_name', 'artist_name', 'runtime')
         .modify((queryBuilder) => {
 
             queryBuilder.whereIn('spotify_track_id', 
@@ -236,6 +237,7 @@ async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
             .groupBy('spotify_track_id')
             .having(knex.raw('count(DISTINCT spotify_playlist_id)'), '=', playlist_ids.length))
             .andWhere('spotify_playlist_id', playlist_ids[0]);
+            queryBuilder.groupBy('spotify_track_id');
 
             if (sort_attributes) {
                 queryBuilder.orderBy(sort_attributes);
