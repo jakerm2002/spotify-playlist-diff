@@ -5,7 +5,7 @@
 //session id + spotify_playlist_id + spotify_track_id
 
 const trackSchema = (table) => {
-    table.primary(['db_session_id', 'spotify_playlist_id', 'spotify_track_id']);
+    table.primary(['db_session_id', 'spotify_playlist_id', 'spotify_track_id', 'playlist_order']);
     table.string('db_session_id')
     table.string('spotify_playlist_id')
     table.string('spotify_track_id')

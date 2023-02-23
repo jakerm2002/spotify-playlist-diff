@@ -95,10 +95,16 @@ async function getAllPlaylistTracks(playlistObject, next) {
         const fields = `fields=next,items(track(name, album(name, images, id), artists(name, id), id, duration_ms))`
         let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&` + fields;
 
+        let count = 0;
         while (nextURL != null) {
             const response = await axios.get(nextURL);
+            if (count === 0) {
+                // const arr = response.data.items.slice(0,6);
+                // console.log(arr);
+            }
             allTracks.push(...response.data.items); //add all items from response
             nextURL = response.data.next;
+            count++;
         }
         return allTracks;
     } catch (error) {
@@ -113,7 +119,7 @@ function getPlaylistIDfromURL(playlistURL) {
 
 
 // v3 function
-async function addPlaylistToDB(playlistObject, session_id) {
+async function addPlaylistToDB(playlistObject, session_id, next) {
 
     console.log("adding playlist")
 
@@ -128,7 +134,7 @@ async function addPlaylistToDB(playlistObject, session_id) {
                 spotify_playlist_id: playlistObject.id,
                 playlist_name: playlistObject.name,
                 author_display_name: playlistObject.owner.display_name,
-                image_url: playlistObject.images[0].url,
+                image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
                 num_tracks: playlistObject.tracks.total
             });
         });
@@ -140,21 +146,26 @@ async function addPlaylistToDB(playlistObject, session_id) {
     // add tracks to Tracks table
     let localSongCounter = 0; //count number of songs from local files for naming db_track_id
     let playlist_order = 1;
-    getPlaylistTracks(playlistObject).forEach(async(item) => {
-        const track = await Track.query().insert({
-            db_session_id: session_id,
-            spotify_playlist_id: playlistObject.id,
-            spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter++),
-            spotify_album_id: item.track.album.id,
-            spotify_artist_id: item.track.artists[0].id,
-            cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
-            date_added: item.added_at,
-            track_name: item.track.name,
-            album_name: item.track.album.name,
-            artist_name: item.track.artists[0].name,
-            runtime: item.track.duration_ms,
-            playlist_order: playlist_order++
-        });
+    const items = await getAllPlaylistTracks(playlistObject, next);
+    let count = 0;
+    items.forEach(async(item) => {
+        if (item.track != null) {
+            const track = await Track.query().insert({
+                db_session_id: session_id,
+                spotify_playlist_id: playlistObject.id,
+                spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter++),
+                spotify_album_id: item.track.album.id,
+                spotify_artist_id: item.track.artists[0].id,
+                cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+                date_added: item.added_at,
+                track_name: item.track.name,
+                album_name: item.track.album.name,
+                artist_name: item.track.artists[0].name,
+                runtime: item.track.duration_ms,
+                playlist_order: playlist_order++
+            });
+            count++;
+        }
     });
 
     console.log("finished");
@@ -223,7 +234,7 @@ async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
             Track.query().select('spotify_track_id')
             .where('db_session_id', session_id)
             .groupBy('spotify_track_id')
-            .having(knex.raw('count(*)'), '=', playlist_ids.length))
+            .having(knex.raw('count(DISTINCT spotify_playlist_id)'), '=', playlist_ids.length))
             .andWhere('spotify_playlist_id', playlist_ids[0]);
 
             if (sort_attributes) {
