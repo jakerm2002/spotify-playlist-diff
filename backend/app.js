@@ -54,8 +54,6 @@ async function authenticate() {
 }
 
 
-
-// v2 function
 async function getPlaylistObject(playlistID, next) {
     try {
         const response = await axios.get(
@@ -68,40 +66,30 @@ async function getPlaylistObject(playlistID, next) {
     }
 }
 
-// v2 function
 function getPlaylistID(playlistObject) {
     // console.log("getPlaylistID called")
     // console.log(playlistObject.id)
     return playlistObject.id;
 }
 
-// v2 function
 function getPlaylistName(playlistObject) {
     // console.log("getPlaylistName called")
     // console.log(playlistObject.name)
     return playlistObject.name;
 }
 
-// v2 function
 function getPlaylistTracks(playlistObject) {
     // console.log("getPlaylistTracks called")
     // console.log(playlistObject.tracks.items)
     return playlistObject.tracks.items;
 }
 
-// v2 function
-function getPlaylistTrackNames(playlistObject) {
-    // console.log("getPlaylistTrackNames called")
-    var array = [];
-    playlistObject.tracks.items.forEach((item) => {
-        array.push({id: item.track.id, name: item.track.name});
-    })
-    return array;
-}
-
-// v2 function
 function getPlaylistIDfromURL(playlistURL) {
     return playlistURL.split('/').pop();
+}
+
+function getSpotifyIDfromURL(playlistURL) {
+    return (playlistURL.split('/').pop()).split('?')[0];
 }
 
 
@@ -163,26 +151,6 @@ app.listen(
 
 
 
-
-//v3 function
-async function getTrackNames(playlistURL, next) {
-    const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
-    const res = getPlaylistTrackNames(playlistObject);
-    console.log(res);
-    return res;
-}
-
-
-
-// v3 function
-function getSpotifyIDfromURL(playlistURL) {
-    return (playlistURL.split('/').pop()).split('?')[0];
-}
-
-
-
-//v3 function
 async function uploadPlaylist(playlistURL, session_id, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
     const playlistObject = await getPlaylistObject(playlistID);
@@ -190,8 +158,8 @@ async function uploadPlaylist(playlistURL, session_id, next) {
 }
 
 
-//V4#
-app.get('/comparev4', (req, res, next) => {
+
+app.get('/compare', (req, res, next) => {
     // retrieve playlist URLs from query parameters
     const playlists = req.query.playlist;
 
