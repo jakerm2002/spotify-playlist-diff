@@ -1,0 +1,1 @@
+SELECT * FROM playlists.tracks WHERE (spotify_track_id IN (SELECT spotify_track_id FROM playlists.tracks WHERE db_session_id = 5 GROUP BY spotify_track_id HAVING COUNT(*) > 1) AND spotify_playlist_id = '37i9dQZEVXbLRQDuF5jeBp') ORDER BY playlist_order;

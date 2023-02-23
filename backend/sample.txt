@@ -1,0 +1,4343 @@
+hello
+successful authentication.
+37i9dQZEVXbMDoHDwVN2tF
+37i9dQZEVXbLRQDuF5jeBp
+addPlaylistToDB called
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'kLc2GFHd0iarpPN3Gyygs',
+  sql: "select count(*) as `count` from (select `playlists`.* from `playlists` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+getPlaylistName called
+Top 50 - Global
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'Top 50 - Global', '37i9dQZEVXbMDoHDwVN2tF' ],
+  __knexQueryUid: 'zd4_FJ8SKz5eZqGrwlDby',
+  sql: 'insert into `playlists` (`name`, `playlist_id`) values (?, ?)'
+}
+getPlaylistTracks called
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'yJAOso_i5zwO9nA5ZNfWY',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1Qrg8KqiBpW07V7PNxwwwL') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'SOS', 'SZA', 153946, 'Kill Bill', '1Qrg8KqiBpW07V7PNxwwwL' ],
+  __knexQueryUid: 'NP1oC9pk0o33geAPFvCqF',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'hXY9a-HckKJGwk5Qb0I_I',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3nqQXoyQOWXiESFLlDF1hG') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Unholy (feat. Kim Petras)',
+    'Sam Smith',
+    156943,
+    'Unholy (feat. Kim Petras)',
+    '3nqQXoyQOWXiESFLlDF1hG'
+  ],
+  __knexQueryUid: 'Nvld2ygEtrJwqebIaxYrw',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'EI798j7CG4dO-1bvFXygI',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4Dvkj6JhhA12EX05fT7y2e') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    "Harry's House",
+    'Harry Styles',
+    167303,
+    'As It Was',
+    '4Dvkj6JhhA12EX05fT7y2e'
+  ],
+  __knexQueryUid: 'XgP2il5LUsyHqrT1r9x0Q',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'L2O9VWqvOyBqN7yKkDPP7',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4uUG5RXrOk84mYEfFvj3cK') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    "I'm Good (Blue)",
+    'David Guetta',
+    175238,
+    "I'm Good (Blue)",
+    '4uUG5RXrOk84mYEfFvj3cK'
+  ],
+  __knexQueryUid: '9u0D7lnt6xSoxvsBDESHi',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'nJlmCJPWlPpOhuP_HsrY_',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5ww2BF9slyYgNOk37BlC4u') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'La Bachata',
+    'Manuel Turizo',
+    162637,
+    'La Bachata',
+    '5ww2BF9slyYgNOk37BlC4u'
+  ],
+  __knexQueryUid: 'zYd7ZYYaad8bXDiZa5DAw',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'hiPhmw-iJ8Lsnqgk0vyUH',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2tTmW7RDtMQtBk7m2rYeSw') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Quevedo: Bzrp Music Sessions, Vol. 52',
+    'Bizarrap',
+    198937,
+    'Quevedo: Bzrp Music Sessions, Vol. 52',
+    '2tTmW7RDtMQtBk7m2rYeSw'
+  ],
+  __knexQueryUid: 'gXH0OInqaCcoaR0Mf-iVg',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'o9shmgri8NoRt8Ui_MOzb',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2dHHgzDwk4BJdRwy9uXhTO') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'HEROES & VILLAINS',
+    'Metro Boomin',
+    221520,
+    "Creepin' (with The Weeknd & 21 Savage)",
+    '2dHHgzDwk4BJdRwy9uXhTO'
+  ],
+  __knexQueryUid: 'j_TGEHQ59d1bIp9PyncVb',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'KuL5CbVlBwrarrbv1KkPp',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '6Sq7ltF9Qa7SNFBsV5Cogx') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Un Verano Sin Ti',
+    'Bad Bunny',
+    178567,
+    'Me Porto Bonito',
+    '6Sq7ltF9Qa7SNFBsV5Cogx'
+  ],
+  __knexQueryUid: 'fwJUGz6reqvFmZBsxs7_x',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'EBi1H1bAv_-oLHaAPnaF8',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1IHWl5LamUGEuP4ozKQSXZ') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Un Verano Sin Ti',
+    'Bad Bunny',
+    243716,
+    'Tití Me Preguntó',
+    '1IHWl5LamUGEuP4ozKQSXZ'
+  ],
+  __knexQueryUid: 'e_f1jJ6PweXjQeVLm40AO',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'HpXtYMHGPfyy7Unfoxcjj',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0V3wPSX9ygBnCm8psDIegu') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Midnights',
+    'Taylor Swift',
+    200690,
+    'Anti-Hero',
+    '0V3wPSX9ygBnCm8psDIegu'
+  ],
+  __knexQueryUid: 'YpVtkT4BluMz8WY_O8zNm',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'r8i81hfTkH7ZxDW2UiLQX',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2mnXxnrX5vCGolNkaFvVeM') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'SR. SANTOS',
+    'Arcángel',
+    255693,
+    'La Jumpa',
+    '2mnXxnrX5vCGolNkaFvVeM'
+  ],
+  __knexQueryUid: 'e-o5ABBCCNiQ8eqoxHCwp',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'm4JgP3EpkxCLdeZMxdWmm',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '53tfEupEzQRtVFOeZvk7xq') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'MOTOMAMI +',
+    'ROSALÍA',
+    156787,
+    'DESPECHÁ',
+    '53tfEupEzQRtVFOeZvk7xq'
+  ],
+  __knexQueryUid: 'zTT86GgGxrNzGesWAz6iN',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'O4ukYfFGfyG4IbiYDuCmc',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1bDbXMyjaUIooNwFE9wn0N') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Her Loss',
+    'Drake',
+    239359,
+    'Rich Flex',
+    '1bDbXMyjaUIooNwFE9wn0N'
+  ],
+  __knexQueryUid: 'dUorKNN7VklvePaJS9cZ9',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'G5xDmschdKHPHoEjuohKa',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1zsPaEkglFvxjAhrM8yhpr') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'OzuTochi', 'Ozuna', 196600, 'Hey Mor', '1zsPaEkglFvxjAhrM8yhpr' ],
+  __knexQueryUid: '_IW6HRKB9qjb8Nr7Rr-uY',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'lkqx_GTZtxhvldoFOoxPL',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0WtM2NBVQNNJLh6scP13H8') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Calm Down (with Selena Gomez)',
+    'Rema',
+    239317,
+    'Calm Down (with Selena Gomez)',
+    '0WtM2NBVQNNJLh6scP13H8'
+  ],
+  __knexQueryUid: '_NfOvrJ8_ZzNsnkITklhO',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '2qj1VfVOs_eQyp-YCIpBo',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0QHEIqNKsMoOY5urbzN48u') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    "Takin' It Back",
+    'Meghan Trainor',
+    134256,
+    'Made You Look',
+    '0QHEIqNKsMoOY5urbzN48u'
+  ],
+  __knexQueryUid: 'w2dn5VmKsaY8gHsY3pIgb',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '1oJKQIvx2ZpeCwxgYRRfz',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4h9wh7iOZ0GGn8QVp4RAOB') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'I Ain’t Worried (Music From The Motion Picture "Top Gun: Maverick")',
+    'OneRepublic',
+    148485,
+    "I Ain't Worried",
+    '4h9wh7iOZ0GGn8QVp4RAOB'
+  ],
+  __knexQueryUid: 'mmvsx01epvUwDMDSPYR1s',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'LKjj4jlSTK54AReFnz7vS',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1Y3LN4zO1Edc2EluIoSPJN') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Until I Found You (Em Beihold Version)',
+    'Stephen Sanchez',
+    176440,
+    'Until I Found You (with Em Beihold) - Em Beihold Version',
+    '1Y3LN4zO1Edc2EluIoSPJN'
+  ],
+  __knexQueryUid: '273zuZoTA961bMbaVbNX2',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'z38CuUty3OVgaK-r_aOkv',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5Eax0qFko2dh7Rl2lYs3bx') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Un Verano Sin Ti',
+    'Bad Bunny',
+    213061,
+    'Efecto',
+    '5Eax0qFko2dh7Rl2lYs3bx'
+  ],
+  __knexQueryUid: 'uqTMCXDiZFARljqbEeSg6',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'z9RlvkqhebLniXql7NcnM',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5odlY52u43F5BjByhxg7wg') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'this is what ____ feels like (Vol. 1-4)',
+    'JVKE',
+    209259,
+    'golden hour',
+    '5odlY52u43F5BjByhxg7wg'
+  ],
+  __knexQueryUid: 'f6AZbnDRrJIRHXiPU4UjI',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'YE9fKHuZPPNDVMGI_Fv2X',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '7jtQIBanIiJOMS6RyCx6jZ') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Long Way Down',
+    'Tom Odell',
+    244360,
+    'Another Love',
+    '7jtQIBanIiJOMS6RyCx6jZ'
+  ],
+  __knexQueryUid: '_g5huhXpzjqRrzeloTuhI',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'OPh-fwLps8Fwyvkz2YtoK',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3k3NWokhRRkEPhCzPmV8TW') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Un Verano Sin Ti',
+    'Bad Bunny',
+    258298,
+    'Ojitos Lindos',
+    '3k3NWokhRRkEPhCzPmV8TW'
+  ],
+  __knexQueryUid: '9UMJsuLehwbOE-eguhRiO',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'cI91Po8M9NU00OdRZnoLk',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1xzi1Jcr7mEi9K2RfzLOqS') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'RENAISSANCE',
+    'Beyoncé',
+    225388,
+    'CUFF IT',
+    '1xzi1Jcr7mEi9K2RfzLOqS'
+  ],
+  __knexQueryUid: 'JoyU5m51-9rLJYPdpNcnO',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'u4bmInWZBoSZMJOxFTkYM',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5WxVXxCMRnvxUKFq40ELwq') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Escapism. (Sped Up)',
+    'RAYE',
+    272373,
+    'Escapism.',
+    '5WxVXxCMRnvxUKFq40ELwq'
+  ],
+  __knexQueryUid: 'M5uPe59FgDc3hNLpe_xCe',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ReC8Toe6UW99ppcc78iq9',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1418IuVKQPTYqt7QNJ9RXN') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Champagne Talk',
+    'King',
+    194653,
+    'Maan Meri Jaan',
+    '1418IuVKQPTYqt7QNJ9RXN'
+  ],
+  __knexQueryUid: 'eofF8yweo1rr1z76UunBA',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Q0BZK3qRVt-R0L7QoeSwt',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2LBqCSwhJGcFQeTHMVGwy3') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Starboy',
+    'The Weeknd',
+    260253,
+    'Die For You',
+    '2LBqCSwhJGcFQeTHMVGwy3'
+  ],
+  __knexQueryUid: 'NjG7TTzylp2cgFT0PpIoI',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'piFasU0Q9THCu4vq3cy_9',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '54ELExv56KCAB4UP9cOCzC') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Gato de Noche',
+    'Ñengo Flow',
+    227013,
+    'Gato de Noche',
+    '54ELExv56KCAB4UP9cOCzC'
+  ],
+  __knexQueryUid: 'wEYZwteycRDY3vj9uLpYc',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'CSo1BSFgJQdq7QTxzBWre',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '02MWAaffLxlfxAUY7c5dvx') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Dreamland (+ Bonus Levels)',
+    'Glass Animals',
+    238805,
+    'Heat Waves',
+    '02MWAaffLxlfxAUY7c5dvx'
+  ],
+  __knexQueryUid: 'ftbEs2KL9E8xG6Y-7U_tz',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'rAGL9_uExoDY5goHy3yRe',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2JPLbjOn0wPCngEot2STUS') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Yonaguni',
+    'Bad Bunny',
+    206710,
+    'Yonaguni',
+    '2JPLbjOn0wPCngEot2STUS'
+  ],
+  __knexQueryUid: 'R7uRmN01BUJ8InuKxsl_m',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'y6L4zJRhJlgQ5k8xXg3U-',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '78Sw5GDo6AlGwTwanjXbGh') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Here With Me',
+    'd4vd',
+    242484,
+    'Here With Me',
+    '78Sw5GDo6AlGwTwanjXbGh'
+  ],
+  __knexQueryUid: 'uGRo0vhdDjyNF0GXHmRvS',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '7rFNBRc0Zr0r5AgvzTjBh',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '11BKm0j4eYoCPPpCONAVwA') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Born This Way (Special Edition)',
+    'Lady Gaga',
+    244760,
+    'Bloody Mary',
+    '11BKm0j4eYoCPPpCONAVwA'
+  ],
+  __knexQueryUid: '_qHCLnAO8eFRLWuuTwawF',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'gFHVs8l2Y2emtOdSprReY',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5IgjP7X4th6nMNDh4akUHb') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Indigo (Extended)',
+    'Chris Brown',
+    184613,
+    'Under The Influence',
+    '5IgjP7X4th6nMNDh4akUHb'
+  ],
+  __knexQueryUid: 'IPSYkWlEODcfLdHtOQ_-i',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'wRVuXw_-R9yXPyBdpMSWH',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '31i56LZnwE6uSu3exoHjtB') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Un Verano Sin Ti',
+    'Bad Bunny',
+    173119,
+    'Neverita',
+    '31i56LZnwE6uSu3exoHjtB'
+  ],
+  __knexQueryUid: '3gxP2H9piVWGjfSkxRfBt',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'zPEZeNKbLkVjOq2inw7qm',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '73vIOb4Q7YN6HeJTbscRx5') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Miss You',
+    'Oliver Tree',
+    206000,
+    'Miss You',
+    '73vIOb4Q7YN6HeJTbscRx5'
+  ],
+  __knexQueryUid: 'YmLONvNnzE64J327RfkAH',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'n8QzFdTnmJEYY_bEjeL0a',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '561jH07mF1jHuk7KlaeF0s') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Encore (Deluxe Version)',
+    'Eminem',
+    250760,
+    'Mockingbird',
+    '561jH07mF1jHuk7KlaeF0s'
+  ],
+  __knexQueryUid: '7N7eChHnxD6oobVO8V1h8',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'N7ceEDQZAU5UaS26HqtyI',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0VjIjW4GlUZAMYd2vXMi3b') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'After Hours',
+    'The Weeknd',
+    200040,
+    'Blinding Lights',
+    '0VjIjW4GlUZAMYd2vXMi3b'
+  ],
+  __knexQueryUid: '_b2I1Zz5CDrR6Y5-fnJmu',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'lF_pR7NDNwuOWIq_mc6x-',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '6JIC3hbC28JZKZ8AlAqX8h') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'The Lockdown Sessions',
+    'Elton John',
+    202735,
+    'Cold Heart - PNAU Remix',
+    '6JIC3hbC28JZKZ8AlAqX8h'
+  ],
+  __knexQueryUid: 'hEu1EHtFL_pQP2IQyBvpM',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'aRpLJkqQ3_wR6VvQROoJe',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5PjdY0CKGZdEuoNab3yDmX') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'F*CK LOVE 3: OVER YOU',
+    'The Kid LAROI',
+    141805,
+    'STAY (with Justin Bieber)',
+    '5PjdY0CKGZdEuoNab3yDmX'
+  ],
+  __knexQueryUid: 'IRdw7tgfjddeByRhZ59yk',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'BAaaJQkWFi_ESbW5yRomA',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3zkyus0njMCL6phZmNNEeN') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'LET GO',
+    'Central Cee',
+    174246,
+    'LET GO',
+    '3zkyus0njMCL6phZmNNEeN'
+  ],
+  __knexQueryUid: 'RvPXmeutDxj_mR30E-AGG',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'el9RVxBjWdLfK9lv2yrO3',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4k6Uh1HXdhtusDW5y8Gbvy') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Gemini Rights',
+    'Steve Lacy',
+    232066,
+    'Bad Habit',
+    '4k6Uh1HXdhtusDW5y8Gbvy'
+  ],
+  __knexQueryUid: 'lZ8Aw4gPaAJqXpJEo-BC5',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Puvh32uC2xo_jWFXts6bx',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5XeFesFbtLpXzIVDNQP22n') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'AM',
+    'Arctic Monkeys',
+    183956,
+    'I Wanna Be Yours',
+    '5XeFesFbtLpXzIVDNQP22n'
+  ],
+  __knexQueryUid: '1XIDR0eQjGsTHWC-l15QY',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'QDM41wNdPw87YIgMbGS40',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1xK59OXxi2TAAAbmZK0kBL') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Romantic Homicide',
+    'd4vd',
+    132630,
+    'Romantic Homicide',
+    '1xK59OXxi2TAAAbmZK0kBL'
+  ],
+  __knexQueryUid: 'VDWRZNpz95bOFwXluzGxL',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'RnAf_y-q3oKGu7EHKnvI4',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '23Lyy7ZXRvzfgH4JtDkKrX') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'No Se Va (En Vivo)',
+    'Grupo Frontera',
+    194019,
+    'No Se Va - En Vivo',
+    '23Lyy7ZXRvzfgH4JtDkKrX'
+  ],
+  __knexQueryUid: '0qYAo8JdO5kreD5yiVPqb',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'X4rmZ6SVstjWwMcglLfKx',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3r8RuvgbX9s7ammBn07D3W') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'Ditto', 'NewJeans', 185506, 'Ditto', '3r8RuvgbX9s7ammBn07D3W' ],
+  __knexQueryUid: 'YrW4J_bd9rpHmlhxxEB0A',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'jF5RUlgSaF14TaJSKBn_t',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4o6v3Oooyt7HF20idztRD4') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Bombonzinho (Ao Vivo)',
+    'Israel & Rodolffo',
+    154701,
+    'Bombonzinho - Ao Vivo',
+    '4o6v3Oooyt7HF20idztRD4'
+  ],
+  __knexQueryUid: 'Trva62SokHBdWR9_Ql4Ch',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'JkQQZEG1tc1zPeEMoYpH2',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '33cF8aTmGJ6TsEf23uqGIN') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'SATURNO',
+    'Rauw Alejandro',
+    197101,
+    'LOKERA',
+    '33cF8aTmGJ6TsEf23uqGIN'
+  ],
+  __knexQueryUid: 'f8T4wFqSy5VaZB6vp0f4q',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '77Ews2OWmnGAzhtuOBe57',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2QjOHCTQ1Jl3zawyYOpxh6') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'I Love You.',
+    'The Neighbourhood',
+    240400,
+    'Sweater Weather',
+    '2QjOHCTQ1Jl3zawyYOpxh6'
+  ],
+  __knexQueryUid: '_Dl0ohWyrQMwnp0N-Ao-m',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'kX_k5nsrOYsp1wc4fy8Af',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4FyesJzVpA39hbYvcseO2d') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Just Wanna Rock',
+    'Lil Uzi Vert',
+    123890,
+    'Just Wanna Rock',
+    '4FyesJzVpA39hbYvcseO2d'
+  ],
+  __knexQueryUid: 'xix_u2pIafIyPdzVmqa2E',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'MG3DvWyZIRou5XI40-rXc',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '6zJejIfVYLgjud3lTk4DLB') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'SNAP PACK',
+    'Rosa Linn',
+    179551,
+    'SNAP',
+    '6zJejIfVYLgjud3lTk4DLB'
+  ],
+  __knexQueryUid: 'dx6YmOFo_WeeM5thjiMxp',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'nUb5iW04rMTo0NXZpujVV',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1597vvneWf0zoQrg2D8yH6') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Evoque Prata',
+    'MC MENOR HR',
+    107076,
+    'Evoque Prata',
+    '1597vvneWf0zoQrg2D8yH6'
+  ],
+  __knexQueryUid: '4mc1RqBWJShQG3DGNak8Z',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+getPlaylistTracks called
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'QTbMsYMqqk6rtnxkdG1Do',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1Qrg8KqiBpW07V7PNxwwwL') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1Qrg8KqiBpW07V7PNxwwwL' ],
+  __knexQueryUid: '_K58Tm55HslqCXyZXNugL',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'L8rFCmmvpszk6p0CupE_n',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '3nqQXoyQOWXiESFLlDF1hG') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '3nqQXoyQOWXiESFLlDF1hG' ],
+  __knexQueryUid: 'C5dE8mTTobPe7NEU9aD4h',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'zu_CXeyZabz9-OMHpTYNi',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '4Dvkj6JhhA12EX05fT7y2e') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '4Dvkj6JhhA12EX05fT7y2e' ],
+  __knexQueryUid: 'XyKkMiVmWbC1N_0j1erK7',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'nKc5tWXuVtEEvKDl0cTKK',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '4uUG5RXrOk84mYEfFvj3cK') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '4uUG5RXrOk84mYEfFvj3cK' ],
+  __knexQueryUid: 'WQc0CjBvr3RRCa5N1seBI',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '-QMKHk45mfWnvg4e-rTts',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '5ww2BF9slyYgNOk37BlC4u') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '5ww2BF9slyYgNOk37BlC4u' ],
+  __knexQueryUid: 'PYdqRKoII3jKmkNIPklRz',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '2V5CgUK4dwr1Sx6tr7JOR',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '2tTmW7RDtMQtBk7m2rYeSw') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '2tTmW7RDtMQtBk7m2rYeSw' ],
+  __knexQueryUid: '6XxthMPa-Ta4__5uSxBAl',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '_b0NAWOilYzMvkTmXj1Ax',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '2dHHgzDwk4BJdRwy9uXhTO') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '2dHHgzDwk4BJdRwy9uXhTO' ],
+  __knexQueryUid: 'Y5L3lPOUqSZIU_tgTrMnd',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'EK1K53yu2snookeIlRbIt',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '6Sq7ltF9Qa7SNFBsV5Cogx') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '6Sq7ltF9Qa7SNFBsV5Cogx' ],
+  __knexQueryUid: '-Bwd3l0X1m5pPJJIlPNpt',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '2d652FiiR4AX5JiYNqVrP',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1IHWl5LamUGEuP4ozKQSXZ') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1IHWl5LamUGEuP4ozKQSXZ' ],
+  __knexQueryUid: 'Pgwn49gVic8tynxxXtOwR',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '7JiRE6WaYTs_66O5w6khK',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '0V3wPSX9ygBnCm8psDIegu') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '0V3wPSX9ygBnCm8psDIegu' ],
+  __knexQueryUid: 'ctwISuWo7Zkxy4B0SbD46',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'xIGC2wxutQxOICOs2rTu1',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '2mnXxnrX5vCGolNkaFvVeM') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '2mnXxnrX5vCGolNkaFvVeM' ],
+  __knexQueryUid: 'CPwKqu8V9FSXmJAQHx3nV',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'XM8Iaan3ZbUmNQtb_AK53',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '53tfEupEzQRtVFOeZvk7xq') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '53tfEupEzQRtVFOeZvk7xq' ],
+  __knexQueryUid: 'jI9zNpr-IfewARLxtsQ5y',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'XHBM1mKQ5F2vuPQvnxsR3',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1bDbXMyjaUIooNwFE9wn0N') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1bDbXMyjaUIooNwFE9wn0N' ],
+  __knexQueryUid: 'fpJzftRoraxcq309LOBuw',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'AKigBUqz6QH7kCNx-3Ler',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1zsPaEkglFvxjAhrM8yhpr') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1zsPaEkglFvxjAhrM8yhpr' ],
+  __knexQueryUid: '-U42KAPuDp8NkyqLk_8JC',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'SiY_yku1s-M9-er_Bbogy',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '0WtM2NBVQNNJLh6scP13H8') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '0WtM2NBVQNNJLh6scP13H8' ],
+  __knexQueryUid: 'TdssmcNzG_zBmZK8NpWzu',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'FvsCI6n2xs4QWxQguLrLz',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '0QHEIqNKsMoOY5urbzN48u') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '0QHEIqNKsMoOY5urbzN48u' ],
+  __knexQueryUid: 'WzHT1bdcZ_wH3VK9DtCm4',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '78VMi0CuV1nIRMKnvqGAl',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '4h9wh7iOZ0GGn8QVp4RAOB') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '4h9wh7iOZ0GGn8QVp4RAOB' ],
+  __knexQueryUid: 'loNjsZVL5-377S4CfOptm',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'G7Z0LfSm_DAQbcQ9ddmoo',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1Y3LN4zO1Edc2EluIoSPJN') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1Y3LN4zO1Edc2EluIoSPJN' ],
+  __knexQueryUid: 'zbDwv467_MKYLCH77oWzj',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'BFV33hlzSfRO0Kw-JStc1',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '5Eax0qFko2dh7Rl2lYs3bx') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '5Eax0qFko2dh7Rl2lYs3bx' ],
+  __knexQueryUid: 'QwD4GhxQmL__LeVmVbTDZ',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'F-SzaIqV6o3P9HzvFwlCB',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '5odlY52u43F5BjByhxg7wg') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '5odlY52u43F5BjByhxg7wg' ],
+  __knexQueryUid: 'A1NZ6UPV7dqEAQBa7c6Y9',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'uM-DMejSbANWeA_iQZww0',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '7jtQIBanIiJOMS6RyCx6jZ') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '7jtQIBanIiJOMS6RyCx6jZ' ],
+  __knexQueryUid: 'hMXopsPKrxHgOcsoF-veo',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'XaDKROBNJlhUymx0K4Z_E',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '3k3NWokhRRkEPhCzPmV8TW') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '3k3NWokhRRkEPhCzPmV8TW' ],
+  __knexQueryUid: 'NG0hJwzgWWXKu5O_Hltv_',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'yEmxbVfHdmnzGmt4g0RZm',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1xzi1Jcr7mEi9K2RfzLOqS') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1xzi1Jcr7mEi9K2RfzLOqS' ],
+  __knexQueryUid: 'pI9KIS8EeWu7DOMtQb1Kv',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'JWgnvX9z2EYYnbW1t_NWJ',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '5WxVXxCMRnvxUKFq40ELwq') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '5WxVXxCMRnvxUKFq40ELwq' ],
+  __knexQueryUid: '-RImEommeGiELpEt_DN7U',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'OV4f2BrWyxnmHd5awmBsp',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1418IuVKQPTYqt7QNJ9RXN') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1418IuVKQPTYqt7QNJ9RXN' ],
+  __knexQueryUid: 'Gdik61m-pN-i3KCplY0fy',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '2mlyaICheYLyKOvAaJ2J3',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '2LBqCSwhJGcFQeTHMVGwy3') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '2LBqCSwhJGcFQeTHMVGwy3' ],
+  __knexQueryUid: 'KnZvaoagWB1nWM2aUAJHP',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'v_pXHI9NwddzPhg8Qrgow',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '54ELExv56KCAB4UP9cOCzC') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '54ELExv56KCAB4UP9cOCzC' ],
+  __knexQueryUid: '7fHUsKUWANyIRBI5JffZZ',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'RR2s1rsmBAmVi7Gz6Wyzv',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '02MWAaffLxlfxAUY7c5dvx') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '02MWAaffLxlfxAUY7c5dvx' ],
+  __knexQueryUid: '3gbyULnVyoXHakAQ2TGRo',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Y3nnoTUGHg6RPHvoYsDID',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '2JPLbjOn0wPCngEot2STUS') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '2JPLbjOn0wPCngEot2STUS' ],
+  __knexQueryUid: '550FBhMamwdzSaqg2eMlg',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'W197HyVTTXymtCpyX2UlN',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '78Sw5GDo6AlGwTwanjXbGh') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '78Sw5GDo6AlGwTwanjXbGh' ],
+  __knexQueryUid: '_Du1oJ8gO1LqcLo8sMU3L',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'jWdPmwO4FKQfG6B1y_BWS',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '11BKm0j4eYoCPPpCONAVwA') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '11BKm0j4eYoCPPpCONAVwA' ],
+  __knexQueryUid: 'i3jrSdh9QiQxEnPlkbLz_',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'KrGlvJBD2Ar0IkI5-1BUA',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '5IgjP7X4th6nMNDh4akUHb') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '5IgjP7X4th6nMNDh4akUHb' ],
+  __knexQueryUid: 'rcipX8wfUwfnCB-IplAhT',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'aDhIL9OUhjSPl6I8_OmVe',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '31i56LZnwE6uSu3exoHjtB') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '31i56LZnwE6uSu3exoHjtB' ],
+  __knexQueryUid: 's_I2FmD-ZTW___9FOyx8-',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'wdUHJCLD4etTOwt-5WTih',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '73vIOb4Q7YN6HeJTbscRx5') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '73vIOb4Q7YN6HeJTbscRx5' ],
+  __knexQueryUid: '5FJPVIztdcHqtDJoBM48K',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'NxjaFwMddRkOIyxjY9k6t',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '561jH07mF1jHuk7KlaeF0s') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '561jH07mF1jHuk7KlaeF0s' ],
+  __knexQueryUid: 'ijAmkyX-cpNil7HxWWRrp',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'CAE5k8o1KNz62oDdm20gJ',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '0VjIjW4GlUZAMYd2vXMi3b') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '0VjIjW4GlUZAMYd2vXMi3b' ],
+  __knexQueryUid: 'i58HKBVLq4D52nhHxt07R',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '7fXxwknwCzCLFyE0XN2uh',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '6JIC3hbC28JZKZ8AlAqX8h') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '6JIC3hbC28JZKZ8AlAqX8h' ],
+  __knexQueryUid: '9C5v8LjgxjiN1ie_zKe_q',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ivMbEKJyEmZd5NtPS8Y7u',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '5PjdY0CKGZdEuoNab3yDmX') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '5PjdY0CKGZdEuoNab3yDmX' ],
+  __knexQueryUid: 'Uh0HirSbu5pYfzRET_EbJ',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ISfTcg82x06TQ2qAIjyBJ',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '3zkyus0njMCL6phZmNNEeN') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '3zkyus0njMCL6phZmNNEeN' ],
+  __knexQueryUid: '-JZqjdqcVe8YCQ3jgjE27',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'DcDwA-Y8P5PPgnuGxEcda',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '4k6Uh1HXdhtusDW5y8Gbvy') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '4k6Uh1HXdhtusDW5y8Gbvy' ],
+  __knexQueryUid: '9Z50VifKa0tg5o-h6i44m',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Wok7wmDeVxQQhxOvDcQyM',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '5XeFesFbtLpXzIVDNQP22n') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '5XeFesFbtLpXzIVDNQP22n' ],
+  __knexQueryUid: '5Bi6uzWIMqPXhzEE9GVP-',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'qb4aXBzJfNYXhXJpRb3Zl',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1xK59OXxi2TAAAbmZK0kBL') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1xK59OXxi2TAAAbmZK0kBL' ],
+  __knexQueryUid: 'vxpUgTjxotCqysxrgxsoa',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'U1yDST3bFFNHYEa11_r0t',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '23Lyy7ZXRvzfgH4JtDkKrX') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '23Lyy7ZXRvzfgH4JtDkKrX' ],
+  __knexQueryUid: 'l2QU_XrrNYeIgMipk8qH0',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'kuvbEeJMoq5AC84wUrxlz',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '3r8RuvgbX9s7ammBn07D3W') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '3r8RuvgbX9s7ammBn07D3W' ],
+  __knexQueryUid: 'blM9AynWdyGBNQhKU6xBz',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'R7z9j5S8IopVd-8HkAxOI',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '4o6v3Oooyt7HF20idztRD4') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '4o6v3Oooyt7HF20idztRD4' ],
+  __knexQueryUid: 'avW9ees24Xz9e7T3IA6GL',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '7NSR1gnoU2rB6H9LG5ESH',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '33cF8aTmGJ6TsEf23uqGIN') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '33cF8aTmGJ6TsEf23uqGIN' ],
+  __knexQueryUid: 'TZpIT3BLgJcu9kP5UfeXq',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '6C6SWF59s1P0fLbV7DsdA',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '2QjOHCTQ1Jl3zawyYOpxh6') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '2QjOHCTQ1Jl3zawyYOpxh6' ],
+  __knexQueryUid: 'PtGFJAMKommJ-mGYpli7s',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '_izaA4-6mCzLjhpsmLu1l',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '4FyesJzVpA39hbYvcseO2d') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '4FyesJzVpA39hbYvcseO2d' ],
+  __knexQueryUid: 'NzzW-X_O30fkpgNQJ1QcA',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '_okGCZlVE-fPDzz6l8yfx',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '6zJejIfVYLgjud3lTk4DLB') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '6zJejIfVYLgjud3lTk4DLB' ],
+  __knexQueryUid: 'p-MS1M3J1s-0KTXg5j4bF',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'gn9-IeimIjcDHXPMEKtTf',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbMDoHDwVN2tF' and `track_id` = '1597vvneWf0zoQrg2D8yH6') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbMDoHDwVN2tF
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbMDoHDwVN2tF', '1597vvneWf0zoQrg2D8yH6' ],
+  __knexQueryUid: 'BSgwqVpazR_59KG_rYee9',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+addPlaylistToDB called
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'vobC9ZZ7WOvQfFc1ZxANm',
+  sql: "select count(*) as `count` from (select `playlists`.* from `playlists` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+getPlaylistName called
+Top 50 - USA
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'Top 50 - USA', '37i9dQZEVXbLRQDuF5jeBp' ],
+  __knexQueryUid: 'a3DNjHcOXPrAxCttCGlDY',
+  sql: 'insert into `playlists` (`name`, `playlist_id`) values (?, ?)'
+}
+getPlaylistTracks called
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'WLrky6BTWXnUtCUvgSvRZ',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1Qrg8KqiBpW07V7PNxwwwL') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'sY8gmpKMsTVizteju99bO',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1bDbXMyjaUIooNwFE9wn0N') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'GXL5qSuGj1UMQemcyFvIi',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3nqQXoyQOWXiESFLlDF1hG') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'cjJCRrAbaRSi1yT1dMGIx',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2dHHgzDwk4BJdRwy9uXhTO') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'bo-cJll6Ldzjb5mKzCGLv',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0V3wPSX9ygBnCm8psDIegu') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'kj-N0DBecEvMSA_H6QmhP',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4FyesJzVpA39hbYvcseO2d') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '9Y8hXKeKFP1aLlqA2bO6i',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4Dvkj6JhhA12EX05fT7y2e') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'rFnBj93nb9BmfesXi5MR2',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4uUG5RXrOk84mYEfFvj3cK') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'qB7KCyDz1ORzzVWuJrka6',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4k6Uh1HXdhtusDW5y8Gbvy') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '4e5PXVnaUyfBM3uw36dkF',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0vjeOZ3Ft5jvAi9SBFJm1j') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'HEROES & VILLAINS',
+    'Metro Boomin',
+    182666,
+    'Superhero (Heroes & Villains) [with Future & Chris Brown]',
+    '0vjeOZ3Ft5jvAi9SBFJm1j'
+  ],
+  __knexQueryUid: '9ayQCm_AiXuGsKgvlHvkp',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Ne1ZM92jNvdqlOYZ8gAYF',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5odlY52u43F5BjByhxg7wg') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '07KPfBdoeV1V_uoqwVHDu',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1xzi1Jcr7mEi9K2RfzLOqS') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'EebOWtaifgQeZREIOlr_f',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1IHWl5LamUGEuP4ozKQSXZ') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'fLBGoHpgR6Nf7PWqfemQb',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '6HMtHNpW6YPi1hrw9tgF8P') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Special',
+    'Lizzo',
+    191937,
+    'About Damn Time',
+    '6HMtHNpW6YPi1hrw9tgF8P'
+  ],
+  __knexQueryUid: 'DNqSXGIAMJUYRfi4CfpAZ',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'frObJn3Gx14e8V7IG23WU',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '6Sq7ltF9Qa7SNFBsV5Cogx') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 't4pCOpoof-HQ6T1p5k3Mq',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1xK59OXxi2TAAAbmZK0kBL') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'BnKV14gQOqt7VMkyrwaa2',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2LBqCSwhJGcFQeTHMVGwy3') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'E6tIXNeGMTZNCYaWVm7dC',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2GAhgAjOhEmItWLfgisyOn') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'SOS', 'SZA', 181080, 'Low', '2GAhgAjOhEmItWLfgisyOn' ],
+  __knexQueryUid: 't1ZN5pip0KbW4gGZJMSwc',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'YYxrqzHcP3cPeIRX9GFQh',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3WMj8moIAXJhHsyLaqIIHI') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Something in the Orange',
+    'Zach Bryan',
+    228013,
+    'Something in the Orange',
+    '3WMj8moIAXJhHsyLaqIIHI'
+  ],
+  __knexQueryUid: '22tjVNxeZzLehA-rf8bHN',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'bJI33ST4bWg_HEbamlBBZ',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5Y35SjAfXjjG0sFQ3KOxmm') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'SOS', 'SZA', 180853, 'Nobody Gets Me', '5Y35SjAfXjjG0sFQ3KOxmm' ],
+  __knexQueryUid: 'SVZFMwu2aZgpNtbDNV9_e',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'dPfyoGvgSzTrN029m8JMj',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2wSTnntOPRi7aQneobFtU4') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'SOS', 'SZA', 181840, 'Shirt', '2wSTnntOPRi7aQneobFtU4' ],
+  __knexQueryUid: 'Sv-kYL9E8qDAFBezn3A9I',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '-cWpOarT4DYW6mDEu3bSY',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '02MWAaffLxlfxAUY7c5dvx') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '9V11cNIhU7AJITJeedTlS',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0QHEIqNKsMoOY5urbzN48u') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'n_nhviM1GddZ5ZAo1qIfE',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5WxVXxCMRnvxUKFq40ELwq') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'rC2_xnPDYM7vqE4LLX4ye',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4h9wh7iOZ0GGn8QVp4RAOB') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ZnwX5SCwn1hTRn2t4yPYo',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5uU1uuyaUIBOiiUSQG7Wl3') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'You Proof',
+    'Morgan Wallen',
+    157477,
+    'You Proof',
+    '5uU1uuyaUIBOiiUSQG7Wl3'
+  ],
+  __knexQueryUid: 'PmIbH099_PYQbikACbAnI',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'PZto4g70nJGYuejNi6hRT',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3F5CgOj3wFlRv51JsHbxhe') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Honestly, Nevermind',
+    'Drake',
+    218364,
+    'Jimmy Cooks (feat. 21 Savage)',
+    '3F5CgOj3wFlRv51JsHbxhe'
+  ],
+  __knexQueryUid: '5axStsmX7R3QToZi-v7ch',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'mQxW2sc3yjbjBsYzSRO7J',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '1Y3LN4zO1Edc2EluIoSPJN') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '9LvV7xeP_NwsU_Wy5nBd3',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2CSRrnOEELmhpq8iaAi9cd') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ 'SOS', 'SZA', 150720, 'Blind', '2CSRrnOEELmhpq8iaAi9cd' ],
+  __knexQueryUid: 'KkAkw3KRDR_PXpA3O-UND',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '_5wOILG3umfeC-swcJVxI',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '68Dni7IE4VyPkTOH9mRWHr') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    '2014 Forest Hills Drive',
+    'J. Cole',
+    292799,
+    'No Role Modelz',
+    '68Dni7IE4VyPkTOH9mRWHr'
+  ],
+  __knexQueryUid: 'Gfi5YZqbtk79VK4OqcYq2',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'TPJpEeI7cEsqPd7PoPhKW',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3DarAbFujv6eYNliUTyqtz') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Planet Her',
+    'Doja Cat',
+    208666,
+    'Kiss Me More (feat. SZA)',
+    '3DarAbFujv6eYNliUTyqtz'
+  ],
+  __knexQueryUid: 'kaWI7OsG3PEg9nOR1oo_S',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'I-Ivg1XtmIFFkTj2yKoxU',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '78Sw5GDo6AlGwTwanjXbGh') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '4fsIUDdcWY06YV9DUFd_C',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5jQI2r1RdgtuT8S3iG8zFC') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Midnights',
+    'Taylor Swift',
+    202395,
+    'Lavender Haze',
+    '5jQI2r1RdgtuT8S3iG8zFC'
+  ],
+  __knexQueryUid: 'yaKed9pHKRTzJgGZf_E4C',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'JUEt9Zw1ex5ynCo9floy5',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2QjOHCTQ1Jl3zawyYOpxh6') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '5Mdew0YbRBeesiZVEwPAV',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3E7dfMvvCLUddWissuqMwr') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'The Time Of Our Lives (International Version)',
+    'Miley Cyrus',
+    202066,
+    'Party In The U.S.A.',
+    '3E7dfMvvCLUddWissuqMwr'
+  ],
+  __knexQueryUid: '-UhxQuTDwrnJRA3SCgAm7',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '2u2cT6WTX6UU3VPvOzarv',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '003vvx7Niy0yvhvHt4a68B') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Hot Fuss',
+    'The Killers',
+    222973,
+    'Mr. Brightside',
+    '003vvx7Niy0yvhvHt4a68B'
+  ],
+  __knexQueryUid: '60odOR44Ofhv-tjAn8Heb',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'NKKywLfaeUX7zbHhYUIJr',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0hquQWY3xvYqN4qtiquniF') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Vegas (From the Original Motion Picture Soundtrack ELVIS)',
+    'Doja Cat',
+    182906,
+    'Vegas (From the Original Motion Picture Soundtrack ELVIS)',
+    '0hquQWY3xvYqN4qtiquniF'
+  ],
+  __knexQueryUid: 'uSpOKZBLPWr5D_Hw_Okif',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'MCHJUZnBc3O__opLQF-3R',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0JXXNGljqupsJaZsgSbMZV') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'All I Want Is You',
+    'Miguel',
+    195373,
+    'Sure Thing',
+    '0JXXNGljqupsJaZsgSbMZV'
+  ],
+  __knexQueryUid: 'bj1YO1IHTKn79Q_KiF27s',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'j3GhfOJ_C4N33sibzSaE-',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2tUBqZG2AbRi7Q0BIrVrEj') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Whitney',
+    'Whitney Houston',
+    291293,
+    'I Wanna Dance with Somebody (Who Loves Me)',
+    '2tUBqZG2AbRi7Q0BIrVrEj'
+  ],
+  __knexQueryUid: 'o4t1ss6wIkyeRZ1kg9H0f',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'YzvSSwz9ivt8MAe3KTjKH',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '4686eQ81DEswHa90bcdlC9') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Rock and A Hard Place',
+    'Bailey Zimmerman',
+    207540,
+    'Rock and A Hard Place',
+    '4686eQ81DEswHa90bcdlC9'
+  ],
+  __knexQueryUid: 'x1y_u4CKkiEiiwHx2x6ob',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'fSKE1dKaDtAETF3GNv9j9',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '11BKm0j4eYoCPPpCONAVwA') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Bw4riZN2NbBsweVGEWBAK',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0wHFktze2PHC5jDt3B17DC') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Come Home The Kids Miss You',
+    'Jack Harlow',
+    173947,
+    'First Class',
+    '0wHFktze2PHC5jDt3B17DC'
+  ],
+  __knexQueryUid: '4Mmu3YhYtPYevkYHpZlgp',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'vV_Q0dKOWgx6pXlvK4WUU',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '6JIC3hbC28JZKZ8AlAqX8h') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'gPRRHVvNF7wpwZsMt_Zdg',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '2yjlYDiNiQkdxVqTlaSrlX') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Queen Radio: Volume 1',
+    'Nicki Minaj',
+    170977,
+    'Super Freaky Girl',
+    '2yjlYDiNiQkdxVqTlaSrlX'
+  ],
+  __knexQueryUid: 'gNlcqQKajCmWAi-4DUl8X',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'dYOM9OWz3iEMrGYQWSUhn',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '5PjdY0CKGZdEuoNab3yDmX') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'PooOKAUug88jzKsbT9OoP',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0IKeDy5bT9G0bA7ZixRT4A') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Sigan Hablando',
+    'Fuerza Regida',
+    271861,
+    'Bebe Dame',
+    '0IKeDy5bT9G0bA7ZixRT4A'
+  ],
+  __knexQueryUid: 'KvNQ9WoF33LTPDVW2PR_t',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'rUEjeF4JtI1Tw-0v1q6CS',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3EaJDYHA0KnX88JvDhL9oa') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Dark Red',
+    'Steve Lacy',
+    173104,
+    'Dark Red',
+    '3EaJDYHA0KnX88JvDhL9oa'
+  ],
+  __knexQueryUid: 'IIf1Gco5Gd7Ru3tImPtHt',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 's5vbd2T3ge32BRiOLLaCr',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '0VjIjW4GlUZAMYd2vXMi3b') as `temp`"
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'MkrbfzyBPtaeX_ZS_cTUQ',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '3cBsEDNhFI9E82vPj3kvi3') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'Dangerous: The Double Album',
+    'Morgan Wallen',
+    178520,
+    'Wasted On You',
+    '3cBsEDNhFI9E82vPj3kvi3'
+  ],
+  __knexQueryUid: 'bhyxUsZL1aIvfrsglayyV',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'x96wpCnwowlN-wB-g1cHm',
+  sql: "select count(*) as `count` from (select `tracks`.* from `tracks` where `track_id` = '59nOXPmaKlBfGMDeOVGrIK') as `temp`"
+}
+INSERTING TRACK
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    'I NEVER LIKED YOU',
+    'Future',
+    189893,
+    'WAIT FOR U (feat. Drake & Tems)',
+    '59nOXPmaKlBfGMDeOVGrIK'
+  ],
+  __knexQueryUid: 'Dxo-RlpHVN66rvgJU_-1p',
+  sql: 'insert into `tracks` (`album`, `artist`, `duration_ms`, `name`, `track_id`) values (?, ?, ?, ?, ?)'
+}
+getPlaylistTracks called
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Iky9_SM31hG61I_Y1Vj6E',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '1Qrg8KqiBpW07V7PNxwwwL') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '1Qrg8KqiBpW07V7PNxwwwL' ],
+  __knexQueryUid: 'J9lKBw-9WRnLet_aLMZ82',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'SHlkAvgLZXwJ8Bdp1nKIi',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '1bDbXMyjaUIooNwFE9wn0N') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '1bDbXMyjaUIooNwFE9wn0N' ],
+  __knexQueryUid: 'gh2lHM13cKB3xNVoj6ydw',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'yCpGnMGwxkjHeJhDftL2z',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '3nqQXoyQOWXiESFLlDF1hG') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '3nqQXoyQOWXiESFLlDF1hG' ],
+  __knexQueryUid: 'SP1EV1uQf8ZCtZqAP-nRo',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ZADnlHugr1jCMj4LyIQ1l',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2dHHgzDwk4BJdRwy9uXhTO') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2dHHgzDwk4BJdRwy9uXhTO' ],
+  __knexQueryUid: 'AAwxIiSyAXFNgiaucC-D1',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'CSp-6WLn9EH6OBg87Xi4k',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0V3wPSX9ygBnCm8psDIegu') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0V3wPSX9ygBnCm8psDIegu' ],
+  __knexQueryUid: 'dcSPw1Q-wfJRtq-7tE-E-',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'lfQW4I_L6Q_5mgCZxkHNh',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '4FyesJzVpA39hbYvcseO2d') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '4FyesJzVpA39hbYvcseO2d' ],
+  __knexQueryUid: 'MjIkJm15oK6zMXnWPsHT7',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ScbAYEUvmOcoDWs1-sfio',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '4Dvkj6JhhA12EX05fT7y2e') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '4Dvkj6JhhA12EX05fT7y2e' ],
+  __knexQueryUid: 'fgKuUyxtrigHTHjZYL9Bz',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'K00A4ZgY4x_UwhpoiIuX3',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '4uUG5RXrOk84mYEfFvj3cK') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '4uUG5RXrOk84mYEfFvj3cK' ],
+  __knexQueryUid: '2huh_qqVlkRc-NPgBNIGp',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'owCAvp0lJP__z9dCADWs6',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '4k6Uh1HXdhtusDW5y8Gbvy') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '4k6Uh1HXdhtusDW5y8Gbvy' ],
+  __knexQueryUid: 'BE5AguY_R-xZ4d3llgux3',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '9pscRZflNdofWPWvAxq75',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0vjeOZ3Ft5jvAi9SBFJm1j') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0vjeOZ3Ft5jvAi9SBFJm1j' ],
+  __knexQueryUid: 'jfaL7zbuPyd4TZ_S98NLU',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '9krNiCIruEsSz39YRksiM',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '5odlY52u43F5BjByhxg7wg') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '5odlY52u43F5BjByhxg7wg' ],
+  __knexQueryUid: 'MrLqRAdznXbj77uSU9Twa',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'AEDxQ1-uOenoz0DUTUU4Y',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '1xzi1Jcr7mEi9K2RfzLOqS') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '1xzi1Jcr7mEi9K2RfzLOqS' ],
+  __knexQueryUid: 'SFMeJpEO6M45JjAuSiIeT',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'u8hNWPyJV4QPgLKMvWC3o',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '1IHWl5LamUGEuP4ozKQSXZ') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '1IHWl5LamUGEuP4ozKQSXZ' ],
+  __knexQueryUid: 'pK2gC-AgQnggXt1fu1s74',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'z0eaEqNC97xJQRhCe5P6z',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '6HMtHNpW6YPi1hrw9tgF8P') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '6HMtHNpW6YPi1hrw9tgF8P' ],
+  __knexQueryUid: 'iXGBVSziYDq8OgEKf2kXJ',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'of9ez2AZT-P8tXYf2nWqi',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '6Sq7ltF9Qa7SNFBsV5Cogx') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '6Sq7ltF9Qa7SNFBsV5Cogx' ],
+  __knexQueryUid: 'hZdTT6zmh94uu2ieakd_2',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '5vahW7muRVU8Xj_M-yN-0',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '1xK59OXxi2TAAAbmZK0kBL') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '1xK59OXxi2TAAAbmZK0kBL' ],
+  __knexQueryUid: 'LrE-Fm4HhLVPWAAxDqyHU',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'g0ONa8xMvXL6bYkg9Kccd',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2LBqCSwhJGcFQeTHMVGwy3') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2LBqCSwhJGcFQeTHMVGwy3' ],
+  __knexQueryUid: '2alpxPeBKNXuZSE-mqoNB',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '_F08hkf9KyvgnMUtVf2TV',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2GAhgAjOhEmItWLfgisyOn') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2GAhgAjOhEmItWLfgisyOn' ],
+  __knexQueryUid: 'tgw4d07hJNA-Emg6AAUyk',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'WQlVUdh5GOS8xUa-2z4dq',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '3WMj8moIAXJhHsyLaqIIHI') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '3WMj8moIAXJhHsyLaqIIHI' ],
+  __knexQueryUid: 'kFaC4WCUdtTMAf3dKFm0-',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Fn_WfB7ddxjA7A_VFbDkA',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '5Y35SjAfXjjG0sFQ3KOxmm') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '5Y35SjAfXjjG0sFQ3KOxmm' ],
+  __knexQueryUid: 'CDMlz4NjVDSVNYG12u5Km',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '1cnpOXzIXtXesGvJyYuvZ',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2wSTnntOPRi7aQneobFtU4') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2wSTnntOPRi7aQneobFtU4' ],
+  __knexQueryUid: 'y3TIZQ5Q8Udvx1O3GmGlA',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ybFhirgEL-9Jwd1WaUYbG',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '02MWAaffLxlfxAUY7c5dvx') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '02MWAaffLxlfxAUY7c5dvx' ],
+  __knexQueryUid: 'Q-GgKD0jqNLBdQqkpSwNh',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'yecQnRQdjYU-Ud3b1h27P',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0QHEIqNKsMoOY5urbzN48u') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0QHEIqNKsMoOY5urbzN48u' ],
+  __knexQueryUid: 'FKQwZa3QZeJc-c45lf-Gp',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'gqBXnBL2PXfQg6Yz1n6-b',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '5WxVXxCMRnvxUKFq40ELwq') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '5WxVXxCMRnvxUKFq40ELwq' ],
+  __knexQueryUid: 'OTQ2S3K3sieZ5Hrb-dfpx',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'ZPB2FlES3H5_iXlDUXVHn',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '4h9wh7iOZ0GGn8QVp4RAOB') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '4h9wh7iOZ0GGn8QVp4RAOB' ],
+  __knexQueryUid: 'eLd3kqBJkokFqTqLQeYXF',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'vd0-1pKGR0ufyX-unuEU0',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '5uU1uuyaUIBOiiUSQG7Wl3') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '5uU1uuyaUIBOiiUSQG7Wl3' ],
+  __knexQueryUid: 'dcMj8e2T8bs9YMc1yEHeY',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'jXzYtMmi4quydayOcQLPh',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '3F5CgOj3wFlRv51JsHbxhe') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '3F5CgOj3wFlRv51JsHbxhe' ],
+  __knexQueryUid: 'Khn2hQ6snH829qwSiZZe7',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'zLxT6vh5wOXUuwc-lBpcU',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '1Y3LN4zO1Edc2EluIoSPJN') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '1Y3LN4zO1Edc2EluIoSPJN' ],
+  __knexQueryUid: '5tMvuOiv_CMehOAc43mND',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Hje3IWKrsLhdDzx4rsJLO',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2CSRrnOEELmhpq8iaAi9cd') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2CSRrnOEELmhpq8iaAi9cd' ],
+  __knexQueryUid: 'd-ZqUNV9LRxcWXohKXHlp',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'hfgmxY5RYTLw4Qq7qV7fj',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '68Dni7IE4VyPkTOH9mRWHr') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '68Dni7IE4VyPkTOH9mRWHr' ],
+  __knexQueryUid: '62bAzRCPJyXUo20usgSSW',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'T43_htAmSHI5NfpLNiZ2H',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '3DarAbFujv6eYNliUTyqtz') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '3DarAbFujv6eYNliUTyqtz' ],
+  __knexQueryUid: 'Uo2AVF6uG3CotNHxo3Mev',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'rRuoRFxZAGMZg3aIG-uQW',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '78Sw5GDo6AlGwTwanjXbGh') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '78Sw5GDo6AlGwTwanjXbGh' ],
+  __knexQueryUid: 'RdytrAUaQBaZJ2BnuxdPX',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '59fvHRkhursNbblseMxBe',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '5jQI2r1RdgtuT8S3iG8zFC') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '5jQI2r1RdgtuT8S3iG8zFC' ],
+  __knexQueryUid: 'jw9bRzekEVXH7YMgthzZt',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '8LB-gx2E755r_Vr-nPlga',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2QjOHCTQ1Jl3zawyYOpxh6') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2QjOHCTQ1Jl3zawyYOpxh6' ],
+  __knexQueryUid: '3SHW7-oK3UiVOHUheNdSd',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'UT0ET2_j31_6JCsuuZN8b',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '3E7dfMvvCLUddWissuqMwr') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '3E7dfMvvCLUddWissuqMwr' ],
+  __knexQueryUid: 'qmAqbsW2YaoKpGRj-oM6D',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'bo9Iyp5JGPjNFsx-8Bh_Z',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '003vvx7Niy0yvhvHt4a68B') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '003vvx7Niy0yvhvHt4a68B' ],
+  __knexQueryUid: 'wDw4654p8AD6LD_RQlBQY',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'HG96qmb5qerFL3zbhaDpH',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0hquQWY3xvYqN4qtiquniF') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0hquQWY3xvYqN4qtiquniF' ],
+  __knexQueryUid: 'EWUBOoEWT4fLMg92FSZsD',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'UrslYC9o3b_tr8iKxT9F3',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0JXXNGljqupsJaZsgSbMZV') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0JXXNGljqupsJaZsgSbMZV' ],
+  __knexQueryUid: 'M7ZNAQOlLYYBlmvvD_-sD',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'Hw8Ym43EwK3bxRdGfFjk8',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2tUBqZG2AbRi7Q0BIrVrEj') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2tUBqZG2AbRi7Q0BIrVrEj' ],
+  __knexQueryUid: '9pUsnNdev650ZlpLy02Em',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'gzpZ8SqZRrD4FJU6Z77W-',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '4686eQ81DEswHa90bcdlC9') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '4686eQ81DEswHa90bcdlC9' ],
+  __knexQueryUid: 'YfuKMt4K0fN1o7BwxnZ6x',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'PWFdmh7BQuASmuZ2ORTtU',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '11BKm0j4eYoCPPpCONAVwA') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '11BKm0j4eYoCPPpCONAVwA' ],
+  __knexQueryUid: 'KBiH4we6sokTV7vX8Uza6',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'unsug8b-kLeRMlbx152RX',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0wHFktze2PHC5jDt3B17DC') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0wHFktze2PHC5jDt3B17DC' ],
+  __knexQueryUid: 'EaSgc909jW92m4lm9FGGk',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'MvDh0vCAbR9bJF8mes5yc',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '6JIC3hbC28JZKZ8AlAqX8h') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '6JIC3hbC28JZKZ8AlAqX8h' ],
+  __knexQueryUid: 'IAz1wnB7Jl8iyh2GVIQW-',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'G7NeSVF5SuO6PzhboXljA',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '2yjlYDiNiQkdxVqTlaSrlX') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '2yjlYDiNiQkdxVqTlaSrlX' ],
+  __knexQueryUid: '04387dFObDW2HJkXvpcEs',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'qg6ZTyw7DmK3deGc11REA',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '5PjdY0CKGZdEuoNab3yDmX') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '5PjdY0CKGZdEuoNab3yDmX' ],
+  __knexQueryUid: 'wldsDWsAuC8gTEE8wxB7t',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '5VLyELmULfgZRX7ctU-ky',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0IKeDy5bT9G0bA7ZixRT4A') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0IKeDy5bT9G0bA7ZixRT4A' ],
+  __knexQueryUid: 'qUUcXNPcBQ9JDz8Ep6Wac',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'jJFzb-dS6AC7CHbzw5Gf-',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '3EaJDYHA0KnX88JvDhL9oa') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '3EaJDYHA0KnX88JvDhL9oa' ],
+  __knexQueryUid: 'tZ94d8PRDAJFF4WGA_EQy',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'bKI24bn8NqdmVGx4caVWQ',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '0VjIjW4GlUZAMYd2vXMi3b') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '0VjIjW4GlUZAMYd2vXMi3b' ],
+  __knexQueryUid: 'ObkQufCuaP1QncjjtUBR0',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: 'pGgeANDxW0A_mTy9CAhN2',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '3cBsEDNhFI9E82vPj3kvi3') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '3cBsEDNhFI9E82vPj3kvi3' ],
+  __knexQueryUid: 'bWCZGbwLiqjp47Pl1eO7T',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [],
+  __knexQueryUid: '5SPSLNxmsQJf21nqclPSR',
+  sql: "select count(*) as `count` from (select `playlist_tracks`.* from `playlist_tracks` where `playlist_id` = '37i9dQZEVXbLRQDuF5jeBp' and `track_id` = '59nOXPmaKlBfGMDeOVGrIK') as `temp`"
+}
+getPlaylistID called
+37i9dQZEVXbLRQDuF5jeBp
+{
+  method: 'insert',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [ '37i9dQZEVXbLRQDuF5jeBp', '59nOXPmaKlBfGMDeOVGrIK' ],
+  __knexQueryUid: 'fHwcPVWmsxqOg9hUNAdiz',
+  sql: 'insert into `playlist_tracks` (`playlist_id`, `track_id`) values (?, ?)'
+}
+{
+  method: 'select',
+  options: {},
+  timeout: false,
+  cancelOnTimeout: false,
+  bindings: [
+    '37i9dQZEVXbMDoHDwVN2tF',
+    '37i9dQZEVXbLRQDuF5jeBp',
+    'pt2.playlist_id',
+    'pt1.playlist_id'
+  ],
+  __knexQueryUid: 'JvLLH5Daig6ZDnpY-59Y_',
+  sql: 'select `tracks`.`track_id` from `tracks` inner join `playlist_tracks` as `pt1` on `tracks`.`track_id` = `pt1`.`track_id` inner join `playlist_tracks` as `pt2` on `tracks`.`track_id` = `pt2`.`track_id` where `pt1`.`playlist_id` = ? and `pt2`.`playlist_id` = ? and (`pt1`.`playlist_id` <> ? or `pt2`.`playlist_id` <> ?)'
+}
+INTERSECTION
+[
+  Track { track_id: '1Qrg8KqiBpW07V7PNxwwwL' },
+  Track { track_id: '1bDbXMyjaUIooNwFE9wn0N' },
+  Track { track_id: '3nqQXoyQOWXiESFLlDF1hG' },
+  Track { track_id: '2dHHgzDwk4BJdRwy9uXhTO' },
+  Track { track_id: '0V3wPSX9ygBnCm8psDIegu' },
+  Track { track_id: '4FyesJzVpA39hbYvcseO2d' },
+  Track { track_id: '4Dvkj6JhhA12EX05fT7y2e' },
+  Track { track_id: '4uUG5RXrOk84mYEfFvj3cK' },
+  Track { track_id: '4k6Uh1HXdhtusDW5y8Gbvy' },
+  Track { track_id: '5odlY52u43F5BjByhxg7wg' },
+  Track { track_id: '1xzi1Jcr7mEi9K2RfzLOqS' },
+  Track { track_id: '1IHWl5LamUGEuP4ozKQSXZ' },
+  Track { track_id: '6Sq7ltF9Qa7SNFBsV5Cogx' },
+  Track { track_id: '1xK59OXxi2TAAAbmZK0kBL' },
+  Track { track_id: '2LBqCSwhJGcFQeTHMVGwy3' },
+  Track { track_id: '02MWAaffLxlfxAUY7c5dvx' },
+  Track { track_id: '0QHEIqNKsMoOY5urbzN48u' },
+  Track { track_id: '5WxVXxCMRnvxUKFq40ELwq' },
+  Track { track_id: '4h9wh7iOZ0GGn8QVp4RAOB' },
+  Track { track_id: '1Y3LN4zO1Edc2EluIoSPJN' },
+  Track { track_id: '78Sw5GDo6AlGwTwanjXbGh' },
+  Track { track_id: '2QjOHCTQ1Jl3zawyYOpxh6' },
+  Track { track_id: '11BKm0j4eYoCPPpCONAVwA' },
+  Track { track_id: '6JIC3hbC28JZKZ8AlAqX8h' },
+  Track { track_id: '5PjdY0CKGZdEuoNab3yDmX' },
+  Track { track_id: '0VjIjW4GlUZAMYd2vXMi3b' }
+]

@@ -1,8 +1,27 @@
 require('dotenv').config();
 const axios = require('axios');
 const express = require('express');
+const { Model } = require('objection');
+// import the models from the models folder
+const Playlist = require('./models/Playlist');
+const Track = require('./models/Track');
+const Session = require('./models/Session');
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
+
+const knex = require('knex')({
+    client: 'mysql',
+    connection: {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_DATABASE
+    },
+    debug: false
+});
+
+Model.knex(knex);
 
 async function authenticate() {
     try {
@@ -34,59 +53,87 @@ async function authenticate() {
     }
 }
 
-async function fetchPlaylistTracks(playlistId, next) {
+
+async function getPlaylistObject(playlistID, next) {
     try {
-        // make HTTP GET request to Spotify API to fetch track list for playlist
-
-        // The access_token is then used to set the Authorization header for all
-        // subsequent requests made using the axios library.
         const response = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistId}`
+            `https://api.spotify.com/v1/playlists/${playlistID}`
         );
-
-        const tracks = response.data.tracks.items;
-
-        console.log(`tracks in playlist ${playlistId}:`)
-        // console.log(response.data.tracks.items)
-
-        response.data.tracks.items.forEach((item) => {
-            // console.log(item.track.name);
-            // console.log("-------------------------")
-        })
-
-        // return response.data.tracks.items;
-        console.log(tracks);
-        return tracks;
+        // console.log(response.data)
+        return response.data;
     } catch (error) {
         next(error);
     }
 }
 
-async function comparePlaylists(playlist1Url, playlist2Url, next) {
-    try {
-        // extract playlist IDs from URLs
-        const playlist1Id = playlist1Url.split('/').pop();
-        const playlist2Id = playlist2Url.split('/').pop();
+function getPlaylistID(playlistObject) {
+    // console.log("getPlaylistID called")
+    // console.log(playlistObject.id)
+    return playlistObject.id;
+}
 
-        // fetch track lists for both playlists
-        const playlist1Tracks = await fetchPlaylistTracks(playlist1Id, next);
-        const playlist2Tracks = await fetchPlaylistTracks(playlist2Id, next);
+function getPlaylistName(playlistObject) {
+    // console.log("getPlaylistName called")
+    // console.log(playlistObject.name)
+    return playlistObject.name;
+}
 
-        // create sets for each playlist
-        const set1 = new Set(playlist1Tracks.map((item) => item.track.id));
-        const set2 = new Set(playlist2Tracks.map((item) => item.track.id));
+function getPlaylistTracks(playlistObject) {
+    // console.log("getPlaylistTracks called")
+    // console.log(playlistObject.tracks.items)
+    return playlistObject.tracks.items;
+}
 
-        // find intersection of the two sets
-        const intersection = new Set([...set1].filter((x) => set2.has(x)));
+function getPlaylistIDfromURL(playlistURL) {
+    return (playlistURL.split('/').pop()).split('?')[0];
+}
 
-        return {
-            playlist1: playlist1Url,
-            playlist2: playlist2Url,
-            commonTracks: [...intersection],
-        };
-    } catch (error) {
-        next(error);
+
+
+// v3 function
+async function addPlaylistToDB(playlistObject, session_id) {
+
+    console.log("adding playlist")
+
+    // add playlist to Playlists table
+    const currentPlaylistID = getPlaylistID(playlistObject);
+    const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
+    // if the playlist doesn't already exist in the database, add it
+    if (playlistOccurrences === 0) {
+        const playlistTrx = await Playlist.transaction(async trx => {
+            const playlist = await Playlist.query(trx).insert({
+                db_session_id: session_id, 
+                spotify_playlist_id: playlistObject.id,
+                playlist_name: playlistObject.name,
+                author_display_name: playlistObject.owner.display_name,
+                image_url: playlistObject.images[0].url,
+                num_tracks: playlistObject.tracks.total
+            });
+        });
     }
+
+    // add tracks to Tracks table
+    let localSongCounter = 0; //count number of songs from local files for naming db_track_id
+    let playlist_order = 1;
+    getPlaylistTracks(playlistObject).forEach(async(item) => {
+        const track = await Track.query().insert({
+            db_session_id: session_id,
+            spotify_playlist_id: playlistObject.id,
+            spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter++),
+            spotify_album_id: item.track.album.id,
+            spotify_artist_id: item.track.artists[0].id,
+            cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+            date_added: item.added_at,
+            track_name: item.track.name,
+            album_name: item.track.album.name,
+            artist_name: item.track.artists[0].name,
+            runtime: item.track.duration_ms,
+            playlist_order: playlist_order++
+        });
+    });
+
+    // console.log("finished");
+
 }
 
 app.listen(
@@ -94,22 +141,104 @@ app.listen(
     () => {
         console.log('hello')
         authenticate();
+
     }
 )
 
+
+
+async function uploadPlaylist(playlistURL, session_id, next) {
+    const playlistID = getPlaylistIDfromURL(playlistURL);
+    const playlistObject = await getPlaylistObject(playlistID);
+    addPlaylistToDB(playlistObject, session_id, next);
+}
+
+
+
 app.get('/compare', (req, res, next) => {
     // retrieve playlist URLs from query parameters
-    const playlist1Url = req.query.playlist1;
-    const playlist2Url = req.query.playlist2;
+    const playlists = req.query.playlist;
 
-    console.log(playlist1Url);
-    console.log(playlist2Url);
+    //TODO
+    // if more than one paylist parameter is passed
+    //then this variable turns into an arry
+    //we need to check if this is an array
+    //if we only get one parameter, do nothing
 
-    // compare the tracks of the two playlists
-    comparePlaylists(playlist1Url, playlist2Url, next).then((result) => {
+    const session_id = req.query.session;
+
+    sort_filter_fields = [
+        'playlist_order',
+        'track_name',
+        'artist_name',
+        'album_name'
+    ]
+
+    const playlistIDs = [];
+    playlists.forEach((element) => {
+        playlistIDs.push(getPlaylistIDfromURL(element));
+    });
+    
+    const sort_attributes = get_sort_attributes(req.query, sort_filter_fields);
+
+    getSharedTracks(playlistIDs, session_id, sort_attributes).then((result) => {
         res.send(result);
     });
 })
+
+//v4 function
+async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
+
+    const query = await Track
+        .query()
+        .select()
+        .modify((queryBuilder) => {
+
+            queryBuilder.whereIn('spotify_track_id', 
+            Track.query().select('spotify_track_id')
+            .where('db_session_id', session_id)
+            .groupBy('spotify_track_id')
+            .having(knex.raw('count(*)'), '=', playlist_ids.length))
+            .andWhere('spotify_playlist_id', playlist_ids[0]);
+
+            if (sort_attributes) {
+                queryBuilder.orderBy(sort_attributes);
+            }
+
+        });
+
+    console.log("getting shared tracks")
+    // console.log(query)
+    console.log(query.length, "shared tracks")
+    return query;
+}
+
+
+//determine a sort parameter
+//should default to sorting by
+//track order of playlist1
+function get_sort_attributes(request_args, sort_filter_fields) {
+    //confirm that we have a sort parameter
+    if ('sort' in request_args) {
+        //confirmt that the sort parameter passed in is a valid field to sort by
+        for (const element of sort_filter_fields) {
+            if (request_args.sort === element) {
+                return request_args.sort;
+            }
+        }
+    }
+    return 'playlist_order'
+}
+
+//upload a playlist into the database, 
+app.post('/add', (req, res, next) => {
+    const playlistURL = req.query.playlist;
+    const session_id = req.query.session;
+    
+    uploadPlaylist(playlistURL, session_id, next);
+    res.status(200).send();
+})
+
 
 // app.use((err, req, res, next) => {
 //     console.error(err.stack)

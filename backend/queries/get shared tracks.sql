@@ -1,0 +1,1 @@
+SELECT * FROM playlists.tracks WHERE db_session_id = 5 GROUP BY spotify_track_id HAVING COUNT(*) > 1;
