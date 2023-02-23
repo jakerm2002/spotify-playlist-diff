@@ -112,6 +112,9 @@ async function addPlaylistToDB(playlistObject, session_id) {
         });
     }
 
+    //TODO: handle playlists with duplicate tracks!!!!
+    //query will fail if a single playlist has more than one of the same track
+
     // add tracks to Tracks table
     let localSongCounter = 0; //count number of songs from local files for naming db_track_id
     let playlist_order = 1;
@@ -132,7 +135,7 @@ async function addPlaylistToDB(playlistObject, session_id) {
         });
     });
 
-    // console.log("finished");
+    console.log("finished");
 
 }
 
@@ -237,6 +240,27 @@ app.post('/add', (req, res, next) => {
     
     uploadPlaylist(playlistURL, session_id, next);
     res.status(200).send();
+})
+
+
+//v3 function
+async function printPlaylistObject(playlistURL, next) {
+    const playlistID = getPlaylistIDfromURL(playlistURL);
+    const playlistObject = await getPlaylistObject(playlistID);
+    // const res = getPlaylistTracks(playlistObject);
+    const res = playlistObject;
+    console.log(res);
+    return res;
+}
+
+app.get('/playlist', (req, res, next) => {
+    const playlistURL = req.query.playlist;
+    const session_id = req.query.session;
+    console.log(playlistURL);
+    
+    printPlaylistObject(playlistURL, next).then((result) => {
+        res.send(result);
+    })
 })
 
 
