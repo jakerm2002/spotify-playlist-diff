@@ -450,6 +450,123 @@ async function uploadPlaylist(playlistURL, session_id, next) {
     addPlaylistToDBv3(playlistObject, session_id, next);
 }
 
+// v4 function
+async function comparePlaylistsWithDBv4(playlist1Url, playlist2Url, session_id, sort_attributes, next) {
+
+
+    const db_playlist_id1 = getSpotifyIDfromURL(playlist1Url);
+    console.log(db_playlist_id1);
+    const db_playlist_id2 = getSpotifyIDfromURL(playlist2Url);
+
+    return generate_query([db_playlist_id1, db_playlist_id2], session_id, sort_attributes);
+}
+
+// v4 function
+async function getSomething(playlist1Url, playlist2Url, session_id, next) {
+
+
+    const db_playlist_id1 = session_id + '-' + getSpotifyIDfromURL(playlist1Url);
+    console.log(db_playlist_id1);
+    const db_playlist_id2 = session_id + '-' + getSpotifyIDfromURL(playlist2Url);
+
+    const intersection = await Track
+        .query()
+        .select()
+        .modify((queryBuilder) => {
+
+            queryBuilder.whereIn('spotify_track_id', 
+            Track.query().select('spotify_track_id')
+            .where('db_session_id', session_id)
+            .groupBy('spotify_track_id')
+            .having(knex.raw('count(*) > 1')))
+            .andWhere('spotify_playlist_id', getSpotifyIDfromURL(playlist1Url));
+
+            queryBuilder.orderBy('track_name');
+            
+
+        });
+
+    // return the intersection in JSON format and include it in the response
+    console.log("INTERSECTION")
+    console.log(intersection)
+    console.log(intersection.length)
+    return intersection;
+}
+
+
+//V4#
+app.get('/comparev4', (req, res, next) => {
+    // retrieve playlist URLs from query parameters
+    const playlist1Url = req.query.playlist1;
+    const playlist2Url = req.query.playlist2;
+    const session_id = req.query.session;
+    sort_filter_fields = [
+        'track_name',
+        'artist_name',
+        'album_name'
+    ]
+
+    console.log(playlist1Url);
+    console.log(playlist2Url);
+    const sort_attributes = get_sort_attributes(req.query, sort_filter_fields);
+    // const sort_attributes = null;
+
+    comparePlaylistsWithDBv4(playlist1Url, playlist2Url, session_id, sort_attributes).then((result) => {
+        res.send(result);
+    });
+})
+//v4 function
+async function generate_query(playlist_ids, session_id, sort_attributes) {
+    // const base_query = await Track
+    //     .query()
+    //     .select()
+    //     .where('tracks.db_session_id', session_id)
+    //     .groupBy('tracks.spotify_track_id')
+    //     .having(knex.raw('count(*) > 1'));
+
+    const query = await Track
+        .query()
+        .select()
+        .modify((queryBuilder) => {
+
+            queryBuilder.whereIn('spotify_track_id', 
+            Track.query().select('spotify_track_id')
+            .where('db_session_id', session_id)
+            .groupBy('spotify_track_id')
+            .having(knex.raw('count(*) > 1')))
+            .andWhere('spotify_playlist_id', playlist_ids[0]);
+
+            if (sort_attributes) {
+                queryBuilder.orderBy(sort_attributes);
+            }
+
+        });
+
+    return query;
+}
+
+//determine a sort parameter
+//should default to sorting by
+//track order of playlist1
+function get_sort_attributes(request_args, sort_filter_fields) {
+
+    //confirm that we have a sort parameter
+    if ('sort' in request_args) {
+        console.log('found sort parameter in request')
+        // console.log(request_args.sort);
+        //confirmt that the sort parameter passed in is a valid field to sort by
+        for (const element of sort_filter_fields) {
+            console.log(element);
+            if (request_args.sort === element) {
+                console.log('found match');
+                console.log('SORTING BY:::')
+                console.log(request_args.sort);
+                return request_args.sort;
+            }
+        }
+    }
+}
+
 //upload a playlist into the database, 
 app.post('/add', (req, res, next) => {
     const playlistURL = req.query.playlist;
