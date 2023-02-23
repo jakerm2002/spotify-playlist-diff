@@ -205,48 +205,6 @@ function getSpotifyIDfromURL(playlistURL) {
 }
 
 
-// v3 function
-async function comparePlaylistsWithDBv3(playlist1Url, playlist2Url, session_id, next) {
-
-
-    const db_playlist_id1 = session_id + '-' + getSpotifyIDfromURL(playlist1Url);
-    console.log(db_playlist_id1);
-    const db_playlist_id2 = session_id + '-' + getSpotifyIDfromURL(playlist2Url);
-
-    // find intersection of the tracks in the two playlists using the objection models
-
-    //need to fix this to where we check if the track_id appears more than once
-    //then we add it into the result
-    const intersection = await Track
-        .query()
-        .select()
-        .where('tracks.db_session_id', session_id)
-        .groupBy('tracks.spotify_track_id')
-        .having(knex.raw('count(*) > 1'));
-
-    // return the intersection in JSON format and include it in the response
-    console.log("INTERSECTION")
-    console.log(intersection)
-    console.log(intersection.length)
-    return intersection;
-}
-
-//V3#!!!!!!!! FAINALLYLYY 12K21MK1!!!!!
-app.get('/comparev3', (req, res, next) => {
-    // retrieve playlist URLs from query parameters
-    const playlist1Url = req.query.playlist1;
-    const playlist2Url = req.query.playlist2;
-    const session_id = req.query.session;
-
-    console.log(playlist1Url);
-    console.log(playlist2Url);
-
-    // compare the tracks of the two playlists
-    comparePlaylistsWithDBv3(playlist1Url, playlist2Url, session_id, next).then((result) => {
-        res.send(result);
-    });
-})
-
 
 //v3 function
 async function uploadPlaylist(playlistURL, session_id, next) {
