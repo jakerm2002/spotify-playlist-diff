@@ -85,19 +85,15 @@ function getPlaylistTracks(playlistObject) {
 }
 
 function getPlaylistIDfromURL(playlistURL) {
-    return playlistURL.split('/').pop();
-}
-
-function getSpotifyIDfromURL(playlistURL) {
     return (playlistURL.split('/').pop()).split('?')[0];
 }
 
 
 
 // v3 function
-async function addPlaylistToDBv3(playlistObject, session_id) {
+async function addPlaylistToDB(playlistObject, session_id) {
 
-    console.log("addPlaylistToDBv3 called")
+    console.log("adding playlist")
 
     // add playlist to Playlists table
     const currentPlaylistID = getPlaylistID(playlistObject);
@@ -136,7 +132,7 @@ async function addPlaylistToDBv3(playlistObject, session_id) {
         });
     });
 
-    console.log("finished");
+    // console.log("finished");
 
 }
 
@@ -154,7 +150,7 @@ app.listen(
 async function uploadPlaylist(playlistURL, session_id, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
     const playlistObject = await getPlaylistObject(playlistID);
-    addPlaylistToDBv3(playlistObject, session_id, next);
+    addPlaylistToDB(playlistObject, session_id, next);
 }
 
 
@@ -180,18 +176,18 @@ app.get('/compare', (req, res, next) => {
 
     const playlistIDs = [];
     playlists.forEach((element) => {
-        playlistIDs.push(getSpotifyIDfromURL(element));
+        playlistIDs.push(getPlaylistIDfromURL(element));
     });
     
     const sort_attributes = get_sort_attributes(req.query, sort_filter_fields);
 
-    compareTracks(playlists, session_id, sort_attributes).then((result) => {
+    getSharedTracks(playlistIDs, session_id, sort_attributes).then((result) => {
         res.send(result);
     });
 })
 
 //v4 function
-async function compareTracks(playlist_ids, session_id, sort_attributes) {
+async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
 
     const query = await Track
         .query()
@@ -202,7 +198,7 @@ async function compareTracks(playlist_ids, session_id, sort_attributes) {
             Track.query().select('spotify_track_id')
             .where('db_session_id', session_id)
             .groupBy('spotify_track_id')
-            .having(knex.raw('count(*) > 1')))
+            .having(knex.raw('count(*)'), '=', playlist_ids.length))
             .andWhere('spotify_playlist_id', playlist_ids[0]);
 
             if (sort_attributes) {
@@ -211,8 +207,12 @@ async function compareTracks(playlist_ids, session_id, sort_attributes) {
 
         });
 
+    console.log("getting shared tracks")
+    // console.log(query)
+    console.log(query.length, "shared tracks")
     return query;
 }
+
 
 //determine a sort parameter
 //should default to sorting by
