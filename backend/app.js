@@ -3,7 +3,6 @@ const axios = require('axios');
 const express = require('express');
 const { Model } = require('objection');
 // import the models from the models folder
-// const { Playlist, Track, PlaylistTrack } = require('./models');
 const Playlist = require('./models/Playlist');
 const Track = require('./models/Track');
 const Session = require('./models/Session');
@@ -174,29 +173,6 @@ async function getTrackNames(playlistURL, next) {
     return res;
 }
 
-app.get('/playlist', (req, res, next) => {
-    const playlistURL = req.query.playlist;
-    const session_id = req.query.session;
-    console.log(playlistURL);
-    
-    printPlaylist(playlistURL, session_id, next).then((result) => {
-        res.send(result);
-    })
-})
-
-app.get('/tracks', (req, res, next) => {
-    const playlistURL = req.query.playlist;
-    const session_id = req.query.session;
-    console.log(playlistURL);
-    
-    printTracks2(playlistURL, session_id, next).then((result) => {
-        res.send(result);
-    });
-
-    // printTracks(playlistURL, next).then((result) => {
-    //     res.send(result);
-    // })
-})
 
 
 // v3 function
@@ -213,41 +189,41 @@ async function uploadPlaylist(playlistURL, session_id, next) {
     addPlaylistToDBv3(playlistObject, session_id, next);
 }
 
-// v4 function
-async function comparePlaylistsWithDBv4(playlist1Url, playlist2Url, session_id, sort_attributes, next) {
-
-
-    const db_playlist_id1 = getSpotifyIDfromURL(playlist1Url);
-    console.log(db_playlist_id1);
-    const db_playlist_id2 = getSpotifyIDfromURL(playlist2Url);
-
-    return generate_query([db_playlist_id1, db_playlist_id2], session_id, sort_attributes);
-}
-
 
 //V4#
 app.get('/comparev4', (req, res, next) => {
     // retrieve playlist URLs from query parameters
-    const playlist1Url = req.query.playlist1;
-    const playlist2Url = req.query.playlist2;
+    const playlists = req.query.playlist;
+
+    //TODO
+    // if more than one paylist parameter is passed
+    //then this variable turns into an arry
+    //we need to check if this is an array
+    //if we only get one parameter, do nothing
+
     const session_id = req.query.session;
+
     sort_filter_fields = [
+        'playlist_order',
         'track_name',
         'artist_name',
         'album_name'
     ]
 
-    console.log(playlist1Url);
-    console.log(playlist2Url);
+    const playlistIDs = [];
+    playlists.forEach((element) => {
+        playlistIDs.push(getSpotifyIDfromURL(element));
+    });
+    
     const sort_attributes = get_sort_attributes(req.query, sort_filter_fields);
-    // const sort_attributes = null;
 
-    comparePlaylistsWithDBv4(playlist1Url, playlist2Url, session_id, sort_attributes).then((result) => {
+    compareTracks(playlists, session_id, sort_attributes).then((result) => {
         res.send(result);
     });
 })
+
 //v4 function
-async function generate_query(playlist_ids, session_id, sort_attributes) {
+async function compareTracks(playlist_ids, session_id, sort_attributes) {
 
     const query = await Track
         .query()
@@ -274,22 +250,16 @@ async function generate_query(playlist_ids, session_id, sort_attributes) {
 //should default to sorting by
 //track order of playlist1
 function get_sort_attributes(request_args, sort_filter_fields) {
-
     //confirm that we have a sort parameter
     if ('sort' in request_args) {
-        console.log('found sort parameter in request')
-        // console.log(request_args.sort);
         //confirmt that the sort parameter passed in is a valid field to sort by
         for (const element of sort_filter_fields) {
-            console.log(element);
             if (request_args.sort === element) {
-                console.log('found match');
-                console.log('SORTING BY:::')
-                console.log(request_args.sort);
                 return request_args.sort;
             }
         }
     }
+    return 'playlist_order'
 }
 
 //upload a playlist into the database, 
