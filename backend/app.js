@@ -84,6 +84,28 @@ function getPlaylistTracks(playlistObject) {
     return playlistObject.tracks.items;
 }
 
+async function getAllPlaylistTracks(playlistObject, next) {
+    const playlistID = playlistObject.id;
+    const playlistLength = playlistObject.tracks.total;
+    const allTracks = [];
+    try {
+        // let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100`;
+
+        //set fields
+        const fields = `fields=next,items(track(name, album(name, images, id), artists(name, id), id, duration_ms))`
+        let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&` + fields;
+
+        while (nextURL != null) {
+            const response = await axios.get(nextURL);
+            allTracks.push(...response.data.items); //add all items from response
+            nextURL = response.data.next;
+        }
+        return allTracks;
+    } catch (error) {
+        next(error);
+    }
+}
+
 function getPlaylistIDfromURL(playlistURL) {
     return (playlistURL.split('/').pop()).split('?')[0];
 }
@@ -247,9 +269,12 @@ app.post('/add', (req, res, next) => {
 async function printPlaylistObject(playlistURL, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
     const playlistObject = await getPlaylistObject(playlistID);
-    // const res = getPlaylistTracks(playlistObject);
-    const res = playlistObject;
+    const res = await getAllPlaylistTracks(playlistObject, next);
+    
     console.log(res);
+    console.log("returning", res.length, "tracks");
+    // const res = playlistObject;
+    
     return res;
 }
 
