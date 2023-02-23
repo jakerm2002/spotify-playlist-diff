@@ -54,44 +54,6 @@ async function authenticate() {
     }
 }
 
-async function createTables() {
-    try {
-
-
-        console.log('created tables.');
-    } catch (error) {
-        // console.error(error);
-        next(error);
-    }
-}
-
-async function fetchPlaylistTracks(playlistId, next) {
-    try {
-        // make HTTP GET request to Spotify API to fetch track list for playlist
-
-        // The access_token is then used to set the Authorization header for all
-        // subsequent requests made using the axios library.
-        const response = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistId}`
-        );
-
-        const tracks = response.data.tracks.items;
-
-        console.log(`tracks in playlist ${playlistId}:`)
-        // console.log(response.data.tracks.items)
-
-        response.data.tracks.items.forEach((item) => {
-            // console.log(item.track.name);
-            // console.log("-------------------------")
-        })
-
-        // return response.data.tracks.items;
-        console.log(tracks);
-        return tracks;
-    } catch (error) {
-        next(error);
-    }
-}
 
 
 // v2 function
@@ -141,92 +103,6 @@ function getPlaylistTrackNames(playlistObject) {
 // v2 function
 function getPlaylistIDfromURL(playlistURL) {
     return playlistURL.split('/').pop();
-}
-
-// v2 function
-async function comparePlaylistsWithDB(playlist1Url, playlist2Url, next) {
-    const playlist1ID = getPlaylistIDfromURL(playlist1Url);
-    const playlist2ID = getPlaylistIDfromURL(playlist2Url);
-
-    const playlist1Object = await getPlaylistObject(playlist1ID, next);
-    const playlist2Object = await getPlaylistObject(playlist2ID, next);
-
-    const playlist1 = await addPlaylistToDB(playlist1Object);
-    const playlist2 = await addPlaylistToDB(playlist2Object);
-
-    // find intersection of the tracks in the two playlists using the objection models
-    // use an inner join to find the intersection
-    const intersection = await Track
-        .query()
-        .select('tracks.track_id', 'tracks.name')
-        .join('playlist_tracks as pt1', 'tracks.track_id', 'pt1.track_id')
-        .join('playlist_tracks as pt2', 'tracks.track_id', 'pt2.track_id')
-        .where('pt1.playlist_id', playlist1ID)
-        .andWhere('pt2.playlist_id', playlist2ID)
-        .andWhere(function () {
-            this.where('pt1.playlist_id', '<>', 'pt2.playlist_id').orWhere('pt2.playlist_id', '<>', 'pt1.playlist_id');
-        });
-
-    // return the intersection in JSON format and include it in the response
-    console.log("INTERSECTION")
-    console.log(intersection)
-    console.log(intersection.length)
-    return intersection;
-}
-
-// v2 function
-async function addPlaylistToDB(playlistObject) {
-
-    console.log("addPlaylistToDB called")
-
-    // add playlist to Playlists table
-    const currentPlaylistID = getPlaylistID(playlistObject);
-    const playlistOccurrences = await Playlist.query().where('playlist_id', knex.raw("'" + currentPlaylistID + "'")).resultSize();
-    if (playlistOccurrences === 0) {
-        const playlistTrx = await Playlist.transaction(async trx => {
-            // if the playlist doesn't already exist in the database, add it
-            const playlist = await Playlist.query(trx).insert({
-                playlist_id: getPlaylistID(playlistObject),
-                name: getPlaylistName(playlistObject),
-            });
-        });
-    }
-
-    // add tracks to Tracks table
-    for (const item of getPlaylistTracks(playlistObject)) {
-        const currentTrackID = item.track.id;
-        const trackOccurrences = await Track.query().where('track_id', knex.raw("'" + currentTrackID + "'")).resultSize();
-        if (trackOccurrences === 0) {
-            const trackTrx = await Track.transaction(async trx => {
-                console.log("INSERTING TRACK");
-                const track = await Track.query(trx).insert({
-                    track_id: item.track.id,
-                    name: item.track.name,
-                    artist: item.track.artists[0].name,
-                    album: item.track.album.name,
-                    duration_ms: item.track.duration_ms,
-                });
-            });
-        }
-    };
-
-    // add links between playlists and tracks to PlaylistTracks table
-    for (const item of getPlaylistTracks(playlistObject)) {
-        const currentPlaylistID = getPlaylistID(playlistObject);
-        const currentTrackID = item.track.id;
-        const linkOccurrences = await PlaylistTrack.query().where('playlist_id', knex.raw("'" + currentPlaylistID + "'")).andWhere('track_id', knex.raw("'" + currentTrackID + "'")).resultSize();
-        if (linkOccurrences === 0) {
-            const linkTrx = await PlaylistTrack.transaction(async trx => {
-                // if the link doesn't already exist in the database, add it
-                // we are trying to avoid duplicate links between playlists and tracks
-                const link = await PlaylistTrack.query(trx).insert({
-                    playlist_id: getPlaylistID(playlistObject),
-                    track_id: item.track.id
-                });
-            });
-        }
-    };
-
 }
 
 
@@ -286,77 +162,6 @@ app.listen(
     }
 )
 
-
-app.get('/comparev2', (req, res, next) => {
-    // retrieve playlist URLs from query parameters
-    const playlist1Url = req.query.playlist1;
-    const playlist2Url = req.query.playlist2;
-
-    console.log(playlist1Url);
-    console.log(playlist2Url);
-
-    // compare the tracks of the two playlists
-    comparePlaylistsWithDB(playlist1Url, playlist2Url, next).then((result) => {
-        res.send(result);
-    });
-})
-
-
-//v3 function
-async function printTracks(playlistURL, next) {
-    const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
-    const res = getPlaylistTracks(playlistObject);
-    console.log(res);
-    return res;
-}
-
-async function printPlaylist(playlistURL, session_id, next) {
-    const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
-
-    const playlist = {
-        db_playlist_id: session_id + '-' + playlistObject.id, //string concat
-        db_session_id: session_id, 
-        spotify_playlist_id: playlistObject.id,
-        playlist_name: playlistObject.name,
-        author_display_name: playlistObject.owner.display_name,
-        image_url: playlistObject.images[0].url ?? "",
-        num_tracks: playlistObject.tracks.total
-    };
-
-    console.log(playlist);
-    return playlist;
-}
-
-async function printTracks2(playlistURL, session_id, next) {
-    const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
-
-    var tracks = [];
-    localSongCounter = 0;
-    for (const item of getPlaylistTracks(playlistObject)) {
-        console.log(item.track.name);
-        const track = {
-            db_track_id: session_id + '-' + (item.track.id ? item.track.id : "local" + localSongCounter),
-            db_session_id: session_id,
-            db_playlist_id: session_id + '-' + playlistObject.id,
-            spotify_track_id: item.track.id,
-            spotify_album_id: item.track.album.id,
-            spotify_artist_id: item.track.artists[0].id,
-            album_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
-            date_added: item.added_at,
-            track_name: item.track.name,
-            album_name: item.track.album.name,
-            artist_name: item.track.artists[0].name,
-            runtime: item.track.duration_ms
-        }
-        tracks.push(track);
-    }
-
-    // console.log(tracks);
-    return tracks;
-}
 
 
 
@@ -461,38 +266,6 @@ async function comparePlaylistsWithDBv4(playlist1Url, playlist2Url, session_id, 
     return generate_query([db_playlist_id1, db_playlist_id2], session_id, sort_attributes);
 }
 
-// v4 function
-async function getSomething(playlist1Url, playlist2Url, session_id, next) {
-
-
-    const db_playlist_id1 = session_id + '-' + getSpotifyIDfromURL(playlist1Url);
-    console.log(db_playlist_id1);
-    const db_playlist_id2 = session_id + '-' + getSpotifyIDfromURL(playlist2Url);
-
-    const intersection = await Track
-        .query()
-        .select()
-        .modify((queryBuilder) => {
-
-            queryBuilder.whereIn('spotify_track_id', 
-            Track.query().select('spotify_track_id')
-            .where('db_session_id', session_id)
-            .groupBy('spotify_track_id')
-            .having(knex.raw('count(*) > 1')))
-            .andWhere('spotify_playlist_id', getSpotifyIDfromURL(playlist1Url));
-
-            queryBuilder.orderBy('track_name');
-            
-
-        });
-
-    // return the intersection in JSON format and include it in the response
-    console.log("INTERSECTION")
-    console.log(intersection)
-    console.log(intersection.length)
-    return intersection;
-}
-
 
 //V4#
 app.get('/comparev4', (req, res, next) => {
@@ -517,12 +290,6 @@ app.get('/comparev4', (req, res, next) => {
 })
 //v4 function
 async function generate_query(playlist_ids, session_id, sort_attributes) {
-    // const base_query = await Track
-    //     .query()
-    //     .select()
-    //     .where('tracks.db_session_id', session_id)
-    //     .groupBy('tracks.spotify_track_id')
-    //     .having(knex.raw('count(*) > 1'));
 
     const query = await Track
         .query()
