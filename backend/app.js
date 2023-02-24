@@ -84,29 +84,32 @@ function getPlaylistTracks(playlistObject) {
     return playlistObject.tracks.items;
 }
 
-async function getAllPlaylistTracks(playlistObject, next) {
+async function getAllPlaylistTracks(playlistObject, session_id, next) {
     const playlistID = playlistObject.id;
-    const playlistLength = playlistObject.tracks.total;
-    const allTracks = [];
+    // const playlistLength = playlistObject.tracks.total;
+    // const allTracks = [];
     try {
         // let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100`;
 
         //set fields
-        const fields = `fields=next,items(track(name, album(name, images, id), artists(name, id), id, duration_ms))`
+        const fields = `fields=next,items(track(name, album(name, images, id), artists(name, id), id, duration_ms), added_at)`
         let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&` + fields;
 
         let count = 0;
+        
+        let playlist_order_counter = {count: 1};
+        let localSongCounter = {count : 1}; //count number of songs from local files for naming db_track_id
         while (nextURL != null) {
+            console.log(nextURL);
             const response = await axios.get(nextURL);
-            if (count === 0) {
-                // const arr = response.data.items.slice(0,6);
-                // console.log(arr);
-            }
-            allTracks.push(...response.data.items); //add all items from response
+            console.log(response.data.items);
+            console.log('LENGTH', response.data.items.length)
+            addTracks(response.data.items, playlistObject, session_id, playlist_order_counter, localSongCounter);
+            // allTracks.push(...response.data.items); //add all items from response
             nextURL = response.data.next;
             count++;
         }
-        return allTracks;
+        // return allTracks;
     } catch (error) {
         next(error);
     }
@@ -116,6 +119,41 @@ function getPlaylistIDfromURL(playlistURL) {
     return (playlistURL.split('/').pop()).split('?')[0];
 }
 
+//gets an array of ~100 max items and adds them in bulk insert to DB
+async function addTracks(response_items, playlistObject, session_id, playlist_order_counter, localSongCounter) {
+
+    items = [];
+    //first, loop thru array and modify each element
+
+    response_items.forEach((item) => {
+        if (item.track != null) {
+            items.push({
+                db_session_id: session_id,
+                spotify_playlist_id: playlistObject.id,
+                spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter.count++),
+                spotify_album_id: item.track.album.id,
+                spotify_artist_id: item.track.artists[0].id,
+                cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
+                date_added: item.added_at,
+                track_name: item.track.name,
+                album_name: item.track.album.name,
+                artist_name: item.track.artists[0].name,
+                runtime: item.track.duration_ms,
+                playlist_order: playlist_order_counter.count++
+            });
+        } else {
+            console.log("FOUND NULL ITEM!! >:(");
+        }
+    });
+
+    // add tracks to Tracks table
+    const trackTrx = await Track.transaction(async trx => {
+        const track = await Track.knexQuery().insert(items);
+        console.log (items.length, "ITEMS INSERTED!!")
+    });
+
+    return items.length;
+}
 
 
 // v3 function
@@ -139,38 +177,8 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
             });
         });
     }
-
-    //TODO: handle playlists with duplicate tracks!!!!
-    //query will fail if a single playlist has more than one of the same track
-
-    // add tracks to Tracks table
-    let localSongCounter = 0; //count number of songs from local files for naming db_track_id
-    let playlist_order = 1;
-    const items = await getAllPlaylistTracks(playlistObject, next);
-    let count = 0;
-    await knex.transaction(async trx => {
-        items.forEach(async(item) => {
-            if (item.track != null) {
-                const track = await Track.query().insert({
-                    db_session_id: session_id,
-                    spotify_playlist_id: playlistObject.id,
-                    spotify_track_id: (item.track.id ? item.track.id : "local" + localSongCounter++),
-                    spotify_album_id: item.track.album.id,
-                    spotify_artist_id: item.track.artists[0].id,
-                    cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
-                    date_added: item.added_at,
-                    track_name: item.track.name,
-                    album_name: item.track.album.name,
-                    artist_name: item.track.artists[0].name,
-                    runtime: item.track.duration_ms,
-                    playlist_order: playlist_order++
-                });
-                count++;
-            }
-        });
-    });
     
-    console.log("finished");
+    getAllPlaylistTracks(playlistObject, session_id, next);
 
 }
 
