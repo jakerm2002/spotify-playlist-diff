@@ -100,16 +100,17 @@ async function getAllPlaylistTracks(playlistObject, session_id, next) {
         let playlist_order_counter = {count: 1};
         let localSongCounter = {count : 1}; //count number of songs from local files for naming db_track_id
         while (nextURL != null) {
-            console.log(nextURL);
+            // console.log(nextURL);
             const response = await axios.get(nextURL);
-            console.log(response.data.items);
-            console.log('LENGTH', response.data.items.length)
+            // console.log(response.data.items);
+            // console.log('LENGTH', response.data.items.length)
             addTracks(response.data.items, playlistObject, session_id, playlist_order_counter, localSongCounter);
             // allTracks.push(...response.data.items); //add all items from response
             nextURL = response.data.next;
-            count++;
+            
         }
-        // return allTracks;
+
+        console.log("finished.");
     } catch (error) {
         next(error);
     }
@@ -142,15 +143,11 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
                 playlist_order: playlist_order_counter.count++
             });
         } else {
-            console.log("FOUND NULL ITEM!! >:(");
         }
     });
 
     // add tracks to Tracks table
-    // const trackTrx = await Track.transaction(async trx => {
-        const track = await Track.knexQuery().insert(items);
-        console.log (items.length, "ITEMS INSERTED!!")
-    // });
+    const track = await Track.knexQuery().insert(items);
 
     return items.length;
 }
@@ -179,6 +176,7 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
     }
     
     getAllPlaylistTracks(playlistObject, session_id, next);
+    // console.log("tracks added.");
 
 }
 
