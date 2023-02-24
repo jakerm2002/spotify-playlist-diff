@@ -147,10 +147,10 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
     });
 
     // add tracks to Tracks table
-    const trackTrx = await Track.transaction(async trx => {
+    // const trackTrx = await Track.transaction(async trx => {
         const track = await Track.knexQuery().insert(items);
         console.log (items.length, "ITEMS INSERTED!!")
-    });
+    // });
 
     return items.length;
 }
