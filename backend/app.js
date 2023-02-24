@@ -86,28 +86,28 @@ function getPlaylistTracks(playlistObject) {
 
 async function getAllPlaylistTracks(playlistObject, session_id, next) {
     const playlistID = playlistObject.id;
-    // const playlistLength = playlistObject.tracks.total;
+    const playlistLength = playlistObject.tracks.total;
     // const allTracks = [];
     try {
         // let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100`;
 
         //set fields
         const fields = `fields=next,items(track(name, album(name, images, id), artists(name, id), id, duration_ms), added_at)`
-        let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&` + fields;
 
-        let count = 0;
+        let allResponses = [];
+        const numCalls = Math.ceil(playlistLength / 100);
+        for (var i = 0; i < numCalls; i++) {
+            let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&offset=${(i * 100)}&${fields}`;
+            allResponses[i] = axios.get(nextURL);
+        }
+
         
         let playlist_order_counter = {count: 1};
         let localSongCounter = {count : 1}; //count number of songs from local files for naming db_track_id
-        while (nextURL != null) {
-            // console.log(nextURL);
-            const response = await axios.get(nextURL);
-            // console.log(response.data.items);
-            // console.log('LENGTH', response.data.items.length)
+
+        for (var i = 0; i < numCalls; i++) {
+            response = await allResponses[i];
             addTracks(response.data.items, playlistObject, session_id, playlist_order_counter, localSongCounter);
-            // allTracks.push(...response.data.items); //add all items from response
-            nextURL = response.data.next;
-            
         }
 
         console.log("finished.");
