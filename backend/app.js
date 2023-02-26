@@ -1,5 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
+const axiosRetry = require('axios-retry');
 const express = require('express');
 const { Model } = require('objection');
 // import the models from the models folder
@@ -54,10 +55,61 @@ async function authenticate() {
 }
 
 
+
+axiosRetry(axios, { retries: 3 });
+
+
+// Define the interceptor
+axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
+    var config = err.config;
+
+    // console.log(err);
+    console.log(err.response.headers.get('retry-after'));
+    console.log(err.response.status);
+  
+    // If config does not exist or the retry option is not set, reject immediately
+    if (!config || !config.retry) {
+      return Promise.reject(err);
+    }
+  
+    // Set the variable for the number of retries
+    config.__retryCount = config.__retryCount || 0;
+
+    // Check if we've maxed out the total number of retries
+    if(config.__retryCount >= config.retry) {
+        // Reject with the error
+        return Promise.reject(err);
+    }
+
+    // const backOffDelay = config.retryDelay 
+    //     ? ( (1/2) * (Math.pow(2, config.__retryCount) - 1) ) * 1000
+    //     : 1;
+  
+    const delay = err.response.headers.get('retry-after') * 1000;
+
+    // Check if the error is a 429 status code
+    if (err.response.status === 429) {
+      // Retry after 10 seconds for 429 status codes
+      config.__retryCount += 1;
+      return new Promise(function(resolve) {
+        setTimeout(function() {
+            console.log("resending request.");
+          resolve(axios(config));
+        }, delay + 1000);
+      });
+    }
+  
+    // If the error is not a 5xx or 429 status code, reject immediately
+    return Promise.reject(err);
+  });
+
+  
+
+
 async function getPlaylistObject(playlistID, next) {
     try {
         const response = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistID}`
+            `https://api.spotify.com/v1/playlists/${playlistID}?fields=id,name,owner(display_name),images,tracks(total),snapshot_id`
         );
         // console.log(response.data)
         return response.data;
@@ -86,30 +138,26 @@ function getPlaylistTracks(playlistObject) {
 
 async function getAllPlaylistTracks(playlistObject, session_id, next) {
     const playlistID = playlistObject.id;
-    // const playlistLength = playlistObject.tracks.total;
-    // const allTracks = [];
+    const playlistLength = playlistObject.tracks.total;
+
     try {
-        // let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100`;
-
-        //set fields
         const fields = `fields=next,items(track(name, album(name, images, id), artists(name, id), id, duration_ms), added_at)`
-        let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&` + fields;
-
-        let count = 0;
+        let allResponses = [];
+        const numCalls = Math.ceil(playlistLength / 100);
+        for (var i = 0; i < numCalls; i++) {
+            let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&offset=${(i * 100)}&${fields}`;
+            allResponses[i] = axios.get(nextURL, { retry: 2 });
+        }
         
         let playlist_order_counter = {count: 1};
         let localSongCounter = {count : 1}; //count number of songs from local files for naming db_track_id
-        while (nextURL != null) {
-            console.log(nextURL);
-            const response = await axios.get(nextURL);
-            console.log(response.data.items);
-            console.log('LENGTH', response.data.items.length)
+
+        for (var i = 0; i < numCalls; i++) {
+            response = await allResponses[i];
             addTracks(response.data.items, playlistObject, session_id, playlist_order_counter, localSongCounter);
-            // allTracks.push(...response.data.items); //add all items from response
-            nextURL = response.data.next;
-            count++;
         }
-        // return allTracks;
+
+        console.log("finished adding all playlist tracks to DB.");
     } catch (error) {
         next(error);
     }
@@ -123,7 +171,6 @@ function getPlaylistIDfromURL(playlistURL) {
 async function addTracks(response_items, playlistObject, session_id, playlist_order_counter, localSongCounter) {
 
     items = [];
-    //first, loop thru array and modify each element
 
     response_items.forEach((item) => {
         if (item.track != null) {
@@ -142,15 +189,11 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
                 playlist_order: playlist_order_counter.count++
             });
         } else {
-            console.log("FOUND NULL ITEM!! >:(");
         }
     });
 
     // add tracks to Tracks table
-    const trackTrx = await Track.transaction(async trx => {
-        const track = await Track.knexQuery().insert(items);
-        console.log (items.length, "ITEMS INSERTED!!")
-    });
+    const track = await Track.knexQuery().insert(items);
 
     return items.length;
 }
@@ -159,27 +202,49 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
 // v3 function
 async function addPlaylistToDB(playlistObject, session_id, next) {
 
+    const plistObject = {
+        db_session_id: session_id, 
+        spotify_playlist_id: playlistObject.id,
+        playlist_name: playlistObject.name,
+        author_display_name: playlistObject.owner.display_name,
+        image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
+        num_tracks: playlistObject.tracks.total,
+        snapshot_id: playlistObject.snapshot_id
+    }
+
     console.log("adding playlist")
 
     // add playlist to Playlists table
     const currentPlaylistID = getPlaylistID(playlistObject);
+    const currentSnapshotID = playlistObject.snapshot_id;
     const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
     // if the playlist doesn't already exist in the database, add it
     if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
-            const playlist = await Playlist.query(trx).insert({
-                db_session_id: session_id, 
-                spotify_playlist_id: playlistObject.id,
-                playlist_name: playlistObject.name,
-                author_display_name: playlistObject.owner.display_name,
-                image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
-                num_tracks: playlistObject.tracks.total
-            });
+            const playlist = await Playlist.query(trx).insert(plistObject);
         });
-    }
-    
-    getAllPlaylistTracks(playlistObject, session_id, next);
+        getAllPlaylistTracks(playlistObject, session_id, next);
+    } else {
+        //if the playlist does exist, check to see if the session id already exists
+        const snapshotOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id', 'snapshot_id'], [session_id, currentPlaylistID, currentSnapshotID]).resultSize();
+        console.log(snapshotOccurrences, 'snapshot occurrences');
+        if (snapshotOccurrences === 0) { //means we've never seen this snapshot before
+            //in this case, we will remove all tracks from the playlist and re-add them
+            const playlistTrx = await Playlist.transaction(async trx => {
 
+                //remove all tracks of playlist with old session id
+                const numDeletedTracks = await Track.query(trx).delete().where('db_session_id', session_id).andWhere('spotify_playlist_id', currentPlaylistID);
+
+                //remove old records of playlist from playlists table?
+                const numDeletedPlaylists = await Playlist.query(trx).delete().where('db_session_id', session_id).andWhere('spotify_playlist_id', currentPlaylistID);
+
+                const playlist = await Playlist.query(trx).insert(plistObject);
+                
+            });
+            getAllPlaylistTracks(playlistObject, session_id, next);
+        }
+    }
+    return plistObject;
 }
 
 app.listen(
@@ -191,15 +256,11 @@ app.listen(
     }
 )
 
-
-
 async function uploadPlaylist(playlistURL, session_id, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
-    addPlaylistToDB(playlistObject, session_id, next);
+    const playlistObject = await getPlaylistObject(playlistID, next);
+    return await addPlaylistToDB(playlistObject, session_id, next);
 }
-
-
 
 app.get('/compare', (req, res, next) => {
     // retrieve playlist URLs from query parameters
@@ -279,19 +340,23 @@ function get_sort_attributes(request_args, sort_filter_fields) {
 }
 
 //upload a playlist into the database, 
-app.post('/add', (req, res, next) => {
+app.post('/add', async (req, res, next) => {
     const playlistURL = req.query.playlist;
     const session_id = req.query.session;
     
-    uploadPlaylist(playlistURL, session_id, next);
-    res.status(200).send();
+    try {
+        const result = await uploadPlaylist(playlistURL, session_id, next);
+        res.status(200).json(result);
+    } catch (err) {
+        next(err);
+    }
 })
 
 
 //v3 function
 async function printPlaylistObject(playlistURL, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
+    const playlistObject = await getPlaylistObject(playlistID, next);
     const res = await getAllPlaylistTracks(playlistObject, next);
     
     console.log(res);
