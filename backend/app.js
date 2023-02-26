@@ -162,7 +162,7 @@ async function getAllPlaylistTracks(playlistObject, session_id, next) {
             addTracks(response.data.items, playlistObject, session_id, playlist_order_counter, localSongCounter);
         }
 
-        console.log("finished.");
+        console.log("finished adding all playlist tracks to DB.");
     } catch (error) {
         next(error);
     }
@@ -208,30 +208,51 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
 // v3 function
 async function addPlaylistToDB(playlistObject, session_id, next) {
 
+    const plistObject = {
+        db_session_id: session_id, 
+        spotify_playlist_id: playlistObject.id,
+        playlist_name: playlistObject.name,
+        author_display_name: playlistObject.owner.display_name,
+        image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
+        num_tracks: playlistObject.tracks.total,
+        snapshot_id: playlistObject.snapshot_id
+    }
+
     console.log("adding playlist")
 
     // add playlist to Playlists table
     const currentPlaylistID = getPlaylistID(playlistObject);
     const currentSnapshotID = playlistObject.snapshot_id;
-    const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id', 'snapshot_id'], [session_id, currentPlaylistID, currentSnapshotID]).resultSize();
+    const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
     // if the playlist doesn't already exist in the database, add it
     if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
-            const playlist = await Playlist.query(trx).insert({
-                db_session_id: session_id, 
-                spotify_playlist_id: playlistObject.id,
-                playlist_name: playlistObject.name,
-                author_display_name: playlistObject.owner.display_name,
-                image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
-                num_tracks: playlistObject.tracks.total,
-                snapshot_id: playlistObject.snapshot_id
-            });
+            const playlist = await Playlist.query(trx).insert(plistObject);
         });
+        getAllPlaylistTracks(playlistObject, session_id, next);
+    } else {
+        //if the playlist does exist, check to see if the session id already exists
+        const snapshotOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id', 'snapshot_id'], [session_id, currentPlaylistID, currentSnapshotID]).resultSize();
+        console.log(snapshotOccurrences, 'snapshot occurrences');
+        if (snapshotOccurrences === 0) { //means we've never seen this snapshot before
+            //in this case, we will remove all tracks from the playlist and re-add them
+            const playlistTrx = await Playlist.transaction(async trx => {
+
+                //remove all tracks of playlist with old session id
+                const numDeletedTracks = await Track.query(trx).delete().where('db_session_id', session_id).andWhere('spotify_playlist_id', currentPlaylistID);
+
+                //remove old records of playlist from playlists table?
+                const numDeletedPlaylists = await Playlist.query(trx).delete().where('db_session_id', session_id).andWhere('spotify_playlist_id', currentPlaylistID);
+
+                const playlist = await Playlist.query(trx).insert(plistObject);
+                
+            });
+            getAllPlaylistTracks(playlistObject, session_id, next);
+        }
     }
     
-    getAllPlaylistTracks(playlistObject, session_id, next);
     // console.log("tracks added.");
-
+    return plistObject;
 }
 
 app.listen(
@@ -248,7 +269,7 @@ app.listen(
 async function uploadPlaylist(playlistURL, session_id, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
     const playlistObject = await getPlaylistObject(playlistID, next);
-    addPlaylistToDB(playlistObject, session_id, next);
+    return await addPlaylistToDB(playlistObject, session_id, next);
 }
 
 
@@ -331,12 +352,16 @@ function get_sort_attributes(request_args, sort_filter_fields) {
 }
 
 //upload a playlist into the database, 
-app.post('/add', (req, res, next) => {
+app.post('/add', async (req, res, next) => {
     const playlistURL = req.query.playlist;
     const session_id = req.query.session;
     
-    uploadPlaylist(playlistURL, session_id, next);
-    res.status(200).send();
+    try {
+        const result = await uploadPlaylist(playlistURL, session_id, next);
+        res.status(200).json(result);
+    } catch (err) {
+        next(err);
+    }
 })
 
 
