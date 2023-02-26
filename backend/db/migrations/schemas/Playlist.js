@@ -6,6 +6,7 @@ const playlistSchema = (table) => {
     table.string('author_display_name').notNullable()
     table.string('image_url')
     table.integer('num_tracks')
+    table.string('snapshot_id')
 }
 
 module.exports = playlistSchema;

@@ -109,7 +109,7 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
 async function getPlaylistObject(playlistID, next) {
     try {
         const response = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistID}`
+            `https://api.spotify.com/v1/playlists/${playlistID}?fields=id,name,owner(display_name),images,tracks(total),snapshot_id`
         );
         // console.log(response.data)
         return response.data;
@@ -212,7 +212,8 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
 
     // add playlist to Playlists table
     const currentPlaylistID = getPlaylistID(playlistObject);
-    const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
+    const currentSnapshotID = playlistObject.snapshot_id;
+    const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id', 'snapshot_id'], [session_id, currentPlaylistID, currentSnapshotID]).resultSize();
     // if the playlist doesn't already exist in the database, add it
     if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
@@ -222,7 +223,8 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
                 playlist_name: playlistObject.name,
                 author_display_name: playlistObject.owner.display_name,
                 image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
-                num_tracks: playlistObject.tracks.total
+                num_tracks: playlistObject.tracks.total,
+                snapshot_id: playlistObject.snapshot_id
             });
         });
     }
