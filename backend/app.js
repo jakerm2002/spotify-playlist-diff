@@ -1,5 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
+const axiosRetry = require('axios-retry');
 const express = require('express');
 const { Model } = require('objection');
 // import the models from the models folder
@@ -54,6 +55,57 @@ async function authenticate() {
 }
 
 
+
+axiosRetry(axios, { retries: 3 });
+
+
+// Define the interceptor
+axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
+    var config = err.config;
+
+    // console.log(err);
+    console.log(err.response.headers.get('retry-after'));
+    console.log(err.response.status);
+  
+    // If config does not exist or the retry option is not set, reject immediately
+    if (!config || !config.retry) {
+      return Promise.reject(err);
+    }
+  
+    // Set the variable for the number of retries
+    config.__retryCount = config.__retryCount || 0;
+
+    // Check if we've maxed out the total number of retries
+    if(config.__retryCount >= config.retry) {
+        // Reject with the error
+        return Promise.reject(err);
+    }
+
+    // const backOffDelay = config.retryDelay 
+    //     ? ( (1/2) * (Math.pow(2, config.__retryCount) - 1) ) * 1000
+    //     : 1;
+  
+    const delay = err.response.headers.get('retry-after') * 1000;
+
+    // Check if the error is a 429 status code
+    if (err.response.status === 429) {
+      // Retry after 10 seconds for 429 status codes
+      config.__retryCount += 1;
+      return new Promise(function(resolve) {
+        setTimeout(function() {
+            console.log("resending request.");
+          resolve(axios(config));
+        }, delay + 1000);
+      });
+    }
+  
+    // If the error is not a 5xx or 429 status code, reject immediately
+    return Promise.reject(err);
+  });
+
+  
+
+
 async function getPlaylistObject(playlistID, next) {
     try {
         const response = await axios.get(
@@ -98,7 +150,7 @@ async function getAllPlaylistTracks(playlistObject, session_id, next) {
         const numCalls = Math.ceil(playlistLength / 100);
         for (var i = 0; i < numCalls; i++) {
             let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&offset=${(i * 100)}&${fields}`;
-            allResponses[i] = axios.get(nextURL);
+            allResponses[i] = axios.get(nextURL, { retry: 2 });
         }
 
         
@@ -193,7 +245,7 @@ app.listen(
 
 async function uploadPlaylist(playlistURL, session_id, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
+    const playlistObject = await getPlaylistObject(playlistID, next);
     addPlaylistToDB(playlistObject, session_id, next);
 }
 
@@ -289,7 +341,7 @@ app.post('/add', (req, res, next) => {
 //v3 function
 async function printPlaylistObject(playlistURL, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
-    const playlistObject = await getPlaylistObject(playlistID);
+    const playlistObject = await getPlaylistObject(playlistID, next);
     const res = await getAllPlaylistTracks(playlistObject, next);
     
     console.log(res);
