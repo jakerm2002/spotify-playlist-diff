@@ -139,20 +139,15 @@ function getPlaylistTracks(playlistObject) {
 async function getAllPlaylistTracks(playlistObject, session_id, next) {
     const playlistID = playlistObject.id;
     const playlistLength = playlistObject.tracks.total;
-    // const allTracks = [];
+
     try {
-        // let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100`;
-
-        //set fields
         const fields = `fields=next,items(track(name, album(name, images, id), artists(name, id), id, duration_ms), added_at)`
-
         let allResponses = [];
         const numCalls = Math.ceil(playlistLength / 100);
         for (var i = 0; i < numCalls; i++) {
             let nextURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?limit=100&offset=${(i * 100)}&${fields}`;
             allResponses[i] = axios.get(nextURL, { retry: 2 });
         }
-
         
         let playlist_order_counter = {count: 1};
         let localSongCounter = {count : 1}; //count number of songs from local files for naming db_track_id
@@ -176,7 +171,6 @@ function getPlaylistIDfromURL(playlistURL) {
 async function addTracks(response_items, playlistObject, session_id, playlist_order_counter, localSongCounter) {
 
     items = [];
-    //first, loop thru array and modify each element
 
     response_items.forEach((item) => {
         if (item.track != null) {
@@ -250,8 +244,6 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
             getAllPlaylistTracks(playlistObject, session_id, next);
         }
     }
-    
-    // console.log("tracks added.");
     return plistObject;
 }
 
@@ -264,15 +256,11 @@ app.listen(
     }
 )
 
-
-
 async function uploadPlaylist(playlistURL, session_id, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
     const playlistObject = await getPlaylistObject(playlistID, next);
     return await addPlaylistToDB(playlistObject, session_id, next);
 }
-
-
 
 app.get('/compare', (req, res, next) => {
     // retrieve playlist URLs from query parameters
