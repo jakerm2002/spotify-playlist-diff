@@ -300,7 +300,7 @@ async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
     const query = await Track
         .query()
         .min('playlist_order as playlist_order')
-        .select('track_name', 'album_name', 'artist_name', 'runtime')
+        .select('track_name', 'album_name', 'artist_name', 'runtime', 'cover_art_url')
         .modify((queryBuilder) => {
 
             queryBuilder.whereIn('spotify_track_id', 
