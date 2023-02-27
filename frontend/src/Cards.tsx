@@ -4,6 +4,8 @@ import { makeStyles } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import PlaylistCard from './PlaylistCard';
 import { Varela } from '@next/font/google';
+import SharedTable from './SharedTable';
+import axios from 'axios';
 
 // const useStyles = makeStyles(theme => ({
 //   addButton: {
@@ -16,6 +18,7 @@ const Cards = () => {
 // let playlists = [];
 
 const [playlists, setPlaylists] = useState([{playlistData: null, isLoading: false}, {playlistData: null, isLoading: false}]);
+const [rows, setRows] = useState([]);
 
 useEffect(() => {
     var count = 0;
@@ -30,6 +33,26 @@ useEffect(() => {
 
     }, [playlists]);
 
+
+//call api when all playlists are filled
+useEffect(() => {
+    var count = 0;
+    const playlistIDs = [];
+    var api_string = `?`
+    playlists.forEach((playlist) => {
+        if (playlist.playlistData != null) {
+            playlistIDs.push(playlist.playlistData.spotify_playlist_id)
+            count++;
+        }
+        if (count === playlists.length) {
+            const response = axios.get(`http://localhost:8080/compare?${playlistIDs.map((n, index) => `playlist=${n}`).join('&')}&session=1`).then(response => {
+                setRows(response.data);
+            }); // replace YOUR_API_URL_HERE with your actual API endpoint
+        }
+    })
+
+    }, [playlists]);
+
 const handlePlaylistUpdate = (index: number, playlistData: any) => {
     const updatedPlaylists = [...playlists];
     updatedPlaylists[index].playlistData = playlistData;
@@ -38,6 +61,7 @@ const handlePlaylistUpdate = (index: number, playlistData: any) => {
 };
 
 return (
+    <React.Fragment>
     <Grid container spacing={0} direction="row" sx={{alignItems: 'center'}}>
         {playlists.map((playlist, index) => {
             return (
@@ -57,6 +81,9 @@ return (
             )
         })}
     </Grid>
+    <SharedTable rows={rows}/>
+    </React.Fragment>
+
   );
 };
 

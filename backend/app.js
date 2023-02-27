@@ -248,6 +248,8 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
     return plistObject;
 }
 
+app.use(cors());
+
 app.listen(
     PORT,
     () => {
@@ -339,8 +341,6 @@ function get_sort_attributes(request_args, sort_filter_fields) {
     }
     return 'playlist_order'
 }
-
-app.use(cors());
 
 //upload a playlist into the database, 
 app.post('/add', async (req, res, next) => {

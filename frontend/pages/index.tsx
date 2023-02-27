@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
       <main>
         <Cards/>
-        <SharedTable/>
+        {/* <SharedTable/> */}
       </main>
     </>
   )
