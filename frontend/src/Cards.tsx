@@ -20,6 +20,30 @@ const Cards = () => {
 const [playlists, setPlaylists] = useState([{playlistData: null, isLoading: false}, {playlistData: null, isLoading: false}]);
 const [rows, setRows] = useState([]);
 
+//call api when all playlists are filled
+useEffect(() => {
+    console.log("useEffect");
+    var count = 0;
+    const playlistIDs = [];
+    // var api_string = `?`
+    playlists.forEach((playlist) => {
+        if (playlist.playlistData != null && playlist.isLoading == false) {
+            console.log("playlist has data and is not loading");
+            playlistIDs.push(playlist.playlistData.spotify_playlist_id)
+            count++;
+        }
+    })
+
+    console.log("COUNT IS", count);
+    if (count >= 2) {
+        console.log("PLAYLIST LENGTH", playlists.length);
+        const response = axios.get(`http://localhost:8080/compare?${playlistIDs.map((n, index) => `playlist=${n}`).join('&')}&session=1`).then(response => {
+            setRows(response.data);
+        }); // replace YOUR_API_URL_HERE with your actual API endpoint
+    }
+
+    }, [playlists]);
+
 useEffect(() => {
     var count = 0;
     playlists.forEach((playlist) => {
@@ -34,24 +58,7 @@ useEffect(() => {
     }, [playlists]);
 
 
-//call api when all playlists are filled
-useEffect(() => {
-    var count = 0;
-    const playlistIDs = [];
-    var api_string = `?`
-    playlists.forEach((playlist) => {
-        if (playlist.playlistData != null) {
-            playlistIDs.push(playlist.playlistData.spotify_playlist_id)
-            count++;
-        }
-        if (count === playlists.length) {
-            const response = axios.get(`http://localhost:8080/compare?${playlistIDs.map((n, index) => `playlist=${n}`).join('&')}&session=1`).then(response => {
-                setRows(response.data);
-            }); // replace YOUR_API_URL_HERE with your actual API endpoint
-        }
-    })
 
-    }, [playlists]);
 
 const handlePlaylistUpdate = (index: number, playlistData: any) => {
     const updatedPlaylists = [...playlists];
@@ -64,8 +71,9 @@ return (
     <React.Fragment>
     <Grid container spacing={0} direction="row" sx={{alignItems: 'center'}}>
         {playlists.map((playlist, index) => {
+            console.log(index);
             return (
-                <Grid item xs={2} key="index">
+                <Grid item xs={2} key={index}>
                     <PlaylistCard
                         playlistNum={index + 1}
                         playlistData={playlist.playlistData}

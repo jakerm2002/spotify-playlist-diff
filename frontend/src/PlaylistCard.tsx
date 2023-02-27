@@ -27,10 +27,11 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
     // setFilled(false);
     setIsLoading(true);
     const link = (event.currentTarget as HTMLFormElement).link.value;
-    const response = await axios.post(`http://localhost:8080/add?playlist=${link}&session=1`); // replace YOUR_API_URL_HERE with your actual API endpoint
-    const data = await response.data;
-    onUpdate(data);
-    setIsLoading(false);
+    const r = await axios.post(`http://localhost:8080/add?playlist=${link}&session=1`).then(response => {
+      console.log(response.data);
+      onUpdate(response.data);
+      setIsLoading(false);
+    });; // replace YOUR_API_URL_HERE with your actual API endpoint
     // setFilled(true);
     // setPlaylistImage(data.image_url);
   }

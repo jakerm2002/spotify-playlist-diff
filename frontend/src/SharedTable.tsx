@@ -35,7 +35,7 @@ export default function SharedTable({rows}) {
                     // pageSize={20}
                     rowsPerPageOptions={[20, 30, 50, 100]}
                     // checkboxSelection
-                    getRowId={(row) => row.playlist_order}
+                    getRowId={(row) => row.spotify_track_id}
                 />
             </div>
         </React.Fragment>);

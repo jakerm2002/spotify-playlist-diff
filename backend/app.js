@@ -220,11 +220,12 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
     const currentSnapshotID = playlistObject.snapshot_id;
     const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
     // if the playlist doesn't already exist in the database, add it
+    console.log(playlistOccurrences, 'playlist occurrences');
     if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
             const playlist = await Playlist.query(trx).insert(plistObject);
         });
-        getAllPlaylistTracks(playlistObject, session_id, next);
+        await getAllPlaylistTracks(playlistObject, session_id, next);
     } else {
         //if the playlist does exist, check to see if the session id already exists
         const snapshotOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id', 'snapshot_id'], [session_id, currentPlaylistID, currentSnapshotID]).resultSize();
@@ -242,7 +243,7 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
                 const playlist = await Playlist.query(trx).insert(plistObject);
                 
             });
-            getAllPlaylistTracks(playlistObject, session_id, next);
+            await getAllPlaylistTracks(playlistObject, session_id, next);
         }
     }
     return plistObject;
@@ -299,14 +300,20 @@ app.get('/compare', (req, res, next) => {
 //v4 function
 async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
 
+    // let subquery = Track.query().select('spotify_track_id')
+    //     .where('db_session_id', session_id)
+    //     .groupBy('spotify_track_id')
+    //     .having(knex.raw('count(DISTINCT spotify_playlist_id)'), '=', playlist_ids.length);
+
     const query = await Track
         .query()
         .min('playlist_order as playlist_order')
-        .select('track_name', 'album_name', 'artist_name', 'runtime', 'cover_art_url')
+        .select('track_name', 'album_name', 'artist_name', 'runtime', 'cover_art_url', 'spotify_track_id')
         .modify((queryBuilder) => {
 
             queryBuilder.whereIn('spotify_track_id', 
             Track.query().select('spotify_track_id')
+            .whereIn('spotify_playlist_id', playlist_ids)
             .where('db_session_id', session_id)
             .groupBy('spotify_track_id')
             .having(knex.raw('count(DISTINCT spotify_playlist_id)'), '=', playlist_ids.length))
