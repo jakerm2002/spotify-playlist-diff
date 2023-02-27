@@ -8,6 +8,7 @@ const Playlist = require('./models/Playlist');
 const Track = require('./models/Track');
 const Session = require('./models/Session');
 const app = express();
+var cors = require('cors')
 const PORT = process.env.PORT || 8080;
 
 const knex = require('knex')({
@@ -339,6 +340,8 @@ function get_sort_attributes(request_args, sort_filter_fields) {
     return 'playlist_order'
 }
 
+app.use(cors());
+
 //upload a playlist into the database, 
 app.post('/add', async (req, res, next) => {
     const playlistURL = req.query.playlist;
@@ -375,6 +378,7 @@ app.get('/playlist', (req, res, next) => {
         res.send(result);
     })
 })
+
 
 
 // app.use((err, req, res, next) => {
