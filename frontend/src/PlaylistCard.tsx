@@ -7,39 +7,47 @@ import Typography from '@mui/material/Typography';
 import { TextField } from "@mui/material";
 import axios from 'axios';
 
-export default function PlaylistCard() {
+interface PlaylistCardProps {
+  playlistNum: number;
+  playlistData: any; // replace `any` with the actual type of `playlistData` object
+  isLoading: boolean;
+  setIsLoading: (isLoading: boolean) => void;
+  onUpdate: (playlistData: any) => void;
+}
 
-  const [playlistData, setPlaylistData] = useState(null); // define state to store API response
-  const [playlistImage, setPlaylistImage] = useState(null);
-  const [filled, setFilled] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, isLoading, setIsLoading, onUpdate }) => {
+
+  // const [playlistData, setPlaylistData] = useState(null); // define state to store API response
+  // const [playlistImage, setPlaylistImage] = useState(null);
+  // const [filled, setFilled] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFilled(false);
+    // setFilled(false);
     setIsLoading(true);
     const link = (event.currentTarget as HTMLFormElement).link.value;
     const response = await axios.post(`http://localhost:8080/add?playlist=${link}&session=1`); // replace YOUR_API_URL_HERE with your actual API endpoint
     const data = await response.data;
-    setPlaylistData(data);
+    onUpdate(data);
     setIsLoading(false);
-    setFilled(true);
-    setPlaylistImage(data.image_url);
+    // setFilled(true);
+    // setPlaylistImage(data.image_url);
   }
 
   return (
     <Card variant="outlined" style={{ width: 300, height: 500 }}>
       <CardContent style={{ textAlign: 'center' }}>
-        {filled ? (
+        {(playlistData && !isLoading) ? (
           <Typography variant="h5" component="div">
             {playlistData.playlist_name}
           </Typography>
         ) : (
           <Typography variant="h5" component="div">
-            Playlist 1
+            {`Playlist ${playlistNum}`}
           </Typography>
         )}
-        {filled && (
+        {(playlistData && !isLoading) && (
           <React.Fragment>
           <Typography variant="h6" component="div">
             by {playlistData.author_display_name}
@@ -50,7 +58,7 @@ export default function PlaylistCard() {
           </React.Fragment>
 
         )}
-        {filled && (
+        {(playlistData && !isLoading) && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <CardMedia
               component="img"
@@ -65,10 +73,12 @@ export default function PlaylistCard() {
         <form onSubmit={handleFormSubmit} style={{ marginTop: 20 }}>
           <TextField name="link" label="enter link" variant="outlined" fullWidth />
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
-            {filled ? "update playlist" : "add playlist"}
+            {playlistData ? "update playlist" : "add playlist"}
           </Button>
         </form>
       </CardContent>
     </Card>
   );
 }
+
+export default PlaylistCard;
