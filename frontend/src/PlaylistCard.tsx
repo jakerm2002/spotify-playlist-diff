@@ -31,13 +31,24 @@ export default function PlaylistCard() {
     <Card variant="outlined" style={{ width: 300, height: 500 }}>
       <CardContent style={{ textAlign: 'center' }}>
         {filled ? (
-          <Typography variant="h4" component="div">
+          <Typography variant="h5" component="div">
             {playlistData.playlist_name}
           </Typography>
         ) : (
-          <Typography variant="h4" component="div">
+          <Typography variant="h5" component="div">
             Playlist 1
           </Typography>
+        )}
+        {filled && (
+          <React.Fragment>
+          <Typography variant="h6" component="div">
+            by {playlistData.author_display_name}
+          </Typography>
+          <Typography variant="h7" component="div">
+            {playlistData.num_tracks} tracks
+          </Typography>
+          </React.Fragment>
+
         )}
         {filled && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -50,7 +61,7 @@ export default function PlaylistCard() {
             />
           </div>
         )}
-        {isLoading && (<Skeleton variant="rounded" animation="wave" width={200} height={200} />)}
+        {isLoading && (<div style={{ display: 'flex', justifyContent: 'center' }}><Skeleton variant="rounded" animation="wave" width={200} height={200} /></div>)}
         <form onSubmit={handleFormSubmit} style={{ marginTop: 20 }}>
           <TextField name="link" label="enter link" variant="outlined" fullWidth />
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>

@@ -7,6 +7,7 @@ import Cards from "../src/Cards";
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
+import SharedTable from '../src/SharedTable';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function Home() {
       </Head>
       <main>
         <Cards/>
+        <SharedTable/>
       </main>
     </>
   )
