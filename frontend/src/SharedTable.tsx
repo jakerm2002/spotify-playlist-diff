@@ -254,8 +254,8 @@ export default function SharedTable() {
             width: 130,
             renderCell: (params) => <img src={params.value} width='30' height='30'/>
         },
-        { field: 'track_name', headerName: 'Track', width: 130 },
-        { field: 'album_name', headerName: 'Album', width: 130 },
+        { field: 'track_name', headerName: 'Track', width: 250 },
+        { field: 'album_name', headerName: 'Album', width: 250 },
         { field: 'artist_name', headerName: 'Artist', width: 130 },
         {
             field: 'runtime',
