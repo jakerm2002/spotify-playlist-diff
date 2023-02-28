@@ -9,17 +9,17 @@ export default function SharedTable({rows}) {
         {   field: 'cover_art_url', 
             headerName: 'Cover',
             width: 130,
-            renderCell: (params) => <img src={params.value} width='40' height='40'/>
+            renderCell: (params) => <img src={params.value} width='45' height='45'/>
         },
         { field: 'track_name', headerName: 'Track', width: 250 },
         { field: 'album_name', headerName: 'Album', width: 250 },
-        { field: 'artist_name', headerName: 'Artist', width: 130 },
+        { field: 'artist_name', headerName: 'Artist', width: 250 },
         {
             field: 'runtime_ms',
             headerName: 'Runtime',
             valueGetter: (params) => params.row.runtime,
             type: 'string',
-            width: 90,
+            width: 150,
         }
     ];
 
