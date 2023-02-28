@@ -5,19 +5,20 @@ import { Typography } from '@mui/material';
 export default function SharedTable({rows}) {
 
     const columns: GridColDef[] = [
-        { field: 'playlist_order', headerName: 'Playlist Order', width: 70 },
+        { field: 'playlist_order', headerName: '1st appearance in P1', width: 150 },
         {   field: 'cover_art_url', 
             headerName: 'Cover',
             width: 130,
-            renderCell: (params) => <img src={params.value} width='30' height='30'/>
+            renderCell: (params) => <img src={params.value} width='40' height='40'/>
         },
         { field: 'track_name', headerName: 'Track', width: 250 },
         { field: 'album_name', headerName: 'Album', width: 250 },
         { field: 'artist_name', headerName: 'Artist', width: 130 },
         {
-            field: 'runtime',
+            field: 'runtime_ms',
             headerName: 'Runtime',
-            type: 'number',
+            valueGetter: (params) => params.row.runtime,
+            type: 'string',
             width: 90,
         }
     ];

@@ -168,6 +168,12 @@ function getPlaylistIDfromURL(playlistURL) {
     return (playlistURL.split('/').pop()).split('?')[0];
 }
 
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
+
 //gets an array of ~100 max items and adds them in bulk insert to DB
 async function addTracks(response_items, playlistObject, session_id, playlist_order_counter, localSongCounter) {
 
@@ -186,7 +192,8 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
                 track_name: item.track.name,
                 album_name: item.track.album.name,
                 artist_name: item.track.artists[0].name,
-                runtime: item.track.duration_ms,
+                runtime_ms: item.track.duration_ms,
+                runtime: millisToMinutesAndSeconds(item.track.duration_ms),
                 playlist_order: playlist_order_counter.count++
             });
         } else {
@@ -308,7 +315,7 @@ async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
     const query = await Track
         .query()
         .min('playlist_order as playlist_order')
-        .select('track_name', 'album_name', 'artist_name', 'runtime', 'cover_art_url', 'spotify_track_id')
+        .select('track_name', 'album_name', 'artist_name', 'runtime_ms', 'runtime', 'cover_art_url', 'spotify_track_id')
         .modify((queryBuilder) => {
 
             queryBuilder.whereIn('spotify_track_id', 
