@@ -8,6 +8,7 @@ const Playlist = require('./models/Playlist');
 const Track = require('./models/Track');
 const Session = require('./models/Session');
 const app = express();
+var cors = require('cors')
 const PORT = process.env.PORT || 8080;
 
 const knex = require('knex')({
@@ -167,6 +168,12 @@ function getPlaylistIDfromURL(playlistURL) {
     return (playlistURL.split('/').pop()).split('?')[0];
 }
 
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
+
 //gets an array of ~100 max items and adds them in bulk insert to DB
 async function addTracks(response_items, playlistObject, session_id, playlist_order_counter, localSongCounter) {
 
@@ -185,7 +192,8 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
                 track_name: item.track.name,
                 album_name: item.track.album.name,
                 artist_name: item.track.artists[0].name,
-                runtime: item.track.duration_ms,
+                runtime_ms: item.track.duration_ms,
+                runtime: millisToMinutesAndSeconds(item.track.duration_ms),
                 playlist_order: playlist_order_counter.count++
             });
         } else {
@@ -219,11 +227,12 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
     const currentSnapshotID = playlistObject.snapshot_id;
     const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
     // if the playlist doesn't already exist in the database, add it
+    console.log(playlistOccurrences, 'playlist occurrences');
     if (playlistOccurrences === 0) {
         const playlistTrx = await Playlist.transaction(async trx => {
             const playlist = await Playlist.query(trx).insert(plistObject);
         });
-        getAllPlaylistTracks(playlistObject, session_id, next);
+        await getAllPlaylistTracks(playlistObject, session_id, next);
     } else {
         //if the playlist does exist, check to see if the session id already exists
         const snapshotOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id', 'snapshot_id'], [session_id, currentPlaylistID, currentSnapshotID]).resultSize();
@@ -241,11 +250,13 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
                 const playlist = await Playlist.query(trx).insert(plistObject);
                 
             });
-            getAllPlaylistTracks(playlistObject, session_id, next);
+            await getAllPlaylistTracks(playlistObject, session_id, next);
         }
     }
     return plistObject;
 }
+
+app.use(cors());
 
 app.listen(
     PORT,
@@ -296,14 +307,20 @@ app.get('/compare', (req, res, next) => {
 //v4 function
 async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
 
+    // let subquery = Track.query().select('spotify_track_id')
+    //     .where('db_session_id', session_id)
+    //     .groupBy('spotify_track_id')
+    //     .having(knex.raw('count(DISTINCT spotify_playlist_id)'), '=', playlist_ids.length);
+
     const query = await Track
         .query()
         .min('playlist_order as playlist_order')
-        .select('track_name', 'album_name', 'artist_name', 'runtime')
+        .select('track_name', 'album_name', 'artist_name', 'runtime_ms', 'runtime', 'cover_art_url', 'spotify_track_id')
         .modify((queryBuilder) => {
 
             queryBuilder.whereIn('spotify_track_id', 
             Track.query().select('spotify_track_id')
+            .whereIn('spotify_playlist_id', playlist_ids)
             .where('db_session_id', session_id)
             .groupBy('spotify_track_id')
             .having(knex.raw('count(DISTINCT spotify_playlist_id)'), '=', playlist_ids.length))
@@ -375,6 +392,7 @@ app.get('/playlist', (req, res, next) => {
         res.send(result);
     })
 })
+
 
 
 // app.use((err, req, res, next) => {

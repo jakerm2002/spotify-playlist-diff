@@ -16,7 +16,8 @@ const trackSchema = (table) => {
     table.string('track_name')
     table.string('album_name')
     table.string('artist_name')
-    table.integer('runtime')
+    table.integer('runtime_ms')
+    table.string('runtime')
     table.integer('playlist_order') // song is the ith track in the playlist
 
     // table.foreign('db_session_id').references('playlists.db_session_id');
