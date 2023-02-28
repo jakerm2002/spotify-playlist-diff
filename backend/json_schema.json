@@ -1,0 +1,77 @@
+//example when sorting by track order
+//track order will be sorted for TOP 50 GLOBAL
+{
+    "tracks": {
+        "shared": [
+            {
+                "db_session_id": "5",
+                "spotify_playlist_id": "37i9dQZEVXbLRQDuF5jeBp",
+                "spotify_track_id": "2LBqCSwhJGcFQeTHMVGwy3",
+                "spotify_album_id": "4AdZV63ycxFLF6Hcol0QnB",
+                "spotify_artist_id": "1Xyo4u8uXC1ZmMpatF05PJ",
+                "cover_art_URL": "https://i.scdn.co/image/ab67616d0000b273a048415db06a5b6fa7ec4e1a",
+                "date_added": "2023-02-22T16:20:49.000Z",
+                "track_name": "Die For You",
+                "album_name": "Starboy",
+                "artist_name": "The Weeknd",
+                "runtime": 260253,
+                "playlist_order": 12
+            },
+            {
+                "db_session_id": "5",
+                "spotify_playlist_id": "37i9dQZEVXbLRQDuF5jeBp",
+                "spotify_track_id": "5mHdCZtVyb4DcJw8799hZp",
+                "spotify_album_id": "3U8n8LzBx2o9gYXvvNq4uH",
+                "spotify_artist_id": "5KKpBU5eC2tJDzf0wmlRp2",
+                "cover_art_URL": "https://i.scdn.co/image/ab67616d0000b27394e5237ce925531dbb38e75f",
+                "date_added": "2023-02-22T16:20:49.000Z",
+                "track_name": "Escapism.",
+                "album_name": "My 21st Century Blues",
+                "artist_name": "RAYE",
+                "runtime": 272373,
+                "playlist_order": 13
+            }
+        ],
+        "not-shared": []
+    }
+}
+
+
+
+// example when sorting by track name
+// (include track order, let the user select whether they want to see
+// playlist_order of first or second playlist)
+// if nothing passed in, display the playlist_order of the first playlist
+{
+    "tracks": {
+        "shared": [
+            {
+                "db_session_id": "5",
+                "spotify_playlist_id": "37i9dQZEVXbLRQDuF5jeBp",
+                "spotify_track_id": "2LBqCSwhJGcFQeTHMVGwy3",
+                "spotify_album_id": "4AdZV63ycxFLF6Hcol0QnB",
+                "spotify_artist_id": "1Xyo4u8uXC1ZmMpatF05PJ",
+                "cover_art_URL": "https://i.scdn.co/image/ab67616d0000b273a048415db06a5b6fa7ec4e1a",
+                "date_added": "2023-02-22T16:20:49.000Z",
+                "track_name": "Die For You",
+                "album_name": "Starboy",
+                "artist_name": "The Weeknd",
+                "runtime": 260253
+            },
+            {
+                "db_session_id": "5",
+                "spotify_playlist_id": "37i9dQZEVXbLRQDuF5jeBp",
+                "spotify_track_id": "5mHdCZtVyb4DcJw8799hZp",
+                "spotify_album_id": "3U8n8LzBx2o9gYXvvNq4uH",
+                "spotify_artist_id": "5KKpBU5eC2tJDzf0wmlRp2",
+                "cover_art_URL": "https://i.scdn.co/image/ab67616d0000b27394e5237ce925531dbb38e75f",
+                "date_added": "2023-02-22T16:20:49.000Z",
+                "track_name": "Escapism.",
+                "album_name": "My 21st Century Blues",
+                "artist_name": "RAYE",
+                "runtime": 272373
+            }
+        ],
+        "not-shared": []
+    }
+}
