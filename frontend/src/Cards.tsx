@@ -69,7 +69,7 @@ const handlePlaylistUpdate = (index: number, playlistData: any) => {
 
 return (
     <React.Fragment>
-    <Grid container spacing={0} direction="row" sx={{alignItems: 'center'}}>
+    <Grid container spacing={10} direction="row" sx={{alignItems: 'center'}}>
         {playlists.map((playlist, index) => {
             console.log(index);
             return (
