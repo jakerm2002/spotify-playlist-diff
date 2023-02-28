@@ -13,18 +13,29 @@ import axios from 'axios';
 //   }
 // }));
 
+type PlaylistData = {
+    db_session_id: string, 
+    spotify_playlist_id: string,
+    playlist_name: string,
+    author_display_name: string,
+    image_url: string,
+    num_tracks: number,
+    snapshot_id: string,
+    // add other properties here if necessary
+  };
+
 const Cards = () => {
 //   const classes = useStyles();
 // let playlists = [];
 
-const [playlists, setPlaylists] = useState([{playlistData: null, isLoading: false}, {playlistData: null, isLoading: false}]);
+const [playlists, setPlaylists] = useState<Array<{ playlistData: PlaylistData | null, isLoading: boolean }>>([{playlistData: null, isLoading: false}, {playlistData: null, isLoading: false}]);
 const [rows, setRows] = useState([]);
 
 //call api when all playlists are filled
 useEffect(() => {
     console.log("useEffect");
     var count = 0;
-    const playlistIDs = [];
+    const playlistIDs: string[] = [];
     // var api_string = `?`
     playlists.forEach((playlist) => {
         if (playlist.playlistData != null && playlist.isLoading == false) {
@@ -60,7 +71,7 @@ useEffect(() => {
 
 
 
-const handlePlaylistUpdate = (index: number, playlistData: any) => {
+const handlePlaylistUpdate = (index: number, playlistData: PlaylistData | null) => {
     const updatedPlaylists = [...playlists];
     updatedPlaylists[index].playlistData = playlistData;
     updatedPlaylists[index].isLoading = false;

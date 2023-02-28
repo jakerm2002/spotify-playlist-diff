@@ -3,7 +3,22 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import ImageIcon from '@mui/icons-material/Image';
 import { Typography } from '@mui/material';
 
-export default function SharedTable({rows}) {
+interface Row {
+    playlist_order: number;
+    cover_art_url: string;
+    track_name: string;
+    album_name: string;
+    artist_name: string;
+    runtime: string;
+    runtime_ms: number;
+    spotify_track_id: string;
+}
+
+interface Props {
+    rows: Row[];
+  }
+
+export default function SharedTable({rows}: Props) {
 
     const columns: GridColDef[] = [
         { field: 'playlist_order', headerName: '1st appearance in P1', width: 200 },

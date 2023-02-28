@@ -53,7 +53,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
           <Typography variant="h6" component="div">
             by {playlistData.author_display_name}
           </Typography>
-          <Typography variant="h7" component="div">
+          <Typography variant="subtitle1" component="div">
             {playlistData.num_tracks} tracks
           </Typography>
           </React.Fragment>
