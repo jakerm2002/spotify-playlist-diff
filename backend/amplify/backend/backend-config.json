@@ -1,0 +1,84 @@
+{
+  "api": {
+    "playlistdiffapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "playlistdiffbe50aa29e7": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_playlistdiffbe50aa29e7_clientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ]
+    },
+    "AMPLIFY_function_playlistdiffbe50aa29e7_clientSecret": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ]
+    },
+    "AMPLIFY_function_playlistdiffbe50aa29e7_dbDatabase": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ]
+    },
+    "AMPLIFY_function_playlistdiffbe50aa29e7_dbHost": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ]
+    },
+    "AMPLIFY_function_playlistdiffbe50aa29e7_dbPass": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ]
+    },
+    "AMPLIFY_function_playlistdiffbe50aa29e7_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ]
+    },
+    "AMPLIFY_function_playlistdiffbe50aa29e7_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "playlistdiffbe50aa29e7"
+        }
+      ]
+    }
+  }
+}

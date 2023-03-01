@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/": {
+      "name": "/",
+      "lambdaFunction": "playlistdiffbe50aa29e7",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

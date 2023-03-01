@@ -1,0 +1,28 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-playlistdiffbe-dev-161705-authRole",
+      "UnauthRoleArn": "arn:aws:iam::753008801370:role/amplify-playlistdiffbe-dev-161705-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::753008801370:role/amplify-playlistdiffbe-dev-161705-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-playlistdiffbe-dev-161705-deployment",
+      "UnauthRoleName": "amplify-playlistdiffbe-dev-161705-unauthRole",
+      "StackName": "amplify-playlistdiffbe-dev-161705",
+      "StackId": "arn:aws:cloudformation:us-east-1:753008801370:stack/amplify-playlistdiffbe-dev-161705/cd868a50-b87e-11ed-b5bd-121f400c2d29",
+      "AmplifyAppId": "d21b33ulhkkqvk"
+    },
+    "categories": {
+      "function": {
+        "playlistdiffbe50aa29e7": {
+          "clientId": "66140b0b05334cd7a04abdfee6ec03b4",
+          "clientSecret": "5ab4f0c66fa84bd8a3f4f17e6bd0c428",
+          "dbHost": "spotify-playlist-diff-db.ck8uhikrpecj.us-east-1.rds.amazonaws.com",
+          "dbDatabase": "playlists",
+          "dbUser": "jakem",
+          "dbPass": "sloped-untoasted4-impulsive",
+          "dbPort": "3306"
+        }
+      }
+    }
+  }
+}
