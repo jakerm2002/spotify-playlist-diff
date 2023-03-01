@@ -110,7 +110,7 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
 async function getPlaylistObject(playlistID, next) {
     try {
         const response = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistID}?fields=id,name,owner(display_name),images,tracks(total),snapshot_id`
+            `https://api.spotify.com/v1/playlists/${playlistID}?fields=external_urls,id,name,owner(display_name, external_urls),images,tracks(total),snapshot_id`
         );
         // console.log(response.data)
         return response.data;
@@ -217,7 +217,9 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
         author_display_name: playlistObject.owner.display_name,
         image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
         num_tracks: playlistObject.tracks.total,
-        snapshot_id: playlistObject.snapshot_id
+        snapshot_id: playlistObject.snapshot_id,
+        playlist_url: playlistObject.external_urls.spotify,
+        author_url: playlistObject.owner.external_urls.spotify
     }
 
     console.log("adding playlist")

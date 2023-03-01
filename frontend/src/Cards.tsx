@@ -21,6 +21,8 @@ type PlaylistData = {
     image_url: string,
     num_tracks: number,
     snapshot_id: string,
+    playlist_url: string,
+    author_url: string
     // add other properties here if necessary
   };
 

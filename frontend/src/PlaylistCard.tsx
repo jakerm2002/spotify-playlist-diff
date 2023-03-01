@@ -43,7 +43,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
       <CardContent style={{ textAlign: 'center' }}>
         {(playlistData && !isLoading) ? (
           <Typography variant="h5" component="div">
-            <Link target="_blank" href={playlistData.image_url}>
+            <Link target="_blank" href={playlistData.playlist_url}>
             {playlistData.playlist_name}
             </Link>
           </Typography>
@@ -55,7 +55,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
         {(playlistData && !isLoading) ? (
           <React.Fragment>
           <Typography variant="h6" component="div">
-            by <Link target="_blank" href={playlistData.image_url}>{playlistData.author_display_name}</Link>
+            by <Link target="_blank" href={playlistData.author_url}>{playlistData.author_display_name}</Link>
           </Typography>
           <Typography variant="subtitle1" component="div">
             {playlistData.num_tracks} tracks
