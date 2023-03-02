@@ -395,6 +395,14 @@ app.get('/playlist', (req, res, next) => {
     })
 })
 
+app.get('/health', (req, res, next) => {
+    response.writeHead(200, {
+        'Content-Type': 'text/plain',
+        'Content-Length': 2
+    });
+    response.write('OK');
+    response.end();
+})
 
 
 app.use((err, req, res, next) => {
