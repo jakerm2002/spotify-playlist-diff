@@ -82,11 +82,11 @@ const handlePlaylistUpdate = (index: number, playlistData: PlaylistData | null) 
 
 return (
     <React.Fragment>
-    <Grid container spacing={10} direction="row" sx={{alignItems: 'center'}}>
+    <Grid container spacing={2} direction="row" justifyContent='center'>
         {playlists.map((playlist, index) => {
             console.log(index);
             return (
-                <Grid item xs={2} key={index}>
+                <Grid item xs={12} sm={6} md={3} key={index}>
                     <PlaylistCard
                         playlistNum={index + 1}
                         playlistData={playlist.playlistData}

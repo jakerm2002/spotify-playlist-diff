@@ -41,7 +41,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
   }
 
   return (
-    <Card variant="outlined" style={{ width: 300, height: 500 }}>
+    <Card variant="outlined">
       <CardContent style={{ textAlign: 'center' }}>
         {(playlistData && !isLoading) ? (
           <Typography variant="h5" component="div">
