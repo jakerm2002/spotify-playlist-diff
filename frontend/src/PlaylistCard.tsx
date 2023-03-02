@@ -13,25 +13,31 @@ import ClearIcon from '@mui/icons-material/Clear';
 interface PlaylistCardProps {
   playlistNum: number;
   playlistData: any; // replace `any` with the actual type of `playlistData` object
+  // initialValue: string;
+  textField: string;
+  setTextField: (textField: string) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
+  errorStatus: string;
+  setErrorStatus: (errorStatus: string) => void;
   onUpdate: (playlistData: any) => void;
+  remove: (textField: string) => void;
 }
 
-const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, isLoading, setIsLoading, onUpdate }) => {
+const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, textField, setTextField, isLoading, setIsLoading, errorStatus, setErrorStatus, onUpdate, remove }) => {
 
   // const [playlistData, setPlaylistData] = useState(null); // define state to store API response
   // const [playlistImage, setPlaylistImage] = useState(null);
   // const [filled, setFilled] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
 
-  const [textField, setTextField] = useState('');
-  const [errorStatus, setErrorStatus] = useState(''); // internal error state
+  // const [textField, setTextField] = useState('');
+  // const [errorStatus, setErrorStatus] = useState(''); // internal error state
 
   const removePlaylist = () => {
-    onUpdate(null)
     setTextField('');
     setErrorStatus('');
+    onUpdate(null)
   }
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -134,7 +140,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
             {playlistData ? "update playlist" : "add playlist"}
           </Button>
           {playlistData && 
-          <Button onClick={() => {removePlaylist()}} variant="contained" color="error" style={{ marginTop: 20 }}>
+          <Button onClick={() => {removePlaylist(); remove(textField);}} variant="contained" color="error" style={{ marginTop: 20 }}>
             remove playlist
           </Button>}
           </Box>

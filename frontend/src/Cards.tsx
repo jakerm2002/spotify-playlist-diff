@@ -28,17 +28,16 @@ type PlaylistData = {
 
 interface CardData {
     playlistData: PlaylistData | null;
+    textField: string;
     isLoading: boolean;
-    // hasError: boolean;
+    errorStatus: string;
 }
 
 const Cards = () => {
-//   const classes = useStyles();
-// let playlists = [];
 
 const [playlists, setPlaylists] = useState<CardData[]>([
-    {playlistData: null, isLoading: false},
-    {playlistData: null, isLoading: false}
+    {playlistData: null, textField: '', isLoading: false, errorStatus: ''},
+    {playlistData: null, textField: '', isLoading: false, errorStatus: ''}
 ]);
 const [rows, setRows] = useState([]);
 
@@ -62,10 +61,13 @@ useEffect(() => {
         const response = axios.get(`${process.env.NEXT_PUBLIC_API_URL}/compare?${playlistIDs.map((n, index) => `playlist=${n}`).join('&')}&session=1`).then(response => {
             setRows(response.data);
         });
+    } else {
+        setRows([]);
     }
 
     }, [playlists]);
 
+//create a new empty card when all other cards are full
 useEffect(() => {
     var count = 0;
     playlists.forEach((playlist) => {
@@ -73,14 +75,20 @@ useEffect(() => {
             count++;
         }
         if (count === playlists.length) {
-            setPlaylists([...playlists, {playlistData: null, isLoading: false}])
+            setPlaylists([...playlists, {playlistData: null, textField: '', isLoading: false, errorStatus: ''}])
         }
     })
 
     }, [playlists]);
 
-
-
+const remove = (index: number, textField: string) => {
+    if (index >= 1) {
+        const removed = (playlists.filter((_, i) => {
+            return i !== index;
+        }))
+        setPlaylists(removed);
+    }
+}
 
 const handlePlaylistUpdate = (index: number, playlistData: PlaylistData | null) => {
     const updatedPlaylists = [...playlists];
@@ -99,13 +107,26 @@ return (
                     <PlaylistCard
                         playlistNum={index + 1}
                         playlistData={playlist.playlistData}
+                        textField={playlist.textField}
+                        setTextField={(textField) => {
+                            const newPlaylists = [...playlists];
+                            newPlaylists[index].textField = textField;
+                            setPlaylists(newPlaylists);
+                          }}
                         isLoading={playlist.isLoading}
                         setIsLoading={(isLoading) => {
                             const newPlaylists = [...playlists];
                             newPlaylists[index].isLoading = isLoading;
                             setPlaylists(newPlaylists);
                           }}
+                        errorStatus={playlist.errorStatus}
+                        setErrorStatus={(errorStatus) => {
+                            const newPlaylists = [...playlists];
+                            newPlaylists[index].errorStatus = errorStatus;
+                            setPlaylists(newPlaylists);
+                          }}
                         onUpdate={(playlistData: any) => handlePlaylistUpdate(index, playlistData)}
+                        remove={(textField: string) => remove(index, textField)}
                     />
                 </Grid>
             )
