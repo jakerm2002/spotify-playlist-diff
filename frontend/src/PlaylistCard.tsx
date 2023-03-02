@@ -29,7 +29,9 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
     // setFilled(false);
     setIsLoading(true);
     const link = (event.currentTarget as HTMLFormElement).link.value;
-    const r = await axios.post(`http://localhost:8080/add?playlist=${link}&session=1`).then(response => {
+    console.log("hEY");
+    console.log(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`);
+    const r = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`).then(response => {
       console.log(response.data);
       onUpdate(response.data);
       setIsLoading(false);
