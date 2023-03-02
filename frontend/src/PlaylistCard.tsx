@@ -114,14 +114,14 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
           InputProps={{
             endAdornment: 
             <InputAdornment position="end">
-              <IconButton
+              <Button
                   // aria-label="toggle password visibility"
                   onClick={() => {setTextField(''); setErrorStatus('')}}
                   // onMouseDown={handleMouseDownPassword}
-                  edge="end"
+                  // edge="end"
                 >
-                  {<ClearIcon />}
-                </IconButton>
+                  Clear
+                </Button>
             </InputAdornment>,
           }}/>
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
