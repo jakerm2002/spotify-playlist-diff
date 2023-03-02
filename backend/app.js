@@ -25,7 +25,7 @@ const knex = require('knex')({
 
 Model.knex(knex);
 
-async function authenticate() {
+async function authenticate(next) {
     try {
         // set up request data
         const clientId = process.env.CLIENT_ID;
@@ -262,9 +262,9 @@ app.use(cors());
 
 app.listen(
     PORT,
-    () => {
+    (next) => {
         console.log('hello')
-        authenticate();
+        authenticate(next);
 
     }
 )
