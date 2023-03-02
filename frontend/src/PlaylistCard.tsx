@@ -8,12 +8,22 @@ import Typography from '@mui/material/Typography';
 import { TextField } from "@mui/material";
 import axios from 'axios';
 import PlaylistCardImage from "./PlaylistCardImage";
-import ClearIcon from '@mui/icons-material/Clear';
+
+type PlaylistData = {
+  db_session_id: string, 
+  spotify_playlist_id: string,
+  playlist_name: string,
+  author_display_name: string,
+  image_url: string,
+  num_tracks: number,
+  snapshot_id: string,
+  playlist_url: string,
+  author_url: string
+};
 
 interface PlaylistCardProps {
   playlistNum: number;
-  playlistData: any; // replace `any` with the actual type of `playlistData` object
-  // initialValue: string;
+  playlistData: PlaylistData | null;
   textField: string;
   setTextField: (textField: string) => void;
   isLoading: boolean;

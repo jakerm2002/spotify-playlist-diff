@@ -16,7 +16,6 @@ type PlaylistData = {
     snapshot_id: string,
     playlist_url: string,
     author_url: string
-    // add other properties here if necessary
 };
 
 interface CardData {
