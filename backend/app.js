@@ -25,7 +25,7 @@ const knex = require('knex')({
 
 Model.knex(knex);
 
-async function authenticate() {
+async function authenticate(next) {
     try {
         // set up request data
         const clientId = process.env.CLIENT_ID;
@@ -110,7 +110,7 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
 async function getPlaylistObject(playlistID, next) {
     try {
         const response = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistID}?fields=id,name,owner(display_name),images,tracks(total),snapshot_id`
+            `https://api.spotify.com/v1/playlists/${playlistID}?fields=external_urls,id,name,owner(display_name, external_urls),images,tracks(total),snapshot_id`
         );
         // console.log(response.data)
         return response.data;
@@ -217,7 +217,9 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
         author_display_name: playlistObject.owner.display_name,
         image_url: playlistObject.images.length != 0 ? playlistObject.images[0].url : null,
         num_tracks: playlistObject.tracks.total,
-        snapshot_id: playlistObject.snapshot_id
+        snapshot_id: playlistObject.snapshot_id,
+        playlist_url: playlistObject.external_urls.spotify,
+        author_url: playlistObject.owner.external_urls.spotify
     }
 
     console.log("adding playlist")
@@ -260,9 +262,9 @@ app.use(cors());
 
 app.listen(
     PORT,
-    () => {
+    (next) => {
         console.log('hello')
-        authenticate();
+        authenticate(next);
 
     }
 )
@@ -393,9 +395,17 @@ app.get('/playlist', (req, res, next) => {
     })
 })
 
+app.get('/health', (req, res, next) => {
+    res.writeHead(200, {
+        'Content-Type': 'text/plain',
+        'Content-Length': 2
+    });
+    res.write('OK');
+    res.end();
+})
 
 
-// app.use((err, req, res, next) => {
-//     console.error(err.stack)
-//     res.status(500).send('Something broke!')
-//   })
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+  })

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import Link from '@mui/material/Link'
 import { CardActions, CardContent, CardMedia, Skeleton } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from "@mui/material";
 import axios from 'axios';
+import PlaylistCardImage from "./PlaylistCardImage";
 
 interface PlaylistCardProps {
   playlistNum: number;
@@ -27,7 +29,9 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
     // setFilled(false);
     setIsLoading(true);
     const link = (event.currentTarget as HTMLFormElement).link.value;
-    const r = await axios.post(`http://localhost:8080/add?playlist=${link}&session=1`).then(response => {
+    console.log("hEY");
+    console.log(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`);
+    const r = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`).then(response => {
       console.log(response.data);
       onUpdate(response.data);
       setIsLoading(false);
@@ -41,36 +45,37 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
       <CardContent style={{ textAlign: 'center' }}>
         {(playlistData && !isLoading) ? (
           <Typography variant="h5" component="div">
+            <Link target="_blank" href={playlistData.playlist_url}>
             {playlistData.playlist_name}
+            </Link>
           </Typography>
         ) : (
           <Typography variant="h5" component="div">
             {`Playlist ${playlistNum}`}
           </Typography>
         )}
-        {(playlistData && !isLoading) && (
+        {(playlistData && !isLoading) ? (
           <React.Fragment>
           <Typography variant="h6" component="div">
-            by {playlistData.author_display_name}
+            by <Link target="_blank" href={playlistData.author_url}>{playlistData.author_display_name}</Link>
           </Typography>
           <Typography variant="subtitle1" component="div">
             {playlistData.num_tracks} tracks
           </Typography>
           </React.Fragment>
 
+        ): (
+          <React.Fragment>
+          <Typography variant="h6" component="div">
+            artist placeholder
+          </Typography>
+          <Typography variant="subtitle1" component="div">
+            # tracks placeholder
+          </Typography>
+          </React.Fragment>
+
         )}
-        {(playlistData && !isLoading) && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <CardMedia
-              component="img"
-              alt="Playlist Image"
-              sx={{ height: 200, width: 200, objectFit: 'cover' }}
-              image={playlistData.image_url}
-              title="Playlist Image"
-            />
-          </div>
-        )}
-        {isLoading && (<div style={{ display: 'flex', justifyContent: 'center' }}><Skeleton variant="rounded" animation="wave" width={200} height={200} /></div>)}
+        <PlaylistCardImage playlistData={playlistData} isLoading={isLoading}/>
         <form onSubmit={handleFormSubmit} style={{ marginTop: 20 }}>
           <TextField name="link" label="playlist link" variant="outlined" fullWidth />
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
