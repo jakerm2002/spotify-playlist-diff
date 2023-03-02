@@ -121,8 +121,8 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
 async function getPlaylistObject(playlistID, next) {
     try {
         const response = await axios.get(
-            `https://api.spotify.com/v1/playlists/${playlistID}?fields=external_urls,id,name,owner(display_name, external_urls),images,tracks(total),snapshot_id`
-        );
+            `https://api.spotify.com/v1/playlists/${playlistID}?fields=external_urls,id,name,owner(display_name, external_urls),images,tracks(total),snapshot_id`,
+            {retry: 1});
         // console.log(response.data)
         return response.data;
     } catch (error) {
