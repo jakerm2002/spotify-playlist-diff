@@ -2,6 +2,7 @@ name: Elastic Beanstalk Backend Deploy
 on:
   push:
     branches: [ main ]
+    paths: ['backend/app.js']
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,7 +23,9 @@ jobs:
           pip install awsebcli
       - name: Init EB CLI
         run: |
+           cd backend
            eb init ${{secrets.AWS_APPLICATION_NAME }} --platform node.js --region ${{secrets.AWS_DEFAULT_REGION }}
       - name: Deploy to Elastic Beanstalk
         run: |
+          cd backend
           eb deploy ${{secrets.AWS_ENVIRONMENT }}
