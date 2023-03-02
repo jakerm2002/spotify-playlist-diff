@@ -76,12 +76,16 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
 
         )}
         <PlaylistCardImage playlistData={playlistData} isLoading={isLoading}/>
+        
         <form onSubmit={handleFormSubmit} style={{ marginTop: 20 }}>
-          <TextField name="link" label="playlist link" variant="outlined" fullWidth />
+        <Box mt={2} display="flex" flexDirection="column">
+          <TextField name="link" label="playlist link" variant="outlined" />
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
             {playlistData ? "update playlist" : "add playlist"}
           </Button>
+          </Box>
         </form>
+        
       </CardContent>
     </Card>
   );
