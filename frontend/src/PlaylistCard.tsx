@@ -28,6 +28,12 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
   const [textField, setTextField] = useState('');
   const [errorStatus, setErrorStatus] = useState(''); // internal error state
 
+  const removePlaylist = () => {
+    onUpdate(null)
+    setTextField('');
+    setErrorStatus('');
+  }
+
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
@@ -127,6 +133,10 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
             {playlistData ? "update playlist" : "add playlist"}
           </Button>
+          {playlistData && 
+          <Button onClick={() => {removePlaylist()}} variant="contained" color="error" style={{ marginTop: 20 }}>
+            remove playlist
+          </Button>}
           </Box>
         </form>
         
