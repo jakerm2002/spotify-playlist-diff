@@ -1,4 +1,5 @@
 require('dotenv').config();
+const serverless = require('serverless-http');
 const axios = require('axios');
 const axiosRetry = require('axios-retry');
 const express = require('express');
