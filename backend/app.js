@@ -25,7 +25,7 @@ const knex = require('knex')({
 
 Model.knex(knex);
 
-async function authenticate(next) {
+async function authenticate() {
     try {
         // set up request data
         const clientId = process.env.CLIENT_ID;
@@ -51,7 +51,7 @@ async function authenticate(next) {
         console.log('successful authentication.');
     } catch (error) {
         // console.error(error);
-        next(error);
+        res.status(500).send('Unable to authenticate with Spotify API!')
     }
 }
 
@@ -99,6 +99,17 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
         }, delay + 1000);
       });
     }
+
+    // Check if the error is a 401 status code, means we need to reauthenticate
+    if (err.response.status === 401) {
+        config.__retryCount += 1;
+        return new Promise(function(resolve) {
+            authenticate().then(() => {
+                console.log("reauthenticated, resending request.");
+                resolve(axios(config));
+            });
+        });
+      }
   
     // If the error is not a 5xx or 429 status code, reject immediately
     return Promise.reject(err);
@@ -405,7 +416,11 @@ app.get('/health', (req, res, next) => {
 })
 
 
+//must define this last
 app.use((err, req, res, next) => {
+    if (res.headersSent) {
+        return next(err)
+      }
     console.error(err.stack)
     res.status(500).send('Something broke!')
   })
