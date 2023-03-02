@@ -24,13 +24,22 @@ type PlaylistData = {
     playlist_url: string,
     author_url: string
     // add other properties here if necessary
-  };
+};
+
+interface CardData {
+    playlistData: PlaylistData | null;
+    isLoading: boolean;
+    // hasError: boolean;
+}
 
 const Cards = () => {
 //   const classes = useStyles();
 // let playlists = [];
 
-const [playlists, setPlaylists] = useState<Array<{ playlistData: PlaylistData | null, isLoading: boolean }>>([{playlistData: null, isLoading: false}, {playlistData: null, isLoading: false}]);
+const [playlists, setPlaylists] = useState<CardData[]>([
+    {playlistData: null, isLoading: false},
+    {playlistData: null, isLoading: false}
+]);
 const [rows, setRows] = useState([]);
 
 //call api when all playlists are filled

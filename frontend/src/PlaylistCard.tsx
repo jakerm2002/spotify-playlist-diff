@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Link from '@mui/material/Link'
-import { CardActions, CardContent, CardMedia, Skeleton } from '@mui/material';
+import { CardActions, CardContent, CardMedia, Skeleton, Alert, InputAdornment, IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from "@mui/material";
 import axios from 'axios';
 import PlaylistCardImage from "./PlaylistCardImage";
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface PlaylistCardProps {
   playlistNum: number;
@@ -24,24 +25,54 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
   // const [filled, setFilled] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
 
+  const [textField, setTextField] = useState('');
+  const [errorStatus, setErrorStatus] = useState(''); // internal error state
+
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // setFilled(false);
     setIsLoading(true);
     const link = (event.currentTarget as HTMLFormElement).link.value;
     console.log("hEY");
     console.log(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`);
-    const r = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`).then(response => {
+    try {
+      setErrorStatus('')
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`)
       console.log(response.data);
       onUpdate(response.data);
-      setIsLoading(false);
-    });; // replace YOUR_API_URL_HERE with your actual API endpoint
-    // setFilled(true);
-    // setPlaylistImage(data.image_url);
+    } catch (error) {
+      // Error
+      if ((error as any).response?.status === 404) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          // console.log(error.response.data);
+          // console.log(error.response.status);
+          // console.log(error.response.headers)
+          console.error('Playlist Not found');
+          setErrorStatus('Playlist not found. Make sure that your playlist is set to public on Spotify.');
+          // throw new Error("an error occured");
+      } else if ((error as any).request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the 
+          // browser and an instance of
+          // http.ClientRequest in node.js
+          console.log((error as any).request);
+          setErrorStatus('Something went wrong. Please try again.')
+      } else {
+          // Something happened in setting up the request that triggered an Error
+          setErrorStatus('Something went wrong with the request. Please try again.')
+          console.log('Error', (error as any).message);
+      }
+      onUpdate(null)
+    }
+    finally {
+        setIsLoading(false);
+      }
+      // console.log(error.config);
   }
 
   return (
     <Card variant="outlined">
+      {errorStatus && <Alert severity="error" onClose={() => {setErrorStatus('')}}>{errorStatus}</Alert>} {/* Render MUI Alert component when an error occurs */}
       <CardContent style={{ textAlign: 'center' }}>
         {(playlistData && !isLoading) ? (
           <Typography variant="h5" component="div">
@@ -79,7 +110,20 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
         
         <form onSubmit={handleFormSubmit} style={{ marginTop: 20 }}>
         <Box mt={2} display="flex" flexDirection="column">
-          <TextField name="link" label="playlist link" variant="outlined" />
+          <TextField error={errorStatus ? true: false} helperText={errorStatus} name="link" label="playlist link" variant="outlined" value={textField} onChange={(event) => {setTextField(event.target.value)}}
+          InputProps={{
+            endAdornment: 
+            <InputAdornment position="end">
+              <IconButton
+                  // aria-label="toggle password visibility"
+                  onClick={() => {setTextField(''); setErrorStatus('')}}
+                  // onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {<ClearIcon />}
+                </IconButton>
+            </InputAdornment>,
+          }}/>
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
             {playlistData ? "update playlist" : "add playlist"}
           </Button>
