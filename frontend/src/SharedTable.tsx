@@ -1,24 +1,13 @@
 import React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import ImageIcon from '@mui/icons-material/Image';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
+import { TrackData } from '../components/types/TrackData';
 
-interface Row {
-    playlist_order: number;
-    cover_art_url: string;
-    track_name: string;
-    album_name: string;
-    artist_name: string;
-    runtime: string;
-    runtime_ms: number;
-    spotify_track_id: string;
+interface SharedTableProps {
+    rows: TrackData[];
 }
 
-interface Props {
-    rows: Row[];
-  }
-
-export default function SharedTable({rows}: Props) {
+const SharedTable: React.FC<SharedTableProps> = ({ rows }) => {
 
     const columns: GridColDef[] = [
         { field: 'playlist_order', headerName: '1st appearance in P1', width: 200 },
@@ -51,9 +40,7 @@ export default function SharedTable({rows}: Props) {
                 <DataGrid
                     rows={rows}
                     columns={columns}
-                    // pageSize={20}
                     rowsPerPageOptions={[20, 30, 50, 100]}
-                    // checkboxSelection
                     getRowId={(row) => row.spotify_track_id}
                     initialState={{
                         sorting: {
@@ -65,3 +52,5 @@ export default function SharedTable({rows}: Props) {
             </div>
         </React.Fragment>);
 }
+
+export default SharedTable;

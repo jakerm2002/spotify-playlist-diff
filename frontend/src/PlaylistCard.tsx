@@ -2,46 +2,67 @@ import React, { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Link from '@mui/material/Link'
-import { CardActions, CardContent, CardMedia, Skeleton } from '@mui/material';
+import { CardActions, CardContent, CardMedia, Skeleton, Alert, InputAdornment, IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from "@mui/material";
 import axios from 'axios';
 import PlaylistCardImage from "./PlaylistCardImage";
+import { PlaylistData } from "../components/types/PlaylistData";
 
 interface PlaylistCardProps {
   playlistNum: number;
-  playlistData: any; // replace `any` with the actual type of `playlistData` object
+  playlistData: PlaylistData | null;
+  textField: string;
+  setTextField: (textField: string) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
+  errorStatus: string;
+  setErrorStatus: (errorStatus: string) => void;
   onUpdate: (playlistData: any) => void;
+  remove: () => void;
 }
 
-const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, isLoading, setIsLoading, onUpdate }) => {
+const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, textField, setTextField, isLoading, setIsLoading, errorStatus, setErrorStatus, onUpdate, remove }) => {
 
-  // const [playlistData, setPlaylistData] = useState(null); // define state to store API response
-  // const [playlistImage, setPlaylistImage] = useState(null);
-  // const [filled, setFilled] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
+  const removePlaylist = () => {
+    setTextField('');
+    setErrorStatus('');
+    onUpdate(null)
+  }
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // setFilled(false);
     setIsLoading(true);
     const link = (event.currentTarget as HTMLFormElement).link.value;
-    console.log("hEY");
     console.log(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`);
-    const r = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`).then(response => {
+    try {
+      setErrorStatus('')
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`)
       console.log(response.data);
       onUpdate(response.data);
-      setIsLoading(false);
-    });; // replace YOUR_API_URL_HERE with your actual API endpoint
-    // setFilled(true);
-    // setPlaylistImage(data.image_url);
+    } catch (error) {
+      // Error
+      if ((error as any).response?.status === 404) {
+          // The request was made and the server responded with a status code that falls out of the range of 2xx
+          setErrorStatus('Playlist not found. Make sure that your playlist is set to public on Spotify.');
+      } else if ((error as any).request) {
+          console.log((error as any).request);
+          setErrorStatus('Something went wrong on our end. Please try clicking the upload button again..')
+      } else {
+          setErrorStatus('Something went wrong with the request. Please try again.')
+          console.log('Error', (error as any).message);
+      }
+      onUpdate(null)
+    }
+    finally {
+        setIsLoading(false);
+      }
   }
 
   return (
-    <Card variant="outlined" style={{ width: 300, height: 500 }}>
+    <Card variant="outlined">
+      {errorStatus && <Alert severity="error" onClose={() => {setErrorStatus('')}}>{errorStatus}</Alert>} {/* Render MUI Alert component when an error occurs */}
       <CardContent style={{ textAlign: 'center' }}>
         {(playlistData && !isLoading) ? (
           <Typography variant="h5" component="div">
@@ -76,12 +97,28 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
 
         )}
         <PlaylistCardImage playlistData={playlistData} isLoading={isLoading}/>
+        
         <form onSubmit={handleFormSubmit} style={{ marginTop: 20 }}>
-          <TextField name="link" label="playlist link" variant="outlined" fullWidth />
+        <Box mt={2} display="flex" flexDirection="column">
+          <TextField error={errorStatus ? true: false} helperText={errorStatus} name="link" label="playlist link" variant="outlined" value={textField} onChange={(event) => {setTextField(event.target.value)}}
+          InputProps={{
+            endAdornment: 
+            <InputAdornment position="end">
+              <Button onClick={() => {setTextField(''); setErrorStatus('')}}>
+                  Clear
+              </Button>
+            </InputAdornment>,
+          }}/>
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
             {playlistData ? "update playlist" : "add playlist"}
           </Button>
+          {playlistData && 
+          <Button onClick={() => {removePlaylist(); remove();}} variant="contained" color="error" style={{ marginTop: 20 }}>
+            remove playlist
+          </Button>}
+          </Box>
         </form>
+        
       </CardContent>
     </Card>
   );

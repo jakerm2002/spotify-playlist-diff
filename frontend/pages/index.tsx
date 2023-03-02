@@ -1,15 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-// import styles from '../styles/Home.module.css'
 import React from "react";
-import Cards from "../src/Cards";
-import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
-
-import Box from '@mui/material/Box';
-import SharedTable from '../src/SharedTable';
-
-const inter = Inter({ subsets: ['latin'] })
+import { useTheme } from '@mui/material/styles';
+import Compare from '../src/Compare';
 
 export default function Home() {
   const theme = useTheme();
@@ -22,8 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Cards/>
-        {/* <SharedTable/> */}
+        <Compare/>
       </main>
     </>
   )

@@ -110,6 +110,13 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
             });
         });
       }
+
+      if (err.response.status === 404) {
+        return Promise.resolve().then(() => {
+            const error = new Error('Playlist not found');
+            error.status = 404;
+            throw error})
+        }
   
     // If the error is not a 5xx or 429 status code, reject immediately
     return Promise.reject(err);
@@ -420,7 +427,11 @@ app.get('/health', (req, res, next) => {
 app.use((err, req, res, next) => {
     if (res.headersSent) {
         return next(err)
-      }
+    }
     console.error(err.stack)
-    res.status(500).send('Something broke!')
+    if (err.status === 404) {
+        res.status(404).send("Playlist not found, make sure your playlist is set to public on Spotify.");
+    } else {
+        res.status(500).send('Something broke!')
+    }
   })

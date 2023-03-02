@@ -1,37 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import { Grid, IconButton } from '@mui/material';
-import { makeStyles } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Grid } from '@mui/material';
 import PlaylistCard from './PlaylistCard';
-import { Varela } from '@next/font/google';
-import SharedTable from './SharedTable';
 import axios from 'axios';
+import { PlaylistData } from "../components/types/PlaylistData";
+import { TrackData } from '../components/types/TrackData';
 
-// const useStyles = makeStyles(theme => ({
-//   addButton: {
-//     marginLeft: 'auto'
-//   }
-// }));
+interface CardData {
+    playlistData: PlaylistData | null;
+    textField: string;
+    isLoading: boolean;
+    errorStatus: string;
+}
 
-type PlaylistData = {
-    db_session_id: string, 
-    spotify_playlist_id: string,
-    playlist_name: string,
-    author_display_name: string,
-    image_url: string,
-    num_tracks: number,
-    snapshot_id: string,
-    playlist_url: string,
-    author_url: string
-    // add other properties here if necessary
-  };
+interface CardsProps {
+    rows: TrackData[];
+    setRows: React.Dispatch<React.SetStateAction<TrackData[]>>;
+}
+  
 
-const Cards = () => {
-//   const classes = useStyles();
-// let playlists = [];
+const Cards: React.FC<CardsProps> = ( {rows, setRows} ) => {
 
-const [playlists, setPlaylists] = useState<Array<{ playlistData: PlaylistData | null, isLoading: boolean }>>([{playlistData: null, isLoading: false}, {playlistData: null, isLoading: false}]);
-const [rows, setRows] = useState([]);
+const [playlists, setPlaylists] = useState<CardData[]>([
+    {playlistData: null, textField: '', isLoading: false, errorStatus: ''},
+    {playlistData: null, textField: '', isLoading: false, errorStatus: ''}
+]);
 
 //call api when all playlists are filled
 useEffect(() => {
@@ -53,10 +45,13 @@ useEffect(() => {
         const response = axios.get(`${process.env.NEXT_PUBLIC_API_URL}/compare?${playlistIDs.map((n, index) => `playlist=${n}`).join('&')}&session=1`).then(response => {
             setRows(response.data);
         });
+    } else {
+        setRows([]);
     }
 
     }, [playlists]);
 
+//create a new empty card when all other cards are full
 useEffect(() => {
     var count = 0;
     playlists.forEach((playlist) => {
@@ -64,14 +59,20 @@ useEffect(() => {
             count++;
         }
         if (count === playlists.length) {
-            setPlaylists([...playlists, {playlistData: null, isLoading: false}])
+            setPlaylists([...playlists, {playlistData: null, textField: '', isLoading: false, errorStatus: ''}])
         }
     })
 
     }, [playlists]);
 
-
-
+const remove = (index: number) => {
+    if (index >= 1) {
+        const removed = (playlists.filter((_, i) => {
+            return i !== index;
+        }))
+        setPlaylists(removed);
+    }
+}
 
 const handlePlaylistUpdate = (index: number, playlistData: PlaylistData | null) => {
     const updatedPlaylists = [...playlists];
@@ -82,27 +83,38 @@ const handlePlaylistUpdate = (index: number, playlistData: PlaylistData | null) 
 
 return (
     <React.Fragment>
-    <Grid container spacing={10} direction="row" sx={{alignItems: 'center'}}>
+    <Grid container spacing={2} direction="row" justifyContent='center'>
         {playlists.map((playlist, index) => {
-            console.log(index);
             return (
-                <Grid item xs={2} key={index}>
+                <Grid item xs={12} sm={6} md={3} key={index}>
                     <PlaylistCard
                         playlistNum={index + 1}
                         playlistData={playlist.playlistData}
+                        textField={playlist.textField}
+                        setTextField={(textField) => {
+                            const newPlaylists = [...playlists];
+                            newPlaylists[index].textField = textField;
+                            setPlaylists(newPlaylists);
+                          }}
                         isLoading={playlist.isLoading}
                         setIsLoading={(isLoading) => {
                             const newPlaylists = [...playlists];
                             newPlaylists[index].isLoading = isLoading;
                             setPlaylists(newPlaylists);
                           }}
+                        errorStatus={playlist.errorStatus}
+                        setErrorStatus={(errorStatus) => {
+                            const newPlaylists = [...playlists];
+                            newPlaylists[index].errorStatus = errorStatus;
+                            setPlaylists(newPlaylists);
+                          }}
                         onUpdate={(playlistData: any) => handlePlaylistUpdate(index, playlistData)}
+                        remove={() => remove(index)}
                     />
                 </Grid>
             )
         })}
     </Grid>
-    <SharedTable rows={rows}/>
     </React.Fragment>
 
   );
