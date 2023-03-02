@@ -1,17 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { Grid, IconButton } from '@mui/material';
-import { makeStyles } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import PlaylistCard from './PlaylistCard';
-import { Varela } from '@next/font/google';
 import SharedTable from './SharedTable';
 import axios from 'axios';
 
-// const useStyles = makeStyles(theme => ({
-//   addButton: {
-//     marginLeft: 'auto'
-//   }
-// }));
 
 type PlaylistData = {
     db_session_id: string, 

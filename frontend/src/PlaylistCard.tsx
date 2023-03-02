@@ -26,14 +26,6 @@ interface PlaylistCardProps {
 
 const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, textField, setTextField, isLoading, setIsLoading, errorStatus, setErrorStatus, onUpdate, remove }) => {
 
-  // const [playlistData, setPlaylistData] = useState(null); // define state to store API response
-  // const [playlistImage, setPlaylistImage] = useState(null);
-  // const [filled, setFilled] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // const [textField, setTextField] = useState('');
-  // const [errorStatus, setErrorStatus] = useState(''); // internal error state
-
   const removePlaylist = () => {
     setTextField('');
     setErrorStatus('');
@@ -44,7 +36,6 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
     event.preventDefault();
     setIsLoading(true);
     const link = (event.currentTarget as HTMLFormElement).link.value;
-    console.log("hEY");
     console.log(`${process.env.NEXT_PUBLIC_API_URL}/add?playlist=${link}&session=1`);
     try {
       setErrorStatus('')
@@ -54,23 +45,12 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
     } catch (error) {
       // Error
       if ((error as any).response?.status === 404) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          // console.log(error.response.data);
-          // console.log(error.response.status);
-          // console.log(error.response.headers)
-          console.error('Playlist Not found');
+          // The request was made and the server responded with a status code that falls out of the range of 2xx
           setErrorStatus('Playlist not found. Make sure that your playlist is set to public on Spotify.');
-          // throw new Error("an error occured");
       } else if ((error as any).request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the 
-          // browser and an instance of
-          // http.ClientRequest in node.js
           console.log((error as any).request);
-          setErrorStatus('Something went wrong. Please try again.')
+          setErrorStatus('Something went wrong on our end. Please try clicking the upload button again..')
       } else {
-          // Something happened in setting up the request that triggered an Error
           setErrorStatus('Something went wrong with the request. Please try again.')
           console.log('Error', (error as any).message);
       }
@@ -79,7 +59,6 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
     finally {
         setIsLoading(false);
       }
-      // console.log(error.config);
   }
 
   return (
@@ -126,14 +105,9 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
           InputProps={{
             endAdornment: 
             <InputAdornment position="end">
-              <Button
-                  // aria-label="toggle password visibility"
-                  onClick={() => {setTextField(''); setErrorStatus('')}}
-                  // onMouseDown={handleMouseDownPassword}
-                  // edge="end"
-                >
+              <Button onClick={() => {setTextField(''); setErrorStatus('')}}>
                   Clear
-                </Button>
+              </Button>
             </InputAdornment>,
           }}/>
           <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
