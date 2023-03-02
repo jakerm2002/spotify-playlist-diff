@@ -74,7 +74,7 @@ useEffect(() => {
 
     }, [playlists]);
 
-const remove = (index: number, textField: string) => {
+const remove = (index: number) => {
     if (index >= 1) {
         const removed = (playlists.filter((_, i) => {
             return i !== index;
@@ -94,7 +94,6 @@ return (
     <React.Fragment>
     <Grid container spacing={2} direction="row" justifyContent='center'>
         {playlists.map((playlist, index) => {
-            console.log(index);
             return (
                 <Grid item xs={12} sm={6} md={3} key={index}>
                     <PlaylistCard
@@ -119,7 +118,7 @@ return (
                             setPlaylists(newPlaylists);
                           }}
                         onUpdate={(playlistData: any) => handlePlaylistUpdate(index, playlistData)}
-                        remove={(textField: string) => remove(index, textField)}
+                        remove={() => remove(index)}
                     />
                 </Grid>
             )

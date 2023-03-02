@@ -21,7 +21,7 @@ interface PlaylistCardProps {
   errorStatus: string;
   setErrorStatus: (errorStatus: string) => void;
   onUpdate: (playlistData: any) => void;
-  remove: (textField: string) => void;
+  remove: () => void;
 }
 
 const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, textField, setTextField, isLoading, setIsLoading, errorStatus, setErrorStatus, onUpdate, remove }) => {
@@ -114,7 +114,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
             {playlistData ? "update playlist" : "add playlist"}
           </Button>
           {playlistData && 
-          <Button onClick={() => {removePlaylist(); remove(textField);}} variant="contained" color="error" style={{ marginTop: 20 }}>
+          <Button onClick={() => {removePlaylist(); remove();}} variant="contained" color="error" style={{ marginTop: 20 }}>
             remove playlist
           </Button>}
           </Box>
