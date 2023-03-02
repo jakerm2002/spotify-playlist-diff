@@ -2,7 +2,10 @@ name: Elastic Beanstalk Backend Deploy
 on:
   push:
     branches: [ main ]
-    paths: ['backend/app.js']
+    paths:
+      - 'backend/app.js'
+      - 'backend/.ebextensions/**'
+      - 'backend/package.json'
 jobs:
   deploy:
     runs-on: ubuntu-latest

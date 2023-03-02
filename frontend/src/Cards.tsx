@@ -50,9 +50,9 @@ useEffect(() => {
     console.log("COUNT IS", count);
     if (count >= 2) {
         console.log("PLAYLIST LENGTH", playlists.length);
-        const response = axios.get(`${process.env.API_URL}/compare?${playlistIDs.map((n, index) => `playlist=${n}`).join('&')}&session=1`).then(response => {
+        const response = axios.get(`${process.env.NEXT_PUBLIC_API_URL}/compare?${playlistIDs.map((n, index) => `playlist=${n}`).join('&')}&session=1`).then(response => {
             setRows(response.data);
-        }); // replace YOUR_API_URL_HERE with your actual API endpoint
+        });
     }
 
     }, [playlists]);
