@@ -26,4 +26,5 @@ jobs:
            eb init ${{secrets.AWS_APPLICATION_NAME }} --platform node.js --region ${{secrets.AWS_DEFAULT_REGION }}
       - name: Deploy to Elastic Beanstalk
         run: |
+          cd backend
           eb deploy ${{secrets.AWS_ENVIRONMENT }}
