@@ -1,22 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Grid, IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Grid } from '@mui/material';
 import PlaylistCard from './PlaylistCard';
-import SharedTable from './SharedTable';
 import axios from 'axios';
-
-
-type PlaylistData = {
-    db_session_id: string, 
-    spotify_playlist_id: string,
-    playlist_name: string,
-    author_display_name: string,
-    image_url: string,
-    num_tracks: number,
-    snapshot_id: string,
-    playlist_url: string,
-    author_url: string
-};
+import { PlaylistData } from "../components/types/PlaylistData";
+import { TrackData } from '../components/types/TrackData';
 
 interface CardData {
     playlistData: PlaylistData | null;
@@ -25,13 +12,18 @@ interface CardData {
     errorStatus: string;
 }
 
-const Cards = () => {
+interface CardsProps {
+    rows: TrackData[];
+    setRows: React.Dispatch<React.SetStateAction<TrackData[]>>;
+}
+  
+
+const Cards: React.FC<CardsProps> = ( {rows, setRows} ) => {
 
 const [playlists, setPlaylists] = useState<CardData[]>([
     {playlistData: null, textField: '', isLoading: false, errorStatus: ''},
     {playlistData: null, textField: '', isLoading: false, errorStatus: ''}
 ]);
-const [rows, setRows] = useState([]);
 
 //call api when all playlists are filled
 useEffect(() => {
@@ -123,7 +115,6 @@ return (
             )
         })}
     </Grid>
-    <SharedTable rows={rows}/>
     </React.Fragment>
 
   );
