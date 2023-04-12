@@ -88,10 +88,10 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
         ): (
           <React.Fragment>
           <Typography variant="h6" component="div">
-            artist placeholder
+            <Box sx={{ m: 2 }} />
           </Typography>
           <Typography variant="subtitle1" component="div">
-            # tracks placeholder
+            <Box sx={{ m: 2 }} />
           </Typography>
           </React.Fragment>
 
