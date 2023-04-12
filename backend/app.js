@@ -25,16 +25,16 @@ const knex = require('knex')({
 
 Model.knex(knex);
 
+let accessToken = null;
+
 async function authenticate() {
     try {
-        // set up request data
         const clientId = process.env.CLIENT_ID;
         const clientSecret = process.env.CLIENT_SECRET;
         const authString = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+        // first-time authentication, get access token using client credentials
         const data = 'grant_type=client_credentials';
-
-        // make POST request to Spotify API to get access token
-        const { data: { access_token: accessToken } } = await axios.post(
+        const response = await axios.post(
             'https://accounts.spotify.com/api/token',
             data,
             {
@@ -45,13 +45,16 @@ async function authenticate() {
             }
         );
 
-        // use access token to authenticate further API requests
-        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+        accessToken = response.data.access_token;
 
+        // set the authorization header for future API requests
+        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
         console.log('successful authentication.');
+        return Promise.resolve(response);
     } catch (error) {
-        // console.error(error);
-        res.status(500).send('Unable to authenticate with Spotify API!')
+        console.error(error);
+        // res.status(500).send('Unable to authenticate with Spotify API!');
+        return Promise.reject(error);
     }
 }
 
@@ -278,14 +281,28 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
 
 app.use(cors());
 
-app.listen(
-    PORT,
-    (next) => {
-        console.log('hello')
-        authenticate(next);
+// set up a timer to refresh the token before it expires
+let tokenRefreshTimer = null;
 
-    }
-)
+function startTokenRefreshTimer(expiresIn) {
+      const refreshInterval = expiresIn * 1000 * 0.8;
+        tokenRefreshTimer = setTimeout(async () => {
+            console.log('Refreshing access token...');
+            await authenticate();
+            // recursively restart the timer
+            startTokenRefreshTimer(expiresIn);
+        }, refreshInterval);
+}
+
+app.listen(PORT, (next) => {
+  console.log('hello');
+
+  // authenticate and start the token refresh timer
+  authenticate(next).then((response) => {
+    const expiresIn = response.data.expires_in;
+    startTokenRefreshTimer(expiresIn);
+  });
+});
 
 async function uploadPlaylist(playlistURL, session_id, next) {
     const playlistID = getPlaylistIDfromURL(playlistURL);
