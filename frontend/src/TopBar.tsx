@@ -1,55 +1,59 @@
 import React, { useState } from "react";
-import { AppBar, Container, Toolbar, Typography, Menu, IconButton, Box, Button } from "@mui/material";
+import { AppBar, Container, Toolbar, Typography, Menu, IconButton, Box, Button, List, ListSubheader, ListItem } from "@mui/material";
 
 
 const styles = {
   background: 'linear-gradient(to right, #1DB954, #26A65B)',
-  height: '200px',
-  borderRadius: 0,
+  // height: '200px',
+  // minHeight: '100%',
+  margin: '25px',
+  borderRadius: 2,
   padding: '20px',
   color: '#fff',
   fontWeight: 'bold',
   display: 'flex',
-  alignItems: 'center',
+  flexDirection: 'column',
   justifyContent: 'center',
+  alignItems: 'flex-start',
 };
 
 
 const titleStyles = {
-  margin: 0,
+  alignSelf: 'center',
+  marginBottom: 5,
 };
+
+const helloStyles = {
+  alignSelf: 'center',
+};
+
 
 const TopBar = () => {
 
-  // return (
-  //     <Box sx={{ flexGrow: 1 }}>
-  //     <AppBar position="static">
-  //       <Toolbar>
-  //         <IconButton
-  //           size="large"
-  //           edge="start"
-  //           color="inherit"
-  //           aria-label="menu"
-  //           sx={{ mr: 2 }}
-  //         >
-  //         </IconButton>
-  //         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-  //           Spotify Playlist Diff Tool
-  //         </Typography>
-  //         <Button color="inherit">Login</Button>
-  //       </Toolbar>
-  //     </AppBar>
-  //   </Box>
-  // )
-
   return (
     <Box sx={styles}>
+      <Toolbar>
+        <Box>
+          <Button variant="outlined" color="inherit">Home</Button>
+          <Button variant="outlined" color="inherit">About</Button>
+        </Box>
+      </Toolbar>
       <Typography variant="h4" sx={titleStyles}>
-        Spotify playlist diff
+        Spotify Playlist Diff Tool
       </Typography>
-      <Typography variant="h5">
-        hello world!
+      <Typography variant="h5" sx={helloStyles}>
+        This tool lets you compare multiple Spotify playlists and see which tracks are shared across all playlists.
       </Typography>
+      <List sx={{ listStyleType: 'disc' }}>
+        <ListSubheader sx={{
+          fontWeight: 700, lineHeight: '24px', fontSize: '16px', color: 'white'
+        }}
+        >
+          Feature set:
+        </ListSubheader>
+        <ListItem>Add up to 10 playlists</ListItem>
+        <ListItem>Each playlist can have up to 7500 songs</ListItem>
+      </List>
     </Box>
   )
 }
