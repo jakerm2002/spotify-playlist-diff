@@ -1,9 +1,10 @@
 #bg {
     width: 100%;
     /* margin: 10px; */
-    padding: 20px;
+    padding: 1em;
     /* border-radius: 10px; */
     background-color: #1DB954;
+    margin-bottom: 2em;
 }
 
 .gridContainer {
@@ -18,16 +19,17 @@
 
 .buttonContainer {
     display: grid;
-    grid-template-columns: repeat(2, 45px);
+    grid-template-columns: repeat(2, 4em);
     column-gap: 40px;
     justify-content: center;
     justify-items: center;
     align-items: center;
+    margin-bottom: 1.5em;
 }
 
-.button {
-    width: 45px;
-}
+/* .button {
+    width: 5em;
+} */
   
 .textContainer {
     text-align: center;
@@ -44,8 +46,8 @@
     justify-items: center;
     align-items: center;
     row-gap: 5px;
-    column-gap: 10px;
-    margin-top: 20px;
+    column-gap: 1em;
+    margin-top: 2em;
   }
 
 .listContainer {
