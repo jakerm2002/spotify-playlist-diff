@@ -1,11 +1,12 @@
 // import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { ThemeOptions } from '@mui/material/styles';
+import { PaletteColorOptions, ThemeOptions } from '@mui/material/styles';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 // const localFont = require('@next/font/local');
 import localFont from '@next/font/local';
 import '../styles/styles.css';
+
 
 const myFont = localFont({ 
   src: '../public/fonts/circular-medium.ttf',
@@ -31,6 +32,43 @@ declare module '@mui/material/styles' {
 }
 // import { green, purple } from '@mui/material/colors';
 
+// declare module '@mui/material/styles' {
+
+//   interface Palette {
+//     neutral: Palette['primary'];
+//   }
+
+//   interface PaletteOptions {
+//     neutral: PaletteOptions['primary'];
+//   }
+
+//   // interface PaletteColor {
+//   //   darker?: string;
+//   // }
+
+//   // interface SimplePaletteColorOptions {
+//   //   darker?: string;
+//   // }
+// }
+
+
+declare module '@mui/material/styles' {
+  interface CustomPalette {
+    filled: PaletteColorOptions;
+  }
+  interface Palette extends CustomPalette {}
+  interface PaletteOptions extends CustomPalette {}
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    filled: true;
+  }
+}
+
+
+
+
 const theme = createTheme({
   palette: {
     mode: 'dark',
@@ -43,6 +81,10 @@ const theme = createTheme({
     background: {
       default: '#131313',
       paper: '#171717',
+    },
+    filled: {
+      main: '#fff',
+      contrastText: '#000',
     },
   },
   typography: {

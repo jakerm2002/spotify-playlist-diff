@@ -34,11 +34,11 @@ const SharedTable: React.FC<SharedTableProps> = ({ rows }) => {
 
     return (
         <React.Fragment>
-            <div style={{marginLeft: '2.5%', marginRight: '2.5%'}}>
-                <Typography variant="h5">
+            <div style={{marginLeft: '2.5%', marginRight: '2.5%', marginBottom: '4em'}}>
+                <Typography sx={{paddingBottom: '0.5em'}} variant="h5">
                     Shared Tracks
                 </Typography>
-                <div style={{ height: 800, width: '100%' }}>
+                <div style={{ width: '100%' }}>
                     <DataGrid
                         autoHeight
                         rows={rows}

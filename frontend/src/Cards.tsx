@@ -82,7 +82,7 @@ const handlePlaylistUpdate = (index: number, playlistData: PlaylistData | null) 
 };
 
 return (
-    <div id="cardsComponent">
+    <div id="cardsComponent" style={{paddingBottom: '2em'}}>
     <Grid container spacing={2} direction="row" justifyContent='center'>
         {playlists.map((playlist, index) => {
             return (
