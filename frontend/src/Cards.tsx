@@ -82,7 +82,7 @@ const handlePlaylistUpdate = (index: number, playlistData: PlaylistData | null) 
 };
 
 return (
-    <React.Fragment>
+    <div id="cardsComponent" style={{paddingBottom: '2em'}}>
     <Grid container spacing={2} direction="row" justifyContent='center'>
         {playlists.map((playlist, index) => {
             return (
@@ -115,7 +115,7 @@ return (
             )
         })}
     </Grid>
-    </React.Fragment>
+    </div>
 
   );
 };

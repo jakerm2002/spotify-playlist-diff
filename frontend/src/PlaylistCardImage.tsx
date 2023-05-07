@@ -14,24 +14,25 @@ const PlaylistCardImage: React.FC<PlaylistCardImageProps> = ({ playlistData, isL
             <CardMedia
                 component="img"
                 alt="Playlist Image"
-                sx={{ height: 200, width: 200, objectFit: 'cover' }}
+                sx={{ height: 200, width: 200, objectFit: 'cover', borderRadius: '1px'}}
                 image={playlistData.image_url}
                 title="Playlist Image"
             />
         </div>)
     } else if (isLoading) {
-        return (isLoading && (<div style={{ display: 'flex', justifyContent: 'center' }}><Skeleton variant="rounded" animation="wave" width={200} height={200} /></div>));
+        return (isLoading && (<div style={{ display: 'flex', justifyContent: 'center' }}><Skeleton variant="rectangular" sx={{borderRadius: '1px'}} animation="wave" width={200} height={200} /></div>));
 
     } else {
         return (<div style={{ display: 'flex', justifyContent: 'center' }}>
             <Box
-                sx={{ height: 200, width: 200, backgroundColor: '#30302f' }}
+                sx={{ height: 200, width: 200, backgroundColor: '#30302f', borderRadius: '1px' }}
             >
                 <Typography variant="h6" component="div" sx={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    height: '100%'
+                    height: '100%',
+                    userSelect: 'none'
                 }}>
                     Add a playlist
                 </Typography>

@@ -2,6 +2,8 @@ import Head from 'next/head'
 import React from "react";
 import { useTheme } from '@mui/material/styles';
 import Compare from '../src/Compare';
+import Hero from '../src/Hero';
+
 
 export default function Home() {
   const theme = useTheme();
@@ -14,6 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Hero/>
         <Compare/>
       </main>
     </>

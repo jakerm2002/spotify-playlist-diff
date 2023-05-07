@@ -1,0 +1,18 @@
+.gridContainer {
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    width: 100%;
+    max-width: 100%;
+    row-gap: 2em;
+    margin-left: 2em;
+}
+
+.aboutText {
+
+}
+
+.ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    margin: 0;
+}

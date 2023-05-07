@@ -1,10 +1,11 @@
-// import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { ThemeOptions } from '@mui/material/styles';
+import { PaletteColorOptions, ThemeOptions } from '@mui/material/styles';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-// const localFont = require('@next/font/local');
 import localFont from '@next/font/local';
+import '../styles/styles.css';
+
+
 const myFont = localFont({ 
   src: '../public/fonts/circular-medium.ttf',
   weight: '400',
@@ -12,7 +13,6 @@ const myFont = localFont({
   display: 'swap'
 });
 
-// import CircularMedium from "../public/fonts/circular-medium.woff";
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -27,7 +27,23 @@ declare module '@mui/material/styles' {
     };
   }
 }
-// import { green, purple } from '@mui/material/colors';
+
+declare module '@mui/material/styles' {
+  interface CustomPalette {
+    filled: PaletteColorOptions;
+  }
+  interface Palette extends CustomPalette {}
+  interface PaletteOptions extends CustomPalette {}
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    filled: true;
+  }
+}
+
+
+
 
 const theme = createTheme({
   palette: {
@@ -42,9 +58,16 @@ const theme = createTheme({
       default: '#131313',
       paper: '#171717',
     },
+    filled: {
+      main: '#fff',
+      contrastText: '#000',
+    },
   },
   typography: {
     fontFamily: 'circular-medium',
+  },
+  shape: {
+    borderRadius: 20,
   },
   // components: {
   //   MuiCssBaseline: {
