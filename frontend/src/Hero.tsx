@@ -1,46 +1,8 @@
-import React, { useState } from "react";
-import { AppBar, Container, Toolbar, Typography, Menu, IconButton, Box, Button, List, ListSubheader, ListItem, Link } from "@mui/material";
+import React from "react";
+import { Typography, Button, Link } from "@mui/material";
 import heroStyles from "../styles/heroStyles.module.css"
 import logo from './assets/spotify.png'
 import Image from 'next/image';
-// import { ButtonPropsColorOverrides } from "@mui/material/Button";
-
-
-const styles = {
-    background: 'linear-gradient(to right, #1DB954, #26A65B)',
-    // height: '200px',
-    // minHeight: '100%',
-    margin: '25px',
-    borderRadius: 2,
-    padding: '20px',
-    color: '#fff',
-    fontWeight: 'bold',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-};
-
-
-const titleStyles = {
-    alignSelf: 'center',
-    marginBottom: 5,
-};
-
-const helloStyles = {
-    alignSelf: 'center',
-};
-
-// declare module "@mui/material/button" {
-//     interface ButtonPropsColorOverrides {
-//       error: true;
-//       info: true;
-//       success: true;
-//       warning: true;
-//       netural: true;
-//     }
-//   }
-
 
 const Hero = () => {
 
@@ -50,13 +12,10 @@ const Hero = () => {
                 <div id={heroStyles.gridContainer}>
                     <div className={heroStyles.buttonContainer}>
                         <Button href="/" style={{minWidth: '6em'}} variant="contained" color="filled" id={heroStyles.button}>Home</Button>
-                        {/* <Button style={{minWidth: '6em'}} variant="outlined" color="inherit" id={heroStyles.button}>API</Button> */}
                         <Button href="/about" style={{minWidth: '6em'}} variant="outlined" color="inherit" id={heroStyles.button}>About</Button>
                     </div>
                     <div className={heroStyles.textContainer}>
-                        {/* <h1 id={heroStyles.heroText}>Spotify playlist diff tool</h1> */}
                         <Typography variant="h5">Spotify Playlist Diff Tool</Typography>
-                        {/* <img src={logo.src}></img> */}
                         <Image style={{marginTop: '1em'}} src={logo} width={32} height={32} alt="Spotify logo"/>
                     </div>
                     <div className={heroStyles.introContainer}>

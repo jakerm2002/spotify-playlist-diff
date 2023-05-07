@@ -1,9 +1,7 @@
-// import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { PaletteColorOptions, ThemeOptions } from '@mui/material/styles';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-// const localFont = require('@next/font/local');
 import localFont from '@next/font/local';
 import '../styles/styles.css';
 
@@ -15,7 +13,6 @@ const myFont = localFont({
   display: 'swap'
 });
 
-// import CircularMedium from "../public/fonts/circular-medium.woff";
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -30,27 +27,6 @@ declare module '@mui/material/styles' {
     };
   }
 }
-// import { green, purple } from '@mui/material/colors';
-
-// declare module '@mui/material/styles' {
-
-//   interface Palette {
-//     neutral: Palette['primary'];
-//   }
-
-//   interface PaletteOptions {
-//     neutral: PaletteOptions['primary'];
-//   }
-
-//   // interface PaletteColor {
-//   //   darker?: string;
-//   // }
-
-//   // interface SimplePaletteColorOptions {
-//   //   darker?: string;
-//   // }
-// }
-
 
 declare module '@mui/material/styles' {
   interface CustomPalette {
