@@ -18,8 +18,8 @@ function ScrollToTopFab() {
         const yOffset = -10;
         // const yOffset = 0;
         const element = document.getElementById('cardsComponent');
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "instant" })
+        const y = element ? element.getBoundingClientRect().top + window.pageYOffset + yOffset : 0;
+        window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
     }, [])
   
     return (
