@@ -38,8 +38,9 @@ const SharedTable: React.FC<SharedTableProps> = ({ rows }) => {
                 <Typography variant="h5">
                     Shared Tracks
                 </Typography>
-                <div style={{ height: 400, width: '100%' }}>
+                <div style={{ height: 800, width: '100%' }}>
                     <DataGrid
+                        autoHeight
                         rows={rows}
                         columns={columns}
                         rowsPerPageOptions={[20, 30, 50, 100]}

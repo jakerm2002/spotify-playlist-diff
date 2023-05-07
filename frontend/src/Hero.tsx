@@ -52,8 +52,9 @@ const Hero = () => {
                         <div className={heroStyles.listContainer}>
                             <p>Notable features:</p>
                             <ul className={heroStyles.ul}>
-                                <li className={heroStyles.li}>Add up to 10 different playlists</li>
-                                <li className={heroStyles.li}>Each playlist can have up to 7500 songs</li>
+                                <li className={heroStyles.li}>Add up to 10 different playlists 🎶</li>
+                                <li className={heroStyles.li}>Each playlist can have up to 7500 songs 🔢</li>
+                                <li className={heroStyles.li}>Sort/filter the results by clicking on any of the header fields ⬆️ ⬇️</li>
                             </ul>
                         </div>
 
