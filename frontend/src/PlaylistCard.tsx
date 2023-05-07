@@ -88,7 +88,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ playlistNum, playlistData, 
         ): (
           <React.Fragment>
           <Typography variant="h6" sx={{'color': 'grey'}} component="div">
-            artist
+            creator
           </Typography>
           <Typography variant="subtitle1" sx={{'color': 'grey'}} component="div">
             # of tracks
