@@ -16,7 +16,7 @@ const AboutHero = () => {
                     </div>
                     <div className={heroStyles.textContainer}>
                         <Typography variant="h5">Spotify Playlist Diff Tool</Typography>
-                        <Image style={{marginTop: '1em'}} src={logo} width={32} height={32} alt="Spotify logo"/>
+                        <img style={{marginTop: '1em'}} src={logo.src} width={32} height={32} alt="Spotify logo"/>
                     </div>
                     <div>
                         <p></p>
