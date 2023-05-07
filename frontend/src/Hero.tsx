@@ -37,7 +37,7 @@ const Hero = () => {
                 <div id={heroStyles.gridContainer}>
                     <div className={heroStyles.buttonContainer}>
                         <Button style={{minWidth: '6em'}} variant="outlined" color="inherit" id={heroStyles.button}>Home</Button>
-                        <Button style={{minWidth: '6em'}} variant="outlined" color="inherit" id={heroStyles.button}>About</Button>
+                        <Button style={{minWidth: '6em'}} variant="outlined" color="inherit" id={heroStyles.button}>API</Button>
                     </div>
                     <div className={heroStyles.textContainer}>
                         {/* <h1 id={heroStyles.heroText}>Spotify playlist diff tool</h1> */}
