@@ -15,7 +15,7 @@ const AboutHero = () => {
                         <Button href="/about" style={{minWidth: '6em'}} variant="contained" color="filled" id={heroStyles.button}>About</Button>
                     </div>
                     <div className={heroStyles.textContainer}>
-                        <Typography variant="h5">Spotify Playlist Diff Tool</Typography>
+                        <Typography variant="h5">Spotify Playlist Comparison Tool</Typography>
                         <img style={{marginTop: '1em'}} src={logo.src} width={32} height={32} alt="Spotify logo"/>
                     </div>
                     <div>
