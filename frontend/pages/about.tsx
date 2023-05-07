@@ -42,23 +42,23 @@ export default function About() {
         <AboutHero/>
         <div className={aboutStyles.gridContainer}>
             <div className={aboutStyles.aboutText}>
-                <p>Hi! I'm Jake, a junior computer science student at the University of Texas at Austin. Add me on LinkedIn <Link target="_blank" href="https://www.linkedin.com/in/jake-medina/">here!</Link></p>
+                <p>Hi! I&apos;m Jake, a junior computer science student at the University of Texas at Austin. Add me on LinkedIn <Link target="_blank" href="https://www.linkedin.com/in/jake-medina/">here!</Link></p>
                 <p>I built this tool because, despite there being other similar websites like this one, there were none that could handle more than two playlists at once or handle a large number of playlists.</p>
                 <p>I put in a lot of effort to make sure that this tool could handle a large number of songs/playlists without taking huge performance hits.</p>
             </div>
             <div>
-                <p>Things I've worked on/learned about during this project:</p>
+                <p>Things I&apos;ve worked on/learned about during this project:</p>
                 <ul className={aboutStyles.ul}>
-                    {list.map(desc => 
-                        <li>{desc}</li>
+                    {list.map((desc, index) => 
+                        <li key={index}>{desc}</li>
                     )}
                 </ul>
             </div>
             <div>
                 <p>Technologies used:</p>
                 <ul className={aboutStyles.ul}>
-                    {technologies.map(desc => 
-                        <li>{desc}</li>
+                    {technologies.map((desc, index) => 
+                        <li key={index}>{desc}</li>
                     )}
                 </ul>
             </div>
