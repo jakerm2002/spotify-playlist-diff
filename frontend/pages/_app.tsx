@@ -48,6 +48,9 @@ const theme = createTheme({
   typography: {
     fontFamily: 'circular-medium',
   },
+  shape: {
+    borderRadius: 20,
+  },
   // components: {
   //   MuiCssBaseline: {
   //     styleOverrides: `

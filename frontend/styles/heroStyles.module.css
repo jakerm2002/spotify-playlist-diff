@@ -3,7 +3,8 @@
     /* margin: 10px; */
     padding: 1em;
     /* border-radius: 10px; */
-    background-color: #1DB954;
+    /* background-color: #1DB954; */
+    background-image: linear-gradient(to bottom, #1DB954, #26A65B);
     margin-bottom: 2em;
 }
 
