@@ -5,6 +5,7 @@ import Compare from '../src/Compare';
 import TopBar from '../src/TopBar';
 import Hero from '../src/Hero';
 
+
 export default function Home() {
   const theme = useTheme();
   return (

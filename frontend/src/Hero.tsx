@@ -40,8 +40,8 @@ const Hero = () => {
                         <Button variant="outlined" color="inherit" id={heroStyles.button}>About</Button>
                     </div>
                     <div className={heroStyles.textContainer}>
-                        <h2 id={heroStyles.heroText}>Spotify playlist diff tool</h2>
-                        {/* <Typography variant="h4">Spotify Playlist Diff Tool</Typography> */}
+                        {/* <h1 id={heroStyles.heroText}>Spotify playlist diff tool</h1> */}
+                        <Typography variant="h5">Spotify Playlist Diff Tool</Typography>
                     </div>
                     <div className={heroStyles.introContainer}>
                         <p className={heroStyles.introText}>This tool lets you compare multiple Spotify playlists and see which tracks are shared across all playlists.</p>

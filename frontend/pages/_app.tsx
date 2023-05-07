@@ -5,6 +5,8 @@ import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 // const localFont = require('@next/font/local');
 import localFont from '@next/font/local';
+import '../styles/styles.css';
+
 const myFont = localFont({ 
   src: '../public/fonts/circular-medium.ttf',
   weight: '400',
