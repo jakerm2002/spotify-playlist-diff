@@ -31,7 +31,8 @@ const PlaylistCardImage: React.FC<PlaylistCardImageProps> = ({ playlistData, isL
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    height: '100%'
+                    height: '100%',
+                    userSelect: 'none'
                 }}>
                     Add a playlist
                 </Typography>
