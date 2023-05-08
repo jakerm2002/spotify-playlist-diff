@@ -84,10 +84,6 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
         // Reject with the error
         return Promise.reject(err);
     }
-
-    // const backOffDelay = config.retryDelay 
-    //     ? ( (1/2) * (Math.pow(2, config.__retryCount) - 1) ) * 1000
-    //     : 1;
   
     const delay = err.response.headers.get('retry-after') * 1000;
 
@@ -140,23 +136,6 @@ async function getPlaylistObject(playlistID, next) {
     }
 }
 
-function getPlaylistID(playlistObject) {
-    // console.log("getPlaylistID called")
-    // console.log(playlistObject.id)
-    return playlistObject.id;
-}
-
-function getPlaylistName(playlistObject) {
-    // console.log("getPlaylistName called")
-    // console.log(playlistObject.name)
-    return playlistObject.name;
-}
-
-function getPlaylistTracks(playlistObject) {
-    // console.log("getPlaylistTracks called")
-    // console.log(playlistObject.tracks.items)
-    return playlistObject.tracks.items;
-}
 
 async function getAllPlaylistTracks(playlistObject, session_id, next) {
     const playlistID = playlistObject.id;
@@ -246,7 +225,7 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
     console.log("adding playlist")
 
     // add playlist to Playlists table
-    const currentPlaylistID = getPlaylistID(playlistObject);
+    const currentPlaylistID = playlistObject.id;
     const currentSnapshotID = playlistObject.snapshot_id;
     const playlistOccurrences = await Playlist.query().whereComposite(['db_session_id', 'spotify_playlist_id'], [session_id, currentPlaylistID]).resultSize();
     // if the playlist doesn't already exist in the database, add it
@@ -281,9 +260,6 @@ async function addPlaylistToDB(playlistObject, session_id, next) {
 
 app.use(cors());
 
-// set up a timer to refresh the token before it expires
-let tokenRefreshTimer = null;
-
 function startTokenRefreshTimer(expiresIn) {
       const refreshInterval = expiresIn * 1000 * 0.8;
         tokenRefreshTimer = setTimeout(async () => {
@@ -315,10 +291,10 @@ app.get('/compare', (req, res, next) => {
     const playlists = req.query.playlist;
 
     //TODO
-    // if more than one paylist parameter is passed
-    //then this variable turns into an arry
-    //we need to check if this is an array
-    //if we only get one parameter, do nothing
+    // if more than one playlist parameter is passed
+    // then this variable turns into an array
+    // we need to check if this is an array
+    // if we only get one parameter, do nothing
 
     const session_id = req.query.session;
 
@@ -344,11 +320,6 @@ app.get('/compare', (req, res, next) => {
 //v4 function
 async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
 
-    // let subquery = Track.query().select('spotify_track_id')
-    //     .where('db_session_id', session_id)
-    //     .groupBy('spotify_track_id')
-    //     .having(knex.raw('count(DISTINCT spotify_playlist_id)'), '=', playlist_ids.length);
-
     const query = await Track
         .query()
         .min('playlist_order as playlist_order')
@@ -371,7 +342,6 @@ async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
         });
 
     console.log("getting shared tracks")
-    // console.log(query)
     console.log(query.length, "shared tracks")
     return query;
 }
@@ -383,7 +353,7 @@ async function getSharedTracks(playlist_ids, session_id, sort_attributes) {
 function get_sort_attributes(request_args, sort_filter_fields) {
     //confirm that we have a sort parameter
     if ('sort' in request_args) {
-        //confirmt that the sort parameter passed in is a valid field to sort by
+        //confirm that the sort parameter passed in is a valid field to sort by
         for (const element of sort_filter_fields) {
             if (request_args.sort === element) {
                 return request_args.sort;
@@ -415,7 +385,6 @@ async function printPlaylistObject(playlistURL, next) {
     
     console.log(res);
     console.log("returning", res.length, "tracks");
-    // const res = playlistObject;
     
     return res;
 }
