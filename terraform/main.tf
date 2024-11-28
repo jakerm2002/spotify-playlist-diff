@@ -28,7 +28,7 @@ resource "google_cloud_run_v2_service" "default" {
         name = "SPOTIFY_CLIENT_ID"
         value_source {
           secret_key_ref {
-            secret = google_secret_manager_secret.secret.secret_id
+            secret = google_secret_manager_secret.spotify-client-id.secret_id
             version = "1"
           }
         }
@@ -37,7 +37,7 @@ resource "google_cloud_run_v2_service" "default" {
         name = "SECRET_ENV_VAR"
         value_source {
           secret_key_ref {
-            secret = google_secret_manager_secret.secret.secret_id
+            secret = google_secret_manager_secret.spotify-client-id.secret_id
             version = "1"
           }
         }
@@ -72,10 +72,10 @@ resource "google_secret_manager_secret_version" "secret-version-data" {
 }
 
 resource "google_secret_manager_secret_iam_member" "secret-access" {
-  secret_id = google_secret_manager_secret.secret.id
+  secret_id = google_secret_manager_secret.spotify-client-id.id
   role      = "roles/secretmanager.secretAccessor"
   member    = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
-  depends_on = [google_secret_manager_secret.secret]
+  depends_on = [google_secret_manager_secret.spotify-client-id]
 }
 
 # resource "google_sql_database_instance" "instance" {
