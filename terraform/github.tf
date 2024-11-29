@@ -50,7 +50,7 @@ resource "google_cloudbuildv2_connection" "github_connection" {
 
 resource "google_cloudbuildv2_repository" "repo" {
   project = local.project
-  location = "us-central-1"
+  location = "us-central1"
   name = "spotify-playlist-diff"
   parent_connection = google_cloudbuildv2_connection.github_connection.name
   remote_uri = "https://github.com/jakerm2002/spotify-playlist-diff.git"
