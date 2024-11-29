@@ -37,22 +37,21 @@ locals {
   workspace_id = "ws-uRvRyMFpt5mcKPpo"
 }
 
-# variable "gcp_service_list" {
-#   description ="The list of apis necessary for the project"
-#   type = list(string)
-#   default = [
-#     "iam.googleapis.com",
-#     "cloudresourcemanager.googleapis.com",
-#     "sts.googleapis.com",
-#     "iamcredentials.googleapis.com",
-#   ]
-# }
+variable "gcp_service_list" {
+  description ="The list of apis necessary for the project"
+  type = list(string)
+  default = [
+    "cloudbuild.googleapis.com",
+    "run.googleapis.com",
+    "artifactregistry.googleapis.com",
+  ]
+}
 
-# resource "google_project_service" "gcp_services" {
-#   for_each = toset(var.gcp_service_list)
-#   project = local.project
-#   service = each.key
-# }
+resource "google_project_service" "gcp_services" {
+  for_each = toset(var.gcp_service_list)
+  project = local.project
+  service = each.key
+}
 
 variable "role_list" {
   description = "Google Cloud roles required for the Service Account"
@@ -129,58 +128,39 @@ resource "tfe_workspace_variable_set" "wip_workspace_variable_set" {
   workspace_id    = "${local.workspace_id}"
 }
 
-# resource "google_cloud_run_v2_service" "default" {
-#   name     = "cloudrun-service"
-#   location = "us-central1"
-#   deletion_protection = false
-#   ingress = "INGRESS_TRAFFIC_ALL"
+resource "google_cloud_run_v2_service" "default" {
+  name     = "cloudrun-service"
+  location = "us-central1"
+  deletion_protection = false
+  ingress = "INGRESS_TRAFFIC_ALL"
 
-#   template {
-#     scaling {
-#       max_instance_count = 1
-#     }
+  template {
+    scaling {
+      max_instance_count = 1
+    }
 
-#     # volumes {
-#     #   name = "cloudsql"
-#     #   cloud_sql_instance {
-#     #     instances = [google_sql_database_instance.instance.connection_name]
-#     #   }
-#     # }
+    # volumes {
+    #   name = "cloudsql"
+    #   cloud_sql_instance {
+    #     instances = [google_sql_database_instance.instance.connection_name]
+    #   }
+    # }
 
-#     containers {
-#       image = "us-docker.pkg.dev/cloudrun/container/hello"
+    # containers {
+    #   image = "us-docker.pkg.dev/cloudrun/container/hello"
 
-#       env {
-#         name = "SPOTIFY_CLIENT_ID"
-#         value_source {
-#           secret_key_ref {
-#             secret = google_secret_manager_secret.spotify-client-id.secret_id
-#             version = "1"
-#           }
-#         }
-#       }
-#       env {
-#         name = "SECRET_ENV_VAR"
-#         value_source {
-#           secret_key_ref {
-#             secret = google_secret_manager_secret.spotify-client-id.secret_id
-#             version = "1"
-#           }
-#         }
-#       }
-#       # volume_mounts {
-#       #   name = "cloudsql"
-#       #   mount_path = "/cloudsql"
-#       # }
-#     }
-#   }
+    #   volume_mounts {
+    #     name = "cloudsql"
+    #     mount_path = "/cloudsql"
+    #   }
+    # }
+  }
 
-#   traffic {
-#     type = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
-#     percent = 100
-#   }
-#   depends_on = [google_secret_manager_secret_version.secret-version-data]
-# }
+  traffic {
+    type = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+    percent = 100
+  }
+}
 
 # resource "google_secret_manager_secret" "spotify-client-id" {
 #   secret_id = "spotify-client-id"
