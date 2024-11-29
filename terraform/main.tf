@@ -96,13 +96,6 @@ module "tfc_oidc" {
   tfc_project_name = "Portfolio"
   tfc_workspace_name = local.project
 }
- 
-# IAM verifies the HCP Terraform Workspace ID before authorizing access to impersonate the 'example' service account
-resource "google_service_account_iam_member" "hcp_workload_identity_user" {
-  service_account_id = google_service_account.hcp_tf.name
-  role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.hcp_tf.name}/attribute.terraform_workspace_id/${local.workspace_id}"
-}
 
 # create a variable set to store the workload identity federation config for the 'example' service account
 resource "tfe_variable_set" "wip_variable_set" {
