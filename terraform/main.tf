@@ -95,7 +95,7 @@ module "tfc_oidc" {
 
 # create a variable set to store the workload identity federation config for the 'hcp-tf' service account
 resource "tfe_variable_set" "wip_variable_set" {
-  name         = "${google_service_account.hcp_tf.account_id}-${locals.project}"
+  name         = "${google_service_account.hcp_tf.account_id}-${local.project}"
   description  = "Workload identity federation configuration for ${google_service_account.hcp_tf.name}"
   organization = local.organization_name
 }
