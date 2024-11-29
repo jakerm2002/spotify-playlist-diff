@@ -37,9 +37,6 @@ locals {
   workspace_id = "ws-uRvRyMFpt5mcKPpo"
 }
 
-# data "google_project" "project" {
-# }
-
 # variable "gcp_service_list" {
 #   description ="The list of apis necessary for the project"
 #   type = list(string)
@@ -70,7 +67,6 @@ variable "role_list" {
 resource "google_service_account" "hcp_tf" {
   account_id   = "hcp-tf"
   display_name = "Service Account for HCP Terraform Dynamic Credentials"
-  # project      = data.google_project.project.id
 }
 
 resource "google_project_iam_member" "project_iam" {
@@ -97,9 +93,9 @@ module "tfc_oidc" {
   tfc_workspace_name = local.project
 }
 
-# create a variable set to store the workload identity federation config for the 'example' service account
+# create a variable set to store the workload identity federation config for the 'hcp-tf' service account
 resource "tfe_variable_set" "wip_variable_set" {
-  name         = google_service_account.hcp_tf.account_id
+  name         = "${google_service_account.hcp_tf.account_id}-${locals.project}"
   description  = "Workload identity federation configuration for ${google_service_account.hcp_tf.name}"
   organization = local.organization_name
 }
@@ -127,7 +123,7 @@ resource "tfe_variable" "hcp_tf_provider_name" {
   variable_set_id = tfe_variable_set.wip_variable_set.id
 }
 
-# share the variable set with another HCP Terraform Workspace
+# share the variable set with this HCP Terraform Workspace
 resource "tfe_workspace_variable_set" "wip_workspace_variable_set" {
   variable_set_id = tfe_variable_set.wip_variable_set.id
   workspace_id    = "${local.workspace_id}"
