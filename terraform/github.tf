@@ -13,17 +13,24 @@ resource "google_secret_manager_secret_version" "github_token_secret_version" {
     secret_data = "2005765347"
 }
 
-data "google_iam_policy" "serviceagent_secretAccessor" {
-    binding {
-        role = "roles/secretmanager.secretAccessor"
-        members = ["serviceAccount:service-${local.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"]
-    }
-}
+# data "google_iam_policy" "serviceagent_secretAccessor" {
+#     binding {
+#         role = "roles/secretmanager.secretAccessor"
+#         members = ["serviceAccount:service-${local.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"]
+#     }
+# }
 
-resource "google_secret_manager_secret_iam_policy" "policy" {
+# resource "google_secret_manager_secret_iam_policy" "policy" {
+#   project = google_secret_manager_secret.github_token_secret.project
+#   secret_id = google_secret_manager_secret.github_token_secret.secret_id
+#   policy_data = data.google_iam_policy.serviceagent_secretAccessor.policy_data
+# }
+
+resource "google_secret_manager_secret_iam_member" "cloud_build_secret_access" {
   project = google_secret_manager_secret.github_token_secret.project
   secret_id = google_secret_manager_secret.github_token_secret.secret_id
-  policy_data = data.google_iam_policy.serviceagent_secretAccessor.policy_data
+  role = "roles/secretmanager.secretAccessor"
+  member = "serviceAccount:service-${local.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
 }
 
 # // Create the GitHub connection
