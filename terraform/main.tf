@@ -32,6 +32,7 @@ resource "random_string" "suffix" {
 
 locals {
   project = "spotify-playlist-diff"
+  project_number = "729275528125"
   organization_name = "mdna"
   tfc_varset_name = "hcp-tf-${random_string.suffix.result}"
   workspace_id = "ws-uRvRyMFpt5mcKPpo"
