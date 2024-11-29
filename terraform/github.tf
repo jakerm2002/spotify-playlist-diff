@@ -33,17 +33,17 @@ resource "google_secret_manager_secret_iam_member" "cloud_build_secret_access" {
   member = "serviceAccount:service-${local.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
 }
 
-# // Create the GitHub connection
-# resource "google_cloudbuildv2_connection" "my_connection" {
-#     project = local.project
-#     location = "us-central1"
-#     name = "github"
+// Create the GitHub connection
+resource "google_cloudbuildv2_connection" "github_connection" {
+    project = local.project
+    location = "us-central1"
+    name = "github"
 
-#     github_config {
-#         app_installation_id = 57775129
-#         authorizer_credential {
-#             oauth_token_secret_version = google_secret_manager_secret_version.github_token_secret_version.id
-#         }
-#     }
-#     depends_on = [google_secret_manager_secret_iam_policy.policy]
-# }
+    github_config {
+        app_installation_id = 57775129
+        authorizer_credential {
+            oauth_token_secret_version = google_secret_manager_secret_version.github_token_secret_version.id
+        }
+    }
+    # depends_on = [google_secret_manager_secret_iam_policy.policy]
+}
