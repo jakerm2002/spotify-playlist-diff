@@ -37,8 +37,8 @@ locals {
   workspace_id = "ws-uRvRyMFpt5mcKPpo"
 }
 
-data "google_project" "project" {
-}
+# data "google_project" "project" {
+# }
 
 # variable "gcp_service_list" {
 #   description ="The list of apis necessary for the project"
