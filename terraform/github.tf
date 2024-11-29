@@ -10,7 +10,7 @@ resource "google_secret_manager_secret" "github_token_secret" {
 
 resource "google_secret_manager_secret_version" "github_token_secret_version" {
     secret = google_secret_manager_secret.github_token_secret.id
-    secret_data = "2005765347"
+    secret_data = var.GITHUB_TOKEN_SECRET
 }
 
 # data "google_iam_policy" "serviceagent_secretAccessor" {
