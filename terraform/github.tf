@@ -1,7 +1,7 @@
 // Create a secret containing the personal access token and grant permissions to the Service Agent
 resource "google_secret_manager_secret" "github_token_secret" {
     project =  local.project
-    secret_id = var.GITHUB_TOKEN_SECRET
+    secret_id = "github-token-secret"
 
     replication {
         auto {}
@@ -47,3 +47,11 @@ resource "google_cloudbuildv2_connection" "github_connection" {
     }
     # depends_on = [google_secret_manager_secret_iam_policy.policy]
 }
+
+# resource "google_cloudbuildv2_repository" "repo" {
+#   project = local.project
+#   location = "us-central-1"
+#   name = "spotify-playlist-diff"
+#   parent_connection = google_cloudbuildv2_connection.github_connection.name
+#   remote_uri = "https://github.com/jakerm2002/spotify-playlist-diff.git"
+# }
