@@ -96,7 +96,7 @@ variable "cloud_build_role_list" {
 # service account for doing cloud build things
 resource "google_service_account" "cloud_build" {
   account_id   = "cloud-build"
-  display_name = "Service Account for HCP Terraform Dynamic Credentials"
+  display_name = "Service Account for Cloud Build"
 }
 
 resource "google_project_iam_member" "cloud_build_iam" {
