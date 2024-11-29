@@ -48,10 +48,10 @@ resource "google_cloudbuildv2_connection" "github_connection" {
     # depends_on = [google_secret_manager_secret_iam_policy.policy]
 }
 
-# resource "google_cloudbuildv2_repository" "repo" {
-#   project = local.project
-#   location = "us-central-1"
-#   name = "spotify-playlist-diff"
-#   parent_connection = google_cloudbuildv2_connection.github_connection.name
-#   remote_uri = "https://github.com/jakerm2002/spotify-playlist-diff.git"
-# }
+resource "google_cloudbuildv2_repository" "repo" {
+  project = local.project
+  location = "us-central-1"
+  name = "spotify-playlist-diff"
+  parent_connection = google_cloudbuildv2_connection.github_connection.name
+  remote_uri = "https://github.com/jakerm2002/spotify-playlist-diff.git"
+}
