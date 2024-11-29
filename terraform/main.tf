@@ -40,16 +40,22 @@ locals {
 data "google_project" "project" {
 }
 
-variable "gcp_service_list" {
-  description ="The list of apis necessary for the project"
-  type = list(string)
-  default = [
-    "iam.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "sts.googleapis.com",
-    "iamcredentials.googleapis.com",
-  ]
-}
+# variable "gcp_service_list" {
+#   description ="The list of apis necessary for the project"
+#   type = list(string)
+#   default = [
+#     "iam.googleapis.com",
+#     "cloudresourcemanager.googleapis.com",
+#     "sts.googleapis.com",
+#     "iamcredentials.googleapis.com",
+#   ]
+# }
+
+# resource "google_project_service" "gcp_services" {
+#   for_each = toset(var.gcp_service_list)
+#   project = local.project
+#   service = each.key
+# }
 
 variable "role_list" {
   description = "Google Cloud roles required for the Service Account"
@@ -58,12 +64,6 @@ variable "role_list" {
     "roles/owner",
     "roles/iam.workloadIdentityPoolAdmin"
   ]
-}
-
-resource "google_project_service" "gcp_services" {
-  for_each = toset(var.gcp_service_list)
-  project = local.project
-  service = each.key
 }
 
 # service account that HCP Terraform will impersonate
@@ -86,9 +86,9 @@ module "tfc_oidc" {
   pool_id     = "hcp-tf-pool-${random_string.suffix.result}"
   provider_id = "hcp-tf-provider-${random_string.suffix.result}"
   sa_mapping = {
-    "foo-service-account" = {
-      sa_name   = "projects/my-project/serviceAccounts/foo-service-account@my-project.iam.gserviceaccount.com"
-      sa_email  = "foo-service-account@my-project.iam.gserviceaccount.com"
+    (google_service_account.hcp_tf.account_id) = {
+      sa_name   = google_service_account.hcp_tf.name
+      sa_email  = google_service_account.hcp_tf.email
       attribute = "*"
     }
   }
