@@ -77,7 +77,7 @@ resource "google_project_iam_member" "project_iam" {
   for_each = toset(var.role_list)
   member  = "serviceAccount:${google_service_account.hcp_tf.email}"
   role    = each.value
-  project = data.google_project.project.id
+  project = local.project
 }
 
 module "tfc_oidc" {
