@@ -53,12 +53,12 @@ resource "google_project_service" "gcp_services" {
   service = each.key
 }
 
-variable "role_list" {
-  description = "Google Cloud roles required for the Service Account"
+variable "hcp_tf_role_list" {
+  description = "Google Cloud roles required for the hcp-tf service account"
   type        = list(string)
   default = [
     "roles/owner",
-    "roles/iam.workloadIdentityPoolAdmin"
+    "roles/iam.workloadIdentityPoolAdmin",
   ]
 }
 
@@ -69,8 +69,37 @@ resource "google_service_account" "hcp_tf" {
 }
 
 resource "google_project_iam_member" "project_iam" {
-  for_each = toset(var.role_list)
+  for_each = toset(var.hcp_tf_role_list)
   member  = "serviceAccount:${google_service_account.hcp_tf.email}"
+  role    = each.value
+  project = local.project
+}
+
+variable "cloud_build_role_list" {
+  description = "Google Cloud roles required for the Cloud Build service account"
+  type        = list(string)
+  default = [
+    "roles/cloudbuild.builds.builder",
+    "roles/cloudbuild.builds.editor",
+    "roles/cloudbuild.builds.viewer",
+    "roles/run.admin",
+    "roles/secretmanager.secretAccessor",
+    "roles/iam.serviceAccountUser",
+    "roles/cloudbuild.workerPoolUser",
+    "roles/cloudbuild.connectionAdmin",
+
+  ]
+}
+
+# service account for doing cloud build things
+resource "google_service_account" "cloud_build" {
+  account_id   = "cloud-build"
+  display_name = "Service Account for HCP Terraform Dynamic Credentials"
+}
+
+resource "google_project_iam_member" "cloud_build_iam" {
+  for_each = toset(var.cloud_build_role_list)
+  member  = "serviceAccount:${google_service_account.cloud_build.email}"
   role    = each.value
   project = local.project
 }
