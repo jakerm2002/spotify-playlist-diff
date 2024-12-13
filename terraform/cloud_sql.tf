@@ -12,7 +12,8 @@ resource "google_sql_database_instance" "mysql" {
   region           = "us-central1"
 
   settings {
-    tier = "	db-custom-1-3840"
+    edition = "ENTERPRISE"
+    tier = "db-custom-1-3840"
     disk_size = 10
     disk_autoresize = false
   }
