@@ -46,6 +46,7 @@ variable "gcp_service_list" {
     "run.googleapis.com",
     "artifactregistry.googleapis.com",
     "secretmanager.googleapis.com",
+    "sqladmin.googleapis.com",
   ]
 }
 
