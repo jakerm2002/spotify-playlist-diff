@@ -188,7 +188,7 @@ async function addTracks(response_items, playlistObject, session_id, playlist_or
                 spotify_album_id: item.track.album.id,
                 spotify_artist_id: item.track.artists[0].id,
                 cover_art_url: item.track.album.images.length != 0 ? item.track.album.images[0].url : null,
-                date_added: item.added_at,
+                date_added: new Date(item.added_at).toISOString().slice(0, 19).replace('T', ' '),
                 track_name: item.track.name,
                 album_name: item.track.album.name,
                 artist_name: item.track.artists[0].name,
