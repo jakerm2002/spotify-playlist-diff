@@ -16,6 +16,13 @@ resource "google_sql_database_instance" "mysql" {
     tier = "db-custom-1-3840"
     disk_size = 10
     disk_autoresize = false
+
+    ip_configuration {
+      authorized_networks {
+        name  = "All"
+        value = "0.0.0.0/0"
+      }
+    }
   }
 }
 
