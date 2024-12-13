@@ -16,6 +16,11 @@ resource "google_sql_database_instance" "mysql" {
     tier = "db-custom-1-3840"
     disk_size = 10
     disk_autoresize = false
+    
+    database_flags {
+      name  = "sql_mode"
+      value = "TRADITIONAL"
+    }
 
     ip_configuration {
       authorized_networks {
