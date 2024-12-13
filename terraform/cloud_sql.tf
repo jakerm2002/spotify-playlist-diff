@@ -19,6 +19,12 @@ resource "google_sql_database_instance" "mysql" {
   }
 }
 
+resource "google_sql_database" "database" {
+  name     = "playlists"
+  instance = google_sql_database_instance.mysql.name
+}
+
+
 resource "google_sql_user" "users" {
   name     = "express"
   instance = google_sql_database_instance.mysql.name
