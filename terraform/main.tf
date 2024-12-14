@@ -207,7 +207,7 @@ module "lb-http" {
       groups = [
         {
           for_each = { for s in var.cloudrun_services : s.service_name => s }
-          group = google_compute_region_network_endpoint_group.serverless_neg[s.value.service_name].id
+          group = google_compute_region_network_endpoint_group.serverless_neg[each.value.service_name].id
         }
       ]
       enable_cdn = false
@@ -231,7 +231,7 @@ resource "google_compute_region_network_endpoint_group" "serverless_neg" {
   region                = "us-central1"
 
   cloud_run {
-    service = module.cloud_run[s.service_name].service_name
+    service = module.cloud_run[each.value.service_name].service_name
   }
 }
 
