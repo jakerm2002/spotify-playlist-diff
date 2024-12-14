@@ -60,9 +60,8 @@ resource "google_cloudbuild_trigger" "github_trigger" {
   name        = "github-trigger"
   location    = "us-central1"
 
-  github {
-    owner = "jakerm2002"
-    name  = "spotify-playlist-diff"
+  repository_event_config {
+    repository = google_cloudbuildv2_repository.repo.id
     push {
       branch = "^main$"
     }
