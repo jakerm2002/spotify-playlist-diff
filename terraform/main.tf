@@ -229,8 +229,7 @@ module "lb-http" {
 resource "google_compute_url_map" "https-multi-cert" {
   for_each = { for s in var.cloudrun_services : s.service_name => s }
 
-  name            = "${module.lb-http[each.value.service_name]}-url-map"
-  default_service = module.lb-http.backend_services["default"].self_link
+  name            = "${each.value.service_name}-url-map"
 
   host_rule {
     hosts        = ["spotifydiff.jakemedina.net"]
