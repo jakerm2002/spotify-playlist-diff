@@ -55,3 +55,18 @@ resource "google_cloudbuildv2_repository" "repo" {
   parent_connection = google_cloudbuildv2_connection.github_connection.name
   remote_uri = "https://github.com/jakerm2002/spotify-playlist-diff.git"
 }
+
+resource "google_cloudbuild_trigger" "github-trigger" {
+  name        = "github-trigger"
+  location    = "us-central1"
+
+  github {
+    owner = "jakerm2002"
+    name  = "spotify-playlist-diff"
+    push {
+      branch = "^main$"
+    }
+  }
+
+  filename = "cloudbuild.yaml"
+}
