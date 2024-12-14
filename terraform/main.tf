@@ -160,6 +160,40 @@ resource "tfe_workspace_variable_set" "wip_workspace_variable_set" {
   workspace_id    = "${local.workspace_id}"
 }
 
+resource "google_cloud_run_v2_service" "default" {
+  name     = "cloudrun-service"
+  location = "us-central1"
+  deletion_protection = false
+  ingress = "INGRESS_TRAFFIC_ALL"
+
+  template {
+    scaling {
+      max_instance_count = 1
+    }
+
+    # volumes {
+    #   name = "cloudsql"
+    #   cloud_sql_instance {
+    #     instances = [google_sql_database_instance.instance.connection_name]
+    #   }
+    # }
+
+    containers {
+      image = "us-docker.pkg.dev/cloudrun/container/hello"
+
+      # volume_mounts {
+      #   name = "cloudsql"
+      #   mount_path = "/cloudsql"
+      # }
+    }
+  }
+
+  traffic {
+    type = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+    percent = 100
+  }
+}
+
 # resource "google_secret_manager_secret" "spotify-client-id" {
 #   secret_id = "spotify-client-id"
 #   replication {
