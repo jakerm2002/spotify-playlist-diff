@@ -200,6 +200,8 @@ module "lb-http" {
   name    = "${each.value.service_name}-lb"
   project = local.project
 
+  url_map           = google_compute_url_map.https-multi-cert["${each.value.service_name}-lb"].self_link
+
   # ssl                             = true
   # managed_ssl_certificate_domains = ["jakemedina.net"]
   # https_redirect                  = true
@@ -221,6 +223,33 @@ module "lb-http" {
         enable = false
       }
     }
+  }
+}
+
+resource "google_compute_url_map" "https-multi-cert" {
+  for_each = { for s in var.cloudrun_services : s.service_name => s }
+
+  name            = "${module.lb-http[each.value.service_name]}-lb"
+  default_service = module.lb-http.backend_services["default"].self_link
+
+  host_rule {
+    hosts        = ["spotifydiff.jakemedina.net"]
+    path_matcher = "frontend"
+  }
+
+  host_rule {
+    hosts        = ["api.spotifydiff.jakemedina.net"]
+    path_matcher = "backend"
+  }
+
+  path_matcher {
+    name            = "frontend"
+    default_service = module.cloud_run["cloudrun-frontend-service"].service_id
+  }
+
+  path_matcher {
+    name            = "backend"
+    default_service = module.cloud_run["cloudrun-backend-service"].service_id
   }
 }
 
