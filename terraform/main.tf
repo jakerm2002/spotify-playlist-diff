@@ -160,6 +160,36 @@ resource "tfe_workspace_variable_set" "wip_workspace_variable_set" {
   workspace_id    = "${local.workspace_id}"
 }
 
+variable "cloudrun_services" {
+  description = "The list of Cloud Run services to create"
+  type = list(object({
+    service_name = string
+    image = string
+  }))
+  default = [
+    {
+      service_name = "cloudrun-frontend"
+      image = "gcr.io/cloudrun/hello"
+    },
+    {
+      service_name = "cloudrun-backend"
+      image = "gcr.io/cloudrun/hello"
+    }
+  ]
+}
+
+module "cloud_run" {
+  source  = "GoogleCloudPlatform/cloud-run/google"
+  version = "~> 0.15.4"
+
+  for_each = { for s in var.cloudrun_services : s.service_name => s }
+
+  service_name           = "${each.value.service_name}-service"
+  project_id             = local.project
+  location               = "us-central1"
+  image                  = "${each.value.image}"
+}
+
 # resource "google_secret_manager_secret" "spotify-client-id" {
 #   secret_id = "spotify-client-id"
 #   replication {
