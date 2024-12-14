@@ -190,6 +190,51 @@ module "cloud_run" {
   image                  = "${each.value.image}"
 }
 
+module "lb-http" {
+  source  = "terraform-google-modules/lb-http/google//modules/serverless_negs"
+  version = "~> 12.0"
+
+  name    = "cloudrun-lb"
+  project = local.project
+
+  ssl                             = true
+  managed_ssl_certificate_domains = ["jakemedina.net"]
+  https_redirect                  = true
+
+  backends = {
+    default = {
+      description = null
+      groups = [
+        {
+          for_each = { for s in var.cloudrun_services : s.service_name => s }
+          group = google_compute_region_network_endpoint_group.serverless_neg[s.value.service_name].id
+        }
+      ]
+      enable_cdn = false
+
+      iap_config = {
+        enable = false
+      }
+      log_config = {
+        enable = false
+      }
+    }
+  }
+}
+
+resource "google_compute_region_network_endpoint_group" "serverless_neg" {
+  for_each = { for s in var.cloudrun_services : s.service_name => s }
+
+  provider              = google-beta
+  name                  = "serverless-neg-${each.value.service_name}"
+  network_endpoint_type = "SERVERLESS"
+  region                = "us-central1"
+
+  cloud_run {
+    service = module.cloud_run[s.service_name].service_name
+  }
+}
+
 # resource "google_secret_manager_secret" "spotify-client-id" {
 #   secret_id = "spotify-client-id"
 #   replication {
