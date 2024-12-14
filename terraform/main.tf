@@ -192,10 +192,12 @@ module "cloud_run" {
 }
 
 module "lb-http" {
+  for_each = { for s in var.cloudrun_services : s.service_name => s }
+
   source  = "terraform-google-modules/lb-http/google//modules/serverless_negs"
   version = "~> 12.0"
 
-  name    = "cloudrun-lb"
+  name    = "${each.value.service_name}-lb"
   project = local.project
 
   # ssl                             = true
@@ -205,9 +207,9 @@ module "lb-http" {
   backends = {
     default = {
       description = null
-      groups = [for s in var.cloudrun_services :
+      groups = [
         {
-          group = google_compute_region_network_endpoint_group.serverless_neg[s.service_name].id
+          group = google_compute_region_network_endpoint_group.serverless_neg[each.value.service_name].id
         }
       ]
       enable_cdn = false
