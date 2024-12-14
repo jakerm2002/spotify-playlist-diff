@@ -198,9 +198,9 @@ module "lb-http" {
   name    = "cloudrun-lb"
   project = local.project
 
-  ssl                             = true
-  managed_ssl_certificate_domains = ["jakemedina.net"]
-  https_redirect                  = true
+  # ssl                             = true
+  # managed_ssl_certificate_domains = ["jakemedina.net"]
+  # https_redirect                  = true
 
   backends = {
     default = {
