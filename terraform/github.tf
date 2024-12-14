@@ -56,7 +56,7 @@ resource "google_cloudbuildv2_repository" "repo" {
   remote_uri = "https://github.com/jakerm2002/spotify-playlist-diff.git"
 }
 
-resource "google_cloudbuild_trigger" "github-trigger" {
+resource "google_cloudbuild_trigger" "github_trigger" {
   name        = "github-trigger"
   location    = "us-central1"
 
