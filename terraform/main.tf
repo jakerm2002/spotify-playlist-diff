@@ -204,10 +204,9 @@ module "lb-http" {
   backends = {
     default = {
       description = null
-      groups = [
+      groups = [for s in var.cloudrun_services :
         {
-          for_each = { for s in var.cloudrun_services : s.service_name => s }
-          group = google_compute_region_network_endpoint_group.serverless_neg[each.value.service_name].id
+          group = google_compute_region_network_endpoint_group.serverless_neg[s.service_name].id
         }
       ]
       enable_cdn = false
