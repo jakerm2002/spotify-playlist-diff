@@ -68,5 +68,7 @@ resource "google_cloudbuild_trigger" "github_trigger" {
     }
   }
 
+  service_account = google_service_account.cloud_build.id
+
   filename = "cloudbuild.yaml"
 }
