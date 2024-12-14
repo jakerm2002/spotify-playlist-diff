@@ -225,7 +225,6 @@ module "lb-http" {
 resource "google_compute_region_network_endpoint_group" "serverless_neg" {
   for_each = { for s in var.cloudrun_services : s.service_name => s }
 
-  provider              = google-beta
   name                  = "serverless-neg-${each.value.service_name}"
   network_endpoint_type = "SERVERLESS"
   region                = "us-central1"
